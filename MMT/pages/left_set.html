@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>左边滑动设置</title>
+		<meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+		<meta name="format-detection" content="telephone=no" />
+		<link href="../resources/css/public.css" rel="stylesheet" type="text/css">
+        <link href="../resources/css/com.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="../../resources/plugin/iscroll/iscroll.css">
+        <script src="../resources/js/public.js"></script>
+        <script type="text/javascript" src="../../resources/plugin/iscroll/iscroll.js"></script>
+        <style>
+            body{position:relative;}
+        	.setarticle{margin-top:0.2rem;}
+        	.lest_set{width: 220px;position: absolute;left: -220px;top: 0;bottom: 0; z-index: 99999;background:red;
+        	-webkit-transition: all 0.3s ease-in-out 0s;
+		    -moz-transition: all 0.3s ease-in-out 0s;
+		    -ms-transition: all 0.3s ease-in-out 0s;
+		    transition: all 0.3s ease-in-out 0s;}
+        	.lset_posi{position:relative;height:100%;width:100%;}
+        	.set_up_logo{padding-top: 1.1rem;margin:0 auto;}
+        	.set_up_logo .set_logos{width:1.84rem;height:1.84rem;margin:0 auto}
+        	.set_up_logo .set_logos img{width:100%}
+        	.set_up_logo p{display: block;font-size:0.28rem;color:#FFFFFF;text-align:center;padding:0.28rem 0;}
+        	.lset_posi .set_text{position:absolute;left:0.3rem;bottom:0.5rem;font-size:0.28rem;color:#FFFFFF;display:block;}
+        	.lset_posi .set_text .set_icons{width:0.32rem;height:0.32rem;display:inline-block;} 
+        	.lset_posi .set_text .set_butt{padding-left:0.45rem;background:url(../../resources/img/set.png) no-repeat left center;background-size:0.32rem;}     
+        	.clicked {left: 0!important;-webkit-transition: all 0.3s ease-in-out 0s;-moz-transition: all 0.3s ease-in-out 0s;
+			           -ms-transition: all 0.3s ease-in-out 0s;transition: all 0.3s ease-in-out 0s;}  
+			.black_fixed {position: fixed;z-index: 99996!important;width: 0;
+    top: 0;height: 100%;background: rgba(0,0,0,0.9);font-size: 0.4rem;color: #fff;line-height: 2;right: -100%;overflow: hidden;
+    -webkit-transition: all 0.3s ease-in-out 0s;-moz-transition: all 0.3s ease-in-out 0s;
+    -ms-transition: all 0.3s ease-in-out 0s;transition: all 0.3s ease-in-out 0s;opacity: 0;}       
+		    .black_clicked {width: 100%;right: 0;
+		    -webkit-transition: all 0.3s ease-in-out 0s;-moz-transition: all 0.3s ease-in-out 0s;
+		    -ms-transition: all 0.3s ease-in-out 0s;transition: all 0.3s ease-in-out 0s;opacity: 0.5;}                                  
+        </style>
+	</head>
+	<body>
+		<div class="lest_set">
+			<div class="lset_posi">
+				<div class="set_up_logo">
+					<div class="set_logos">
+						<img src="../../resources/img/defaul@184.png"/>
+					</div>
+					<p>李梗塞</p>
+				</div>
+				<div class="set_text">
+
+					<span class="set_butt">设置</span>
+				</div>
+			</div>
+		</div>
+		<div class="black_fixed"></div>
+		<div class="setarticle">
+			<div>
+				<div class="one_px_border_t pd-tb-1 bg_white " id="set_btn">
+                   <span class="big_btn impor_fill_btn">设置</span>
+                </div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../resources/plugin/zepto/zepto.js"></script>
+		<script type="text/javascript" src="../../resources/plugin/zepto/touch.js"></script>
+		<script type="text/javascript">
+            var setBtn=$("#set_btn");
+            var lestSet=$(".lest_set"),blackFixed = $(".black_fixed");
+            setBtn.tap(setShow);
+            blackFixed.tap(setShow);
+            function setShow(){
+            	if(lestSet.hasClass("clicked")){
+            		lestSet.removeClass("clicked");
+            		blackFixed.removeClass('black_clicked');
+            	}else{
+            		lestSet.addClass("clicked");
+            		blackFixed.addClass('black_clicked');
+            	}
+            }
+        </script>
+	</body>
+</html>

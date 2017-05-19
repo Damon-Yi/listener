@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>工作区域</title>
+		<meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+		<meta name="format-detection" content="telephone=no" />
+		<link href="../resources/css/public.css" rel="stylesheet" type="text/css">
+        <link href="../resources/css/com.css" rel="stylesheet" type="text/css">
+        <script src="../resources/js/public.js"></script>
+        <style>
+        	#mapPage{position: fixed;top: 0;left: 0;right: 0;bottom:0;display: block;width: 100%;height: 100%;}
+        </style>
+	</head>
+	<body>
+        <iframe id="mapPage" src="http://apis.map.qq.com/tools/locpicker?search=1&type=1&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp"></iframe>
+		<script type="text/javascript" src="../../resources/plugin/zepto/zepto.js"></script>
+		<script type="text/javascript" src="../../resources/plugin/zepto/touch.js"></script>
+		<script src="../resources/js/com.js"></script>
+		<script>
+			var positionObj;
+		    window.addEventListener('message', function(event) {
+		        // 接收位置信息，用户选择确认位置点后选点组件会触发该事件，回传用户的位置信息
+		        var loc = event.data;
+		        //防止其他应用也会向该页面post信息，需判断module是否为'locationPicker'
+		        if (loc && loc.module == 'locationPicker') {
+		      		positionObj = loc;
+		      		console.log(positionObj);
+		        }                                
+		    }, false); 
+		</script>
+	</body>
+</html>

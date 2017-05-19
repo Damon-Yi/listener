@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <title>上传资料</title>
+	    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+	    <meta name="format-detection" content="telephone=no" />
+	    <link href="../resources/css/public.css" rel="stylesheet" type="text/css">
+	    <link href="../resources/css/com.css" rel="stylesheet" type="text/css">
+	    <link href="../../resources/plugin/swiper/swiper.3.1.7.min.css" rel="stylesheet" type="text/css">
+	    <link rel="stylesheet" href="../../resources/plugin/mui/css/mui.min.css">
+	    <script src="../resources/js/public.js"></script>
+	    <style>
+	    body{background:#fff;}
+	    .main_wrap {background:#fff;}
+	    .wrap_content{overflow:auto;padding:0.23rem 0.34rem 0.4rem;}
+	    .mapbox {height: 1.8rem;width:50%;float:left;font-size: 0.24rem;color: #323232;padding:0.05rem;}
+		.text-center {text-align: center;}
+		.tablev, .tablev-no {display: table;position: relative;width: 100%;height: 100%;background: #e6e6e6;}
+        .tablev>*:first-child, .tablev-no>*:first-child {display: table-cell;vertical-align: middle;}
+		.w08 {width: 0.8rem;}
+		.red {color: red;}
+		.affirm_wrap.on{display:none}
+		.affirm_wrap{width:100%;padding:0.1rem 0;overflow: auto;}
+		.affirm_wrap>a{width:62%;height:0.66rem;line-height:0.6rem;font-size:0.3rem;}
+        .tablev .close-btn, .tablev-no .close-btn {position: absolute; top: -0.1rem;right: -0.14rem;z-index: 10;}
+        .close {display: inline-block;width: 0.4rem; height: 0.4rem;border-radius: 50%;position: relative;background: #bdbdbf;z-index: 10;}
+        .close:before {content: "";position: absolute;top: 46%;left: 25%;width: 50%;
+         height: 2px;background: #000;transform: rotate(90deg);-webkit-transform: rotate(45deg);}
+		.close:after {content: "";position: absolute;top: 46%;left: 25%;width: 50%;height: 2px;background: #000;transform: rotate(90deg);-webkit-transform: rotate(-45deg);}
+        .tablev .info_img, .tablev-no .info_img {position: absolute;width: 100%;height: 100%;background-size: contain;left: 0;top: 0;z-index: 1;background-color: #eef0f1;}
+        .tablev .info_img img, .tablev-no .info_img img {max-width: 100%;max-height: 100%;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%);}
+        
+	    </style>
+	</head>
+	<body>
+		<div class="main_wrap">
+			<div>
+				<div class="wrap_content " id="">
+					<div class="mapbox text-center ml2">
+						<div class="tablev">
+							<div>
+								<img class="w08" src="../../resources/images/Photograph_mdpi.png">
+								<div>承诺函<span class="red">*</span></div>
+							</div>
+							<div class="photo" id="commitmentLetter"></div>
+						</div>
+					</div>
+				</div>
+				<div class="affirm_wrap">
+				   <a class="big_btn impor_fill_btn" href="javascript:;">确定</a>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../resources/plugin/zepto/zepto.js"></script>
+	    <script type="text/javascript" src="../../resources/plugin/zepto/touch.js"></script> 
+	    <script src="../resources/js/com.js"></script>
+	    <script>
+	    	var loader = new loading({'container':document.body,'hasBg':false});
+        	var currUserIdentity,userInfo;
+	    	window.onload = function() {
+	//      	loader.show();
+	        	urlData=getQueryStringArge();/*url截取值*/
+	        	urlData.urltpe=urlData.urltpe || 0;
+	        	userInfo= getUserInfo();
+	        	currUserIdentity = getCurrUserIdentity();//获取当前用户身份
+	        	getImgDada(urlData);
+	        }
+	    	//获取图片信息
+	    	function getImgDada(urlDada){
+	    		$.ajax({
+	            		type:"post",
+	            		url:Config.url+"collectInformation/getShdHt",
+	            		data:{"orderNo":urlDada.order},
+	            		headers: {"token":userInfo.token},
+	            		beforeSend:function(xhr, settings){
+	            		},
+	            		success:function(data,status,xhr){
+	            			if(data.ask==0&&data.data){
+	            				if(data.data.commitmentLetterFlag==1&&data.data.commitmentLetter!=""){
+ 									$("#commitmentLetter").empty().append('<div class="info_img"><img src="' + data.data.commitmentLetter + '?' + Date.parse(new Date()) + '"></div>');
+ 								    $(".affirm_wrap").addClass("on");
+ 								    $("#commitmentLetter .info_img").on("tap","img",function(){
+								    	lookImg(this);
+								    });
+	            				}else if(data.data.commitmentLetterFlag==0&&data.data.commitmentLetter!=""){
+	            					$("#commitmentLetter").empty().append('<div class="close-btn"><i class="close"></i></div><div class="info_img"><img src="' + data.data.commitmentLetter +'?' + Date.parse(new Date()) + '"></div>');
+	            				    $("#commitmentLetter .info_img").on("tap","img",function(){
+								    	lookImg(this);
+								    });
+	            				}
+    						}else if(data.ask==-2){
+	    		            	logOut();
+	    		            }
+	            		},
+	            		error:function(xhr, errorType, error){
+				            tips('操作失败','tips_center',1500);
+				        },
+				        complete:function(xhr, status){
+                        },
+	            	});
+	    	}
+	        //点击拍照
+	        $(".tablev").on("tap",".w08",function(){
+	        	var id = $(this).parent().siblings(".photo").attr('id');
+	        	var valueCode=$(this).parent().siblings(".photo").attr('id');
+	        	var orderId=urlData.order;
+	        	if (isAndroid()) {
+	                window.demo.clickOnAndroid(id, valueCode, orderId);
+	            } else if (isIOS()) {
+	                mobile.takeLoanPhoto(id, valueCode, orderId);
+	            }
+	        });
+	        //照片关闭按钮
+	        $(document).on('tap', '.close-btn', function (e) {
+	            $(this).next().remove();
+	            $(this).remove();
+	        });
+	        var elParser = window.elParser || {};
+	        elParser = {
+		        getInfoFromMobile :function(str,id){
+			        var _this = this;
+			        var orderId=urlData.order;
+			        $("#"+id).empty().append('<div class="close-btn"><i class="close"></i></div><div class="info_img"><img src="' + str +'?' + Date.parse(new Date()) + '"></div>');
+			        /*点击查看大图*/
+				    $("#"+id+" .info_img").on("tap","img",function(){
+				    	lookImg(this);
+				    });
+			       _this.saveImgDate(str,orderId,id); 
+	    		},
+	    		
+	    		//发送请求
+	    		saveImgDate:function(str,orderId,id){
+	    			var jsons={"orderNo":orderId};
+	    			jsons[id] = str;
+			        $.ajax({
+	            		type:"post",
+	            		url:Config.url+"collectInformation/saveOrUpdateShdHt",
+	            		data:jsons,
+	            		headers: {"token":userInfo.token},
+	            		beforeSend:function(xhr, settings){
+	            		},
+	            		success:function(data,status,xhr){
+	            			if(data.ask==0){
+	            				
+    						}else if(data.ask==-2){
+	    		            	logOut();
+	    		            }else{
+	    		            	tips(data.errorMessage,'tips_center',1500);
+	    		            }
+	            		},
+	            		error:function(xhr, errorType, error){
+				            tips('失败','tips_center',1500);
+				        },
+				        complete:function(xhr, status){
+                        },
+	            	});
+	    		}
+	    	};
+	    	//确定后跳转到已完成
+	    	$(".big_btn").on("tap",function(){
+	    		if($("#commitmentLetter").children().length<=0){
+	    			tips('承诺函没上传','tips_center',1500);
+	    		}else{
+	    			var dialog = confirmDialog({
+		                type:2,
+		                hasShadowBg:true,
+		                txt:"保存完成,请选择:",
+		                txtClass:"txtCenter",
+		                btns:[{
+		                        text:'我再看一下',
+		                        callBack:function(){
+		                        	dialog.destory();
+		                        }
+		                  },
+		                    {
+		                        text:'确定',
+		                        callBack:function(){
+		                        	dialog.destory();
+		                        	$.ajax({
+								        type:"post",
+								        url:Config.url+"collectInformation/saveOrUpdateShdHt",
+								        data:{"orderNo":urlData.order,"commitmentLetterFlag":1},
+								        headers: {"token":userInfo.token},
+								        beforeSend:function(xhr, settings){
+								        },
+								        success:function(data, status, xhr){
+								            if(data.ask==0){
+								            	location.href="orders.html?urltpe=50";
+								            }else if(data.ask==-2){
+						            			logOut();
+							            	}
+								        },
+								        error:function(xhr, errorType, error){
+								            tips('保存信息失败','tips_center',1500);
+								        },
+								    });
+		                        }
+		                    }
+		                    
+		                ]
+		            });
+		            dialog.show();
+	    		}
+	    	});
+	    	//看大图执行方法
+	    	function lookImg(ths){
+	    		var bigImg = myLayer({
+		    		'layerCont':ths,
+			        'hasShadowBg':true,
+			        'shadowClose':true,
+			        'funcs':{".layer_cont_wrap":function(){
+			        	bigImg.destory();
+			        }}
+			    });
+			    bigImg.show();
+	    	}
+	    	
+	    </script>
+	</body>
+</html>
+

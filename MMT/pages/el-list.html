@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link href="../resources/css/public.css" rel="stylesheet">
+    <link href="../../resources/plugin/swiper/swiper.3.1.7.min.css" rel="stylesheet">
+    <link href="../../resources/plugin/LArea/LArea.css" rel="stylesheet">
+    <link href="../resources/css/com.css" rel="stylesheet">
+    <link href="../resources/css/part1.css" rel="stylesheet">
+</head>
+<body>
+<div class="page-wrap">
+    <div class="sub-nav">
+        <div class="sub-topbg"></div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+            </div>
+            <!-- Add Pagination -->
+            <div class="nav-pagination">
+            </div>
+        </div>
+        <!-- Add Arrows -->
+        <div class="nav-arrows fbox cen">
+            <div class="nav-button-prev"></div>
+            <div class="flex1"></div>
+            <div class="nav-button-next"></div>
+        </div>
+
+    </div>
+    <div class="main-wrap pd-lr-20">
+        <!--错误提示-->
+        <!--<div>
+            <div class="pd-tb-20 err-txt one_px_border_b">申请被退回，[家庭信息]部分有错误！请及时更改！如已更改，请忽略此条信息！</div>
+        </div>-->
+        <!--商品信息-->
+        <div class="step active">
+
+            <div class="t1 pd-tb-20">标题
+                <div class="tit-ico"><img class="full-size vm" src="../../resources/images/icon_exclamation@3x.png"></div>
+            </div>
+            <div class="pd-tb-20 fbox one_px_border_b">
+                <div class="txt-left">label</div>
+                <div class="txt-right com_grey">label</div>
+            </div>
+            <div class="pd-tb-20 one_px_border_b">
+                <div class="txt-left">预约面签时间<span class="red">*</span></div>
+                <div class="txt-right ml0">2016-12-12   10:00-11:00</div>
+            </div>
+            <div class="pd-tb-20 fbox cen one_px_border_b">
+                <div class="txt-left">文本类型</div>
+                <div class="txt-right"><input class="input-box impor_dark" type="text" id="" placeholder="文本类型" onblur="/^\d$/.test(this.value) || console.log('格式错误')"></div>
+            </div>
+            <div class="pd-tb-20 fbox cen one_px_border_b">
+                <div class="txt-left">数字类型<span class="red">*</span></div>
+                <div class="txt-right"><input class="input-box impor_dark" type="number" id="" placeholder="数字类型" onblur="/^\d$/.test(this.value) ? console.log('正确'):console.log('错误')"></div>
+            </div>
+            <div class="pd-tb-20 fbox cen one_px_border_b">
+                <div class="txt-left">密码类型<span class="red">*</span></div>
+                <div class="txt-right"><input class="input-box impor_dark" type="password" id="" placeholder="密码类型" onblur="/^\d$/.test(this.value) || console.log('格式错误')"></div>
+            </div>
+            <div class="pd-tb-20 fbox cen one_px_border_b">
+                <div class="txt-left">email类型<span class="red">*</span></div>
+                <div class="txt-right"><input class="input-box impor_dark" type="email" id="" placeholder="email类型" onblur="/^\d$/.test(this.value) || console.log('格式错误')"></div>
+            </div>
+            <div class="pd-tb-20 fbox cen one_px_border_b">
+                <div class="txt-left">年月日<span class="red">*</span></div>
+                <div class="txt-right"><input class="input-box impor_dark select-cs" type="date" id="" placeholder="时间类型" onblur="/^\d$/.test(this.value) || console.log('格式错误')"></div>
+            </div>
+            <div class="pd-tb-20 fbox cen one_px_border_b">
+                <div class="txt-left">年月日时分秒<span class="red">*</span></div>
+                <div class="txt-right"><input class="input-box impor_dark select-cs" type="datetime-local" id="" placeholder="时间类型" onblur="/^\d$/.test(this.value) || console.log('格式错误')"></div>
+            </div>
+            <div class="pd-tb-20 fbox one_px_border_b">
+                <div class="txt-left">3列文本1</div>
+                <div class="txt-right com_grey ml3">300<br>
+                    <div class="font24">(含服务费40元)</div>
+                </div>
+                <div class="txt-right com_grey vm ml3">2016-08-20</div>
+            </div>
+            <div class="pd-tb-20 fbox cen one_px_border_b">
+                <div class="txt-left">下拉列表框<span class="red">*</span></div>
+                <select class="txt-right select-cs impor_dark" id="id1">
+                    <option value="商品品类1">商品品类1</option>
+                    <option value="商品品类2">商品品类2</option>
+                    <option value="商品品类3">商品品类3</option>
+                </select></div>
+            <div class="pd-tb-20 fbox cen one_px_border_b">
+                <div class="txt-left com_dark">是否(左右结构)<span class="red">*</span></div>
+                <div class="txt-right">
+                    <div class="radio-s1 fbox cen text-center" id="sdf">
+                        <div data-val="1">是</div>
+                        <div class="on" data-val="2">否</div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-t20 one_px_border_b">
+                <div class="txt-left">是否(上下结构)<span class="red">*</span></div>
+                <div class="txt-right ml0 impor_dark">
+                    <div class="radio-s2 bi mt20" id="ssdfdf">
+                        <div class="text-center on">是</div>
+                        <div class="text-center">否</div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-tb-20 fbox cen one_px_border_b">
+                <div class="txt-left">多选一<span class="red">*</span></div>
+                <div class="txt-right com_grey">
+                    <div class="radio-s1 fbox text-center" id="sdfsdf">
+                        <div class="on">已婚</div>
+                        <div>未婚</div>
+                        <div>离异</div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-t20 one_px_border_b">
+                <div class="txt-left">多选一<span class="small">(换行)</span><span class="red">*</span></div>
+                <div class="txt-right ml0 impor_dark">
+                    <div class="radio-s2 bi mt20" id="sdf">
+                        <div class="text-center on"><div class="text-vm"><span>知道</span></div></div>
+                        <div class="text-center"><div class="text-vm"><span>不知道</span></div></div>
+                        <div class="text-center"><div class="text-vm"><span>不知道</span></div></div>
+                        <div class="text-center"><div class="text-vm"><span>不知道</span></div></div>
+                        <div class="text-center"><div class="text-vm"><span>不知道</span></div></div>
+                        <div class="text-center"><div class="text-vm"><span>不知道</span></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-t20 one_px_border_b">
+                <div class="txt-left">多选一<span class="small">(换行-其它)</span><span class="red">*</span></div>
+                <div class="txt-right ml0 impor_dark">
+                    <div class="radio-s2 bi mt20" id="">
+                        <div class="text-center on"><div class="text-vm"><span>知道</span></div></div>
+                        <div class="text-center"><div class="text-vm"><span>不知道</span></div></div>
+                        <div class="text-center"><div class="text-vm"><span>不知道</span></div></div>
+                        <div class="text-center"><div class="text-vm"><span>不知道</span></div></div>
+                        <div class="text-center"><div class="text-vm"><span>不知道</span></div></div>
+                        <div class="text-center"><div class="text-vm"><span>其它</span></div></div>
+                        <textarea class="full-size impor_dark bc-e1 dn" id="" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-tb-20 fbox cen one_px_border_b">
+                <div class="txt-left">选择数字<span class="red">*</span></div>
+                <div class="txt-right">
+                    <div class="select-num fbox cen" id="sdf">
+                        <div class=""></div>
+                        <div class="com_grey">0</div>
+                        <div class=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-tb-20">
+                <div class="t1 no-bl pd-tb-20">备注<span class="small">(限500个汉字)</span><span class="red">*</span></div>
+                <textarea class="full-size impor_dark bc-e1" id="sdf" rows="5"></textarea></div>
+            <div class="pd-tb-20">
+                <div class="txt-left">申请人电话号码验证方式<span class="red">*</span></div>
+                <div class="txt-right ml0 impor_dark diff-val" id="sdf">
+                    <div class="fbox cen mb20 mt20 icon-s1 on"><i class=""></i>
+                        <div class="ml2">可验证：</div>
+                        <div class="radio-s3 fbox cen">
+                            <div class="text-center on">支付宝</div>
+                            <div class="text-center">微信</div>
+                            <div class="text-center">其它</div>
+                        </div>
+                    </div>
+                    <div class="fbox cen icon-s1"><i class=""></i>
+                        <div class="ml2">无法验证</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bold_border_b"></div>
+            <div class="pd-t20 fbox one_px_border_b">
+                <div class="flex1 mapbox big text-center">
+                    <div class="tablev" id="sdf">
+                        <div><img class="w08" src="../../resources/images/icon_picture_default@3x.png">
+                            <div>现场合影照片</div>
+                        </div>
+                        <div class="photo">
+                            <!--<div class="close-btn"><i class="close"></i></div>
+                        <div class="info_img"><img src="http://img.redocn.com/sheying/20160613/taoshuxiaheying_6472839.jpg" alt=""></div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-t20 fbox" id="asldf">
+                <div class="flex1 mapbox text-center">
+                    <div class="tablev">
+                        <div><img class="w08" src="../../resources/images/icon_picture_default@3x.png">
+                            <div>现场合影照片1</div>
+                        </div>
+                        <div class="photo">
+                            <div class="close-btn"><i class="close"></i></div>
+                            <div class="info_img"><img src="http://img.redocn.com/sheying/20160613/taoshuxiaheying_6472839.jpg" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex1 mapbox text-center ml2">
+                    <div class="tablev">
+                        <div><img class="w08" src="../../resources/images/icon_picture_default@3x.png">
+                            <div>现场合影照片2</div>
+                        </div>
+                        <div class="photo">
+                            <div class="close-btn"><i class="close"></i></div>
+                            <div class="info_img"><img src="http://img.redocn.com/sheying/20160613/taoshuxiaheying_6472839.jpg" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="down_space"></div>
+            <div class="pd-t20" id="aslfgdf">
+                <div class="txt-left">请在下方所有选项中选择一项</div>
+                <div class="txt-right ml0 impor_dark">
+                    <div class="radio-s4 fbox wrap mt20">
+                        <div class="fbox cen icon-s1 on"><i></i>
+                            <div class="ml1">社保卡/医保卡</div>
+                        </div>
+                        <div class="fbox cen icon-s1"><i></i>
+                            <div class="ml1">户口本</div>
+                        </div>
+                        <div class="fbox cen icon-s1"><i></i>
+                            <div class="ml1">驾驶证</div>
+                        </div>
+                        <div class="fbox cen icon-s1"><i></i>
+                            <div class="ml1">工卡</div>
+                        </div>
+                        <div class="fbox cen icon-s1"><i></i>
+                            <div class="ml1">银行储蓄卡</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pd-t20 fbox">
+                    <div class="flex1 mapbox text-center">
+                        <div class="tablev">
+                            <div><img class="w08" src="../../resources/images/icon_picture_default@3x.png">
+                                <div>现场合影照片</div>
+                            </div>
+                            <div class="close-btn"><i class="close"></i></div>
+                            <div class="info_img"><img src="http://img.redocn.com/sheying/20160613/taoshuxiaheying_6472839.jpg" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="flex1 mapbox text-center ml2">
+                        <div class="tablev">
+                            <div><img class="w08" src="../../resources/images/icon_picture_default@3x.png">
+                                <div>现场背景照片</div>
+                            </div>
+                            <div class="close-btn"><i class="close"></i></div>
+                            <div class="info_img"><img src="http://img.redocn.com/sheying/20160613/taoshuxiaheying_6472839.jpg" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-t20 fbox" id="asldf">
+                <div class="flex1 mapbox text-center">
+                    <div class="tablev">
+                        <div><img class="w08" src="../../resources/images/icon_picture_default@3x.png">
+                            <div>现场合影照片1</div>
+                        </div>
+                        <div class="close-btn"><i class="close"></i></div>
+                        <div class="info_img"><img src="http://img.redocn.com/sheying/20160613/taoshuxiaheying_6472839.jpg" alt=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="down_space"></div>
+        </div>
+    </div>
+    <div class="footer-wrap">
+        <div class="group1">
+            <a class="b-btn" id="save-btn" href="javascript:;">保存</a>
+        </div>
+    </div>
+</div>
+<script src="../../resources/plugin/zepto/zepto.js"></script>
+<script src="../../resources/plugin/zepto/touch.js"></script>
+<script src="../../resources/plugin/swiper/swiper.3.1.7.min.js"></script>
+<script src="../../resources/plugin/LArea/LArea.js"></script>
+<script src="../../resources/plugin/LArea/LAreaData1.js"></script>
+<script src="../resources/js/public.js"></script>
+<script src="../resources/js/com.js"></script>
+<script>
+    var elParser = {
+        init: function () {
+            this.topSwiper();
+            this.pageInteraction();
+        },
+        topSwiper: function () {
+            var tit = ['标题1', '标题2', '标题3', '标题4', '标题5'];
+            var arr = [];
+            arr.push('<div class="swiper-slide on"><div class="slide-item">' + tit[0] + '</div><div class="action-line"></div></div>');
+            for (var i = 1; i < tit.length; i++) {
+                arr.push('<div class="swiper-slide"><div class="slide-item">' + tit[i] + '</div><div class="action-line"></div></div>');
+            }
+            $('.sub-nav .swiper-wrapper').append(arr.join(''));
+            var topTabSwiper = new Swiper('.sub-nav .swiper-container', {
+                slidesPerView: 4,
+                onTap: function (swiper) {
+                    $(topTabSwiper.clickedSlide).addClass('on').siblings().removeClass('on');
+                    $('.nav-pagination div').eq(topTabSwiper.clickedIndex).addClass('on').siblings().removeClass('on');
+                    $('.step').eq(topTabSwiper.clickedIndex).addClass('active').siblings().removeClass('active');
+                },
+                onInit: function (swiper) {
+                    // 初始化小圆点
+                    var n = $('.swiper-wrapper').children().length - 1, navPagination = $('.nav-pagination'), arr = [];
+                    arr.push('<div class="on"></div>');
+                    for (var i = 0; i < n; i++) {
+                        arr.push('<div></div>');
+                    }
+                    navPagination.append(arr.join(''));
+                    // 左右箭头事件
+                    $('.nav-arrows').on('tap', '.nav-button-prev', function () {
+                                topTabSwiper.slidePrev();
+                                var slideOn = $('.swiper-wrapper .swiper-slide.on');
+                                if (slideOn.index() != 0) {
+                                    slideOn.removeClass('on').prev().addClass('on');
+                                    navPagination.children().filter('.on').removeClass('on').prev().addClass('on');
+                                    $('.step.active').removeClass('active').prev().addClass('active');
+                                }
+                            })
+                            .on('tap', '.nav-button-next', function () {
+                                topTabSwiper.slideNext();
+                                var slideOn = $('.swiper-wrapper .swiper-slide.on');
+                                if ((slideOn.index() + 1) != $('.swiper-wrapper .swiper-slide').length) {
+                                    slideOn.removeClass('on').next().addClass('on');
+                                    navPagination.children().filter('.on').removeClass('on').next().addClass('on');
+                                    $('.step.active').removeClass('active').next().addClass('active');
+                                }
+                            })
+                }
+            });
+        },
+        pageInteraction: function () {
+            //页面交互
+            //单选
+            $('.radio-s1>div,.radio-s2>div,.radio-s3>div,.radio-s4>div').on('click', function () {
+                if ($(this).hasClass('on')) {
+                    $(this).removeClass('on');
+                    if($(this).find('span').text()=='其它'){
+                        $(this).parent().find('.bc-e1').addClass('dn');
+                    }
+                } else {
+                    $(this).addClass('on').siblings().removeClass('on');
+                    if($(this).find('span').text()=='其它'){
+                        $(this).parent().find('.bc-e1').removeClass('dn').val('');
+                    }else{
+                        $(this).parent().find('.bc-e1').addClass('dn');
+                    }
+                }
+
+
+
+            })
+            $('.diff-val>*').on('tap', function (e) {
+                $(this).addClass('on');
+                $(this).siblings().removeClass('on');
+                $(this).siblings().find('.radio-s3').children().removeClass('on');
+            })
+
+            //数字加减
+            $('.select-num').on('tap', 'div:first-child', function (e) {
+                        var obj = {};
+                        try {
+                            obj.nVal = +$(this).parent().children().eq(1).text();
+                            if (obj.nVal > 0) {
+                                obj.nVal--;
+                                $(this).parent().children().eq(1).text(obj.nVal);
+                                delete obj.nVal;
+                            }
+                        } catch (e) {
+                        }
+                    })
+                    .on('tap', 'div:last-child', function (e) {
+                        var obj = {};
+                        try {
+                            obj.nVal = +$(this).parent().children().eq(1).text();
+                            obj.nVal++;
+                            $(this).parent().children().eq(1).text(obj.nVal);
+                            delete obj.nVal;
+                        } catch (e) {
+                        }
+                    })
+        },
+    }
+
+
+    $(function () {
+        elParser.init()
+
+
+    })
+
+</script>
+
+</body>
+</html>

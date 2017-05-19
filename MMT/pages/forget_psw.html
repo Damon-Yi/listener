@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>忘记密码</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="../resources/css/public.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/com.css" rel="stylesheet" type="text/css">
+    <script src="../resources/js/public.js"></script>
+    <script type="text/javascript" src="../../resources/plugin/iscroll/iscroll.js"></script>
+    <script type="text/javascript">
+        var mainScroll;
+        function loaded () {
+            mainScroll = new IScroll('#body_wrapper',{
+                scrollbars: true,
+                mouseWheel: true,
+                interactiveScrollbars: true,
+                shrinkScrollbars: 'scale',
+                fadeScrollbars: true,
+                click: true 
+            });
+        }
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    </script>
+</head>
+<body onload="loaded()">
+    <article id="body_wrapper">
+        <div>
+            <div class="input_wrap">
+                <div><input class="user_phone" type="tel" placeholder="请输入手机号" pat="/^1\d{10}$/"></div>
+                <div>
+                    <input class="user_code" type="tel" placeholder="请输入验证码">
+                    <div class="get_code_btn_wrap"><input class="get_code_btn" type="button" value="获取验证码"></div>
+                </div>
+                <div><input class="user_psd" type="password" placeholder="请输入6-12位新密码" pat="/^[a-z0-9_-]{6,12}$/"></div>
+            </div>
+            <a class="big_btn disabled_btn confirm" href="javascript:;">确认修改</a>
+        </div>
+    </article>
+    <script type="text/javascript" src="../../resources/plugin/zepto/zepto.js"></script>
+    <script type="text/javascript" src="../../resources/plugin/zepto/touch.js"></script>
+    <script src="../resources/js/com.js"></script>
+    <script>
+        /*加载动画*/
+        var loader = new loading({'container':document.body,'hasBg':false});
+
+        /*手机号、验证码、密码输入*/
+        $('.user_phone,.user_code,.user_psd').on('input',function(){
+            var $userPhone = $('.user_phone'),
+                $userCode = $('.user_code'),
+                $userPsd = $('.user_psd');
+            if($userPhone.val()!=''&&$userCode.val()!=''&&$userPsd.val()!=''){
+                $('.confirm').removeClass('disabled_btn').addClass('impor_fill_btn');
+            }else{
+                $('.confirm').removeClass('impor_fill_btn').addClass('disabled_btn');
+            }
+        });
+        /*获取验证码*/
+        $('.get_code_btn').on('tap',function(){
+            var _that = this,
+                $userPhone = $('.user_phone'),
+                userPhonePatten = eval($userPhone.attr('pat'));
+            if($userPhone.val()=='') {
+                tips('请填写手机号','tips_center',1000);
+                return false;
+            }
+            if(!userPhonePatten.test($userPhone.val())){
+                tips('手机号格式不正确','tips_center',1000);
+                return false;
+            }
+            $.ajax({
+                type:"post",
+                url:Config.url+"user/getVerificationCode",
+                //contentType:"application/json",
+                data:{'mobile':$userPhone.val()},
+                beforeSend:function(xhr, settings){
+                },
+                success:function(data, status, xhr){
+                    console.log(data);
+                    if(data.ask==0){
+                        getCode(_that,60,function(){
+                            //console.log('time--');
+                        },{
+                            specialTime:40,
+                            fn:function(){}
+                        });
+                    }else{
+                        console.log(data.errorMessage);
+                        console.log('stop send code');
+                    }
+                },
+                error:function(xhr, errorType, error){
+                    console.log(xhr);
+                },
+                complete:function(xhr, status){
+                }
+            });
+        });
+        /*确认修改*/
+        $('.confirm').on('tap',function(){
+            if(!$(this).hasClass('disabled')){
+                var _that = this;
+                if($(this).hasClass('impor_fill_btn')){
+                    var $userPhone = $('.user_phone'),
+                        userPhonePatten = eval($userPhone.attr('pat')),
+                        $userCode = $('.user_code'),
+                        $userPsd = $('.user_psd'),
+                        userPsdPatten = eval($userPsd.attr('pat'));
+                    if($userPhone.val()==''){
+                        tips('请填写手机号','tips_center',1000);
+                        return false;
+                    }
+                    if(!userPhonePatten.test($userPhone.val())){
+                        tips('手机号格式不正确','tips_center',1000);
+                        return false;
+                    }
+                    if($userCode.val()==''){
+                        tips('请填写验证码','tips_center',1000);
+                        return false;
+                    }
+                    if($userPsd.val()==''){
+                        tips('请填写密码','tips_center',1000);
+                        return false;
+                    }
+                    if(!userPsdPatten.test($userPsd.val())){
+                        tips('密码格式不正确','tips_center',1000);
+                        return false;
+                    }
+                    /*跨域请求*/
+                    $.ajax({
+                        type:"post",
+                        url:Config.url+"user/resetPassWord",
+                        data:{'mobile':$userPhone.val(),'identifyingCode':$userCode.val(),'passWord':$userPsd.val()},
+                        beforeSend:function(xhr, settings){
+                            loader.show();
+                            $(_that).addClass('disabled');
+                        },
+                        success:function(data, status, xhr){
+                            console.log(data);
+                            if(data.ask==0){
+                                console.log("修改成功")
+                            }else{
+                                console.log(data.errorMessage)
+                            }
+                        },
+                        error:function(xhr, errorType, error){
+                            console.log(xhr);
+                        },
+                        complete:function(xhr, status){
+                            setTimeout(function(){
+                                loader.hide();
+                                $(_that).removeClass('disabled');
+                            },500);
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

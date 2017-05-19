@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>消息</title>
+		<meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+		<meta name="format-detection" content="telephone=no" />
+		<link href="../resources/css/public.css" rel="stylesheet" type="text/css">
+        <link href="../resources/css/com.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="../../resources/plugin/iscroll/iscroll.css">
+        <script src="../resources/js/public.js"></script>
+        <script type="text/javascript" src="../../resources/plugin/iscroll/iscroll.js"></script>
+        <script type="text/javascript">
+	        var mainScroll;
+	        function loaded () {
+	            initScroll('c_panel_1');
+	            document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	        }
+	
+	        function initScroll(str){
+	            var downIcon,upIcon,scrollerPullDown,scrollerPullUp,pullUpMsg,upLoading,downLoading,pullDownMsg; 
+	            downIcon = $("."+str+" .down-icon");
+	            pullDownMsg = $("."+str+" .pull-down-msg");
+	            scrollerPullDown = $("."+str+" .scroller-pullDown");
+	            scrollerPullUp = $("."+str+" .scroller-pullUp");
+	            upLoading = $("."+str+" .scroller-pullUp .loading");
+	            downLoading = $("."+str+" .scroller-pullDown .loading");
+	            upIcon = $("."+str+" .up-icon");
+	            pullUpMsg = $("."+str+" .pull-up-msg");
+	
+	            var tuwenScroller = new IScroll('.'+str, {
+	                probeType: 3,
+	                scrollbars: true,
+	                mouseWheel: true,
+	                interactiveScrollbars: true,
+	                shrinkScrollbars: 'scale',
+	                fadeScrollbars: true
+	            });
+	            tuwenScroller.on("scroll",function(){
+	                var y = this.y,
+	                    maxY = this.maxScrollY - y,
+	                    downHasClass = downIcon.hasClass("reverse_icon"),
+	                    upHasClass = upIcon.hasClass("reverse_icon");
+	                
+	                if(y >= 40){
+	                    !downHasClass && downIcon.addClass("reverse_icon") && pullDownMsg.text('松手开始更新');
+	                    return "";
+	                }else if(y < 40 && y > 0){
+	                    downHasClass && downIcon.removeClass("reverse_icon") && pullDownMsg.text('下拉刷新');
+	                    return "";
+	                }
+	                
+	                if(maxY >= 40){
+	                    !upHasClass && upIcon.addClass("reverse_icon") && pullUpMsg.text('松手开始更新');
+	                    return "";
+	                }else if(maxY < 40 && maxY >=0){
+	                    upHasClass && upIcon.removeClass("reverse_icon") && pullUpMsg.text('上拉查看更多');
+	                    return "";
+	                }
+	            });
+	            tuwenScroller.on("slideUp",function(){
+	                if(this.maxScrollY - this.y > 40){
+	                    //alert("slideUp");
+	                    upIcon.css('display','none');
+	                    pullUpMsg.css('display','none');
+	                    upLoading.css('display','inline-block');
+	                    setTimeout(function(){
+	                        upIcon.css('display','inline-block');
+	                        pullUpMsg.css('display','inline-block');
+	                        upLoading.css('display','none'); 
+	                        console.log('load more...');
+	                        tuwenScroller.refresh();
+	                    },3000);
+	                    
+	                }
+	            });
+	            tuwenScroller.on("slideDown",function(){
+	                if(this.y > 40){
+	                    //alert("slideDown");
+	                    scrollerPullDown.css({'position':'relative','top':'0'});
+	                    downIcon.css('display','none');
+	                    pullDownMsg.css('display','none');
+	                    downLoading.css('display','inline-block');
+	                    setTimeout(function(){
+	                        scrollerPullDown.css({'position':'absolute','top':'-0.7rem'});
+	                        downIcon.css('display','inline-block');
+	                        pullDownMsg.css('display','inline-block');
+	                        downLoading.css('display','none'); 
+	                        console.log('refresh');
+	                        tuwenScroller.refresh();
+	                    },3000);
+	                }
+	            });
+	        }
+        </script>
+        <style>
+        	.cont_box{background:#F6F6F6}
+        	.message_box{padding:0.2rem;}
+        	.message{padding:0.2rem;margin-bottom:0.14rem;background:#fff;border-radius: 3px;}
+        	.message p{font-size:0.28rem;color: #323232;}
+        	.message .mess_time{font-size:0.2rem;color:#a9b2b9;margin:0.08rem auto 0.36rem;}
+        	.message .mess_tent{color:#a9b2b9;font-size:0.24rem;text-align:justify;}
+        </style>
+	</head>
+	<body onload="loaded()">
+		<div class="cont_box">
+			<div class="c_panel c_panel_1 active">
+				<div>
+					<div class="scroller-pullDown">
+	                    <span class="pull-down-icon down-icon"></span>
+	                    <span class="pull-down-msg">下拉刷新</span>
+	                    <span class="loading"></span>
+	                </div>
+	                <div class="message_box">
+						<div class="message">
+							<p>安卓7.0来了，你的手机升级真的很难？</p>
+							<div class="mess_time">2017-1-16  <span>11:26</span></div>
+							<div class="mess_tent">安卓7.0来了，你的手机升级真的很难？安卓7.0来了，你的手机升级真的很难？安卓7.0来了，你的手机升级真的很难？安卓7.0来了，你的手机升级真的很难？安卓7.0来了</div>
+						</div>
+						<div class="message">
+							<p>安卓7.0来了，你的手机升级真的很难？</p>
+							<div class="mess_time">2017-1-16  <span>11:26</span></div>
+							<div class="mess_tent">安卓7.0来了，你的手机升级真的很难？安卓7.0来了，你的手机升级真的很难？安卓7.0来了，你的手机升级真的很难？安卓7.0来了，你的手机升级真的很难？安卓7.0来了</div>
+						</div>
+						<div class="message">
+							<p>安卓7.0来了，你的手机升级真的很难？</p>
+							<div class="mess_time">2017-1-16  <span>11:26</span></div>
+							<div class="mess_tent">安卓7.0来了，你的手机升级真的很难？安卓7.0来了，你的手机升级真的很难？安卓7.0来了，你的手机升级真的很难？安卓7.0来了，你的手机升级真的很难？安卓7.0来了</div>
+						</div>
+						<div class="message">
+							<p>安卓7.0来了，你的手机升级真的很难？</p>
+							<div class="mess_time">2017-1-16  <span>11:26</span></div>
+							<div class="mess_tent">安卓7.0来了，你的手机升级真的很难？安卓7.0来了，你的手机升级真的很难？安卓7.0来了，你的手机升级真的很难？安卓7.0来了，你的手机升级真的很难？安卓7.0来了</div>
+						</div>
+						
+					</div>
+					<div class="scroller-pullUp">
+	                    <span class="pull-up-icon up-icon"></span>
+	                    <span class="pull-up-msg">上拉查看更多</span>
+	                    <span class="loading"></span>
+	                </div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../resources/plugin/zepto/zepto.js"></script>
+	</body>
+</html>

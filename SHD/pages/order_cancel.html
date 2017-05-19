@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>订单</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="../resources/css/public.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/com.css" rel="stylesheet" type="text/css">
+    <link href="../../resources/plugin/swiper/swiper.3.1.7.min.css" rel="stylesheet" type="text/css">
+    <script src="../resources/js/public.js"></script>
+    <script type="text/javascript" src="../../resources/plugin/swiper/swiper.3.1.7.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugin/iscroll/iscroll.js"></script>
+    <style>
+        .cont_box{background-color: #fff;}
+        .order_cancel{background-color: #fff;color: #333;font-size: 0.26rem;padding-top: 1px;padding-bottom: 1px;}
+        .order_cancel .oc_title{font-size: 0.3rem;text-align: center;margin: 0.6rem auto;}
+        .order_cancel .oc_reasons{position: relative;padding: 0 0.4rem;margin-bottom:0.4rem; }
+        .order_cancel .oc_reasons:before{content: " ";position: absolute;left: 0;top: 0;width: 100%;height: 1px;border-bottom: 1px solid #e1e1e1;color: #e1e1e1;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);}
+        .order_cancel .oc_reasons:after{content: " ";position: absolute;left: 0;bottom: 0;width: 100%;height: 1px;border-bottom: 1px solid #e1e1e1;color: #e1e1e1;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);}
+        .order_cancel .oc_reasons .oc_r_item{position: relative;padding:0.27rem 0;}
+        .order_cancel .oc_reasons .oc_r_item:after{content: " ";position: absolute;left: 0;bottom: 0;width: 100%;height: 1px;border-bottom: 1px solid #e1e1e1;color: #e1e1e1;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);}
+        .order_cancel .oc_reasons .oc_r_item:last-child:after{display: none;}
+        .order_cancel .oc_reasons .oc_item_txt{}
+        .order_cancel .oc_reasons .oc_item_icon{width:0.32rem;height: 0.32rem;border-radius:100%;border:1px solid #d6d6d6;position: absolute;right: 0.04rem;top:0.27rem;}
+        .order_cancel .oc_reasons .oc_r_item.selected .oc_item_icon{background:url(../../resources/images/icon_Checked@3x.png) no-repeat center center;background-size: contain;border: none;}
+        .order_cancel .oc_reasons .oc_r_item .oc_textarea_wrap{margin-top:0.2rem;display: none;}
+        .order_cancel .oc_reasons .oc_r_item.selected .oc_textarea_wrap{display: block;}
+        .order_cancel .oc_reasons .oc_textarea_wrap>textarea{width: 100%;height: 2.3rem;border-radius: 3px;border:1px solid #e1e1e1;}
+    </style>
+</head>
+<body>
+    <div class="cont_box">
+        <div>
+            <div class="order_cancel">
+                <p class="oc_title">您取消该订单的原因</p>
+                <div class="oc_reasons">
+                    <div class="oc_r_item ">
+                        <p class="oc_item_txt" data-val="1">客户不想买了</p>
+                        <i class="oc_item_icon"></i>
+                    </div>
+                    <div class="oc_r_item">
+                        <p class="oc_item_txt" data-val="2">商品没货了</p>
+                        <i class="oc_item_icon"></i>
+                    </div>
+                    <div class="oc_r_item">
+                        <p class="oc_item_txt" data-val="3">信息有误</p>
+                        <i class="oc_item_icon"></i>
+                    </div>
+                    <div class="oc_r_item" data-val="4">
+                        <p class="oc_item_txt">无法联系客户</p>
+                        <i class="oc_item_icon"></i>
+                    </div>
+                    <div class="oc_r_item" data-val="5">
+                        <p class="oc_item_txt">重复下单</p>
+                        <i class="oc_item_icon"></i>
+                    </div>
+                    <div class="oc_r_item" data-val="6">
+                        <p class="oc_item_txt">高风险欺诈客户</p>
+                        <i class="oc_item_icon"></i>
+                    </div>
+                    <div class="oc_r_item" data-val="7">
+                        <p class="oc_item_txt">面签地址超过范围</p>
+                        <i class="oc_item_icon"></i>
+                    </div>
+                    <div class="oc_r_item" data-val="8">
+                        <p class="oc_item_txt">不符合申请条件</p>
+                        <i class="oc_item_icon"></i>
+                    </div>
+                    <div class="oc_r_item" data-val="9">
+                        <p class="oc_item_txt">其他</p>
+                        <i class="oc_item_icon"></i>
+                        <div class="oc_textarea_wrap">
+                            <textarea name="" id="" maxlength="100" placeholder="请输入其他原因"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <a class="big_btn impor_fill_btn cancelBtn" href="javascript:;">确认取消</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../resources/plugin/zepto/zepto.js"></script>
+    <script type="text/javascript" src="../../resources/plugin/zepto/touch.js"></script>
+    <script src="../resources/js/com.js"></script>
+    <script>
+        var mainScroll,userInfo;
+        /*加载动画*/
+        var loader = new loading({'container':document.body,'hasBg':false});
+        window.onload = function() {
+            mainScroll = new IScroll('.cont_box',{
+                scrollbars: true,
+                mouseWheel: true,
+                interactiveScrollbars: true,
+                shrinkScrollbars: 'scale',
+                fadeScrollbars: true,
+                click: true 
+            });
+            document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+            userInfo=getUserInfo();//获取用户信息
+            urlData=getQueryStringArge();//获取url值
+        }
+        $('.oc_reasons .oc_r_item').on('tap',function(){
+            $(this).siblings().removeClass('selected');
+            $(this).addClass('selected');
+            mainScroll.refresh();
+        });
+        $(".cancelBtn").on("tap",function(){
+        	var reasonsBox=$(".oc_reasons"),
+        	    reasonsSelect=reasonsBox.find(".oc_r_item").hasClass("selected"),
+        	    checkReasonBox=reasonsBox.find(".selected .oc_item_txt");
+        	if(userInfo){
+        		if(!reasonsSelect){
+	        		tips('请选择取消原因','tips_center',1500);
+	        	}else{
+	        		var vals;
+	        	    if(checkReasonBox.siblings().hasClass("oc_textarea_wrap")){
+	        	        if(reasonsBox.find(".oc_textarea_wrap textarea").val()==null){
+	        	        	vals=checkReasonBox.text();
+	        	        }
+	        	        vals=reasonsBox.find(".oc_textarea_wrap textarea").val(); 
+	        	    }else{
+	        	     	vals=checkReasonBox.text();
+	        	    }
+	        	    //面签员向城市经理申请取消订单
+	        		if(userInfo.positionId=="1"){
+	        			var dialog = confirmDialog({
+	                        type:2,
+	                        hasShadowBg:true,
+	                        txtClass:"txtCenter",
+	                        txt:"确认转给城市经理？",
+	                        btns:[{
+	                                text:'确定',
+	                                callBack:function(){
+	                                	var _that = this;
+	                                    if(userInfo &&!$(_that).hasClass('disable')){
+	                                        $.ajax({
+	                                            type:"post",
+	                                            url:Config.url+"orderInfo/applyCancel",
+	                                            contentType:"application/json",
+	                                            data:JSON.stringify({"userNo":userInfo.saNo,"reasone":vals,"orderNo":urlData.order}),
+	                                            headers: {"token":userInfo.token},
+	                                            beforeSend:function(xhr, settings){
+					        					    $(_that).addClass('disabled');
+	    					            		},
+	                                            success:function(data,status,xhr){
+	                                            	if(data.ask==0){
+	                                            		dialog.destory();
+										            	location.href="orders.html?urltpe="+urlData.urltpe;
+										            }else if(data.ask==-2){
+										            	logOut()
+										            }
+	                                            },
+	                                            error:function(xhr, errorType, error){
+	                                                console.log(xhr);
+	                                                dialog.destory();
+	                                                tips(error,'tips_center',1500);
+	                                            },
+	                                            complete:function(xhr, status){
+							                        $(_that).removeClass('disabled'); 
+	                                                setTimeout(function(){loader.hide()},400);
+						                        }
+	                                        });
+	                                    }
+	                                }
+	                            },
+	                            {
+	                                text:'取消',
+	                                callBack:function(){
+	                                    dialog.destory();
+	                                }
+	                            }
+	                        ]
+	                    });
+	                    dialog.show(); 
+	                //城市经理直接取消订单
+	        		}else{
+		        	    $.ajax({
+					        type:"post",
+					        url:Config.url+"orderInfo/cancelOrder",
+					        contentType:"application/json",
+					        data:JSON.stringify({"userNo":userInfo.saNo,"reasone":vals,"orderNo":urlData.order}),
+					        headers: {"token":userInfo.token},
+					        beforeSend:function(xhr, settings){
+					        },
+					        success:function(data, status, xhr){
+					            if(data.ask==0){
+					            	location.href="orders.html?urltpe="+urlData.urltpe;
+					            }else if(data.ask==-2){
+					            	logOut()
+					            }
+					        },
+					        error:function(xhr, errorType, error){
+					            console.log(xhr);
+	                            tips('保存信息失败','tips_center',1500);
+					        },
+	                        complete:function(xhr, status){
+	                            $(_that).removeClass('disabled'); 
+	                        }
+					    });
+				    }
+	        	}
+        	}
+        	
+        });
+    </script>
+</body>
+</html>

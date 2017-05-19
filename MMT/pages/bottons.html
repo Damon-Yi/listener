@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="../resources/css/public.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/com.css" rel="stylesheet" type="text/css">
+    <script src="../resources/js/public.js"></script>
+    <script type="text/javascript" src="../../resources/plugin/iscroll/iscroll.js"></script>
+</head>
+<body onload="loaded()">
+    <article id="body_wrapper">
+        <div>
+            <a class="big_btn" href="javascript:;">提交</a>
+            <a class="big_btn default_btn" href="javascript:;">提交</a>
+            <a class="big_btn impor_fill_btn" href="javascript:;">提交</a>
+            <a class="big_btn impor_blank_btn" href="javascript:;">提交</a>
+            <a class="big_btn disabled_btn" href="javascript:;">提交</a>
+
+            <a class="mid_btn" href="javascript:;">签署合同</a>
+            <a class="mid_btn default_btn" href="javascript:;">签署合同</a>
+            <a class="mid_btn impor_fill_btn" href="javascript:;">签署合同</a>
+            <a class="mid_btn impor_blank_btn" href="javascript:;">签署合同</a>
+            <a class="mid_btn disabled_btn" href="javascript:;">签署合同</a>
+        </div>
+    </article>
+    <script type="text/javascript" src="../../resources/plugin/zepto/zepto.js"></script>
+    <script type="text/javascript" src="../../resources/plugin/zepto/touch.js"></script>
+    <script src="../resources/js/com.js"></script>
+    <script>
+        var mainScroll;
+        window.onload = function() {
+            mainScroll = new IScroll('#body_wrapper',{
+                scrollbars: true,
+                mouseWheel: true,
+                interactiveScrollbars: true,
+                shrinkScrollbars: 'scale',
+                fadeScrollbars: true,
+                click: true 
+            });
+            document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+        }
+    </script>
+</body>
+</html>

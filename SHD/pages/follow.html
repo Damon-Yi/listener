@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>快递跟踪</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link href="../resources/css/public.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/com.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/part1.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../resources/plugin/mui/css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/plugin/mui/css/mui.picker.min.css" />
+    <script src="../resources/js/public.js"></script>
+    <style>
+        body{height: auto;min-height: auto;}
+        .order_details{font-size: 0.24rem;color: #999;word-break: break-all;overflow:auto; text-align:justify;margin-top:0.2rem;}
+        .order_details .or_section{background-color: #fff;padding: 0 0.2rem;margin-bottom:0.2rem;}
+        .order_details .or_section .or_title{font-size: 0.28rem;padding-left:0.1rem;color: #333;height:0.8rem;line-height:0.8rem;position: relative;}
+        .order_details .or_section .or_info{display: block;}
+        .order_details .or_section .or_tr{display: box;display:-webkit-box;display: flex;display:-webkit-flex;padding: 0.24rem 0;position: relative}
+        .order_details .or_section .or_tr:before{content: " ";position: absolute;left: 0;top:0;width: 100%;height: 1px;border-top: 1px solid #e1e1e1;color: #e1e1e1;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);}           
+        .order_details .or_section .or_tr .or_td_1{width: 1.8rem;color: #A9B2B9;font-size: 0.24rem;text-align:right;}
+        .order_details .or_section .or_tr .or_td_2{flex: 1;-webkit-flex:1;color: #323232;padding-right:0.1rem;padding-left:0.3rem;font-size: 0.24rem;}
+        .order_details .or_section .or_tr .or_td_3{width: 0.8rem;text-align: right;padding-right: 0.2rem;}
+        .order_details .or_section .or_tr .or_td_3>img{width: 0.28rem;height: 0.28rem;}
+        .order_details .or_section .or_mark{font-size: 0.2rem;}
+        .footwrap {width:100%;background:#FFFFFF}
+        .footwrap .affirm {padding: 0.16rem 0;}
+        .footwrap .affirm .affirm-btn {width: 4rem;height: 0.68rem;line-height: 0.68rem;background: #9c0000;border-radius: 3px;font-size: 0.28rem;text-align: center;color: #fff;display:block;margin: 0 auto;}
+        .impor_dark{border:none;height:0.4rem;line-height:0.4rem;background:none;}
+        .dates{line-height:0.3rem;height:0.3rem;vertical-align: top;}
+        .dates input,.makeTime input{width:100%;font-size:0.26rem;height:100%;border:none;line-height:100%;}
+        .site .site_input{border: none;height: 100%;width: 100%;font-size: 0.26rem;font-family: "STXihei","Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 100%;}
+
+        .mui-dtpicker-title{display: none;}
+        .mui-btn-block{padding:0;border:none;font-size: 0.24rem;margin: 0;text-align: left;}
+        .Imgbox {height: 1.8rem; max-width: 2.7rem;background: #eef0f1;font-size: 0.24rem;color: #323232;margin: 0 0.15rem;padding-left:0 !important;padding-right:0 !important;}
+        .Imgbox>img{width:100%;height:100%}
+        .netDetailAddr{width:100%;border:none;padding:0.01rem 0}
+    </style>
+</head>
+<body>
+    <div class="order_details">
+        <div class="or_section ">
+            <div class="or_info">
+                <div class="or_tr">
+                    <div class="or_td_1">快递公司</div>
+                    <div class="or_td_2 expressCompany"></div>
+                </div>
+                <div class="or_tr">
+                    <div class="or_td_1">快递单号</div>
+                    <div class="or_td_2 expressNo" ></div>
+                </div>
+                <div class="or_tr">
+                    <div class="or_td_1">快递单图片</div>
+                    <div class="or_td_2 Imgbox expressImg"></div>
+                </div>
+                <div class="or_tr">
+                    <div class="or_td_1">寄出时间</div>
+                    <div class="or_td_2 sendTime"></div>
+                </div>
+                <div class="or_tr">
+                    <div class="or_td_1">收到时间</div>
+                    <div class="or_td_2 receiveTimeStr"></div>
+                </div>
+                <div class="or_tr">
+                    <div class="or_td_1">回执单图片</div>
+                    <div class="or_td_2 Imgbox receiptExpressImg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="../../resources/plugin/zepto/zepto.js"></script>
+<!-- <script type="text/javascript" src="../resources/plugin/zepto/touch.js"></script> -->
+<script src="../resources/js/com.js"></script>
+<script src="../../resources/plugin/mui/js/mui.min.js"></script>
+<script src="../../resources/plugin/mui/js/mui.picker.min.js"></script>
+<script>
+	var orders,urlData,userInfo;
+    /*加载动画*/
+    var loader = new loading({'container':document.body,'hasBg':false});
+    window.onload = function() {
+    	userInfo=getUserInfo();//获取用户信息
+        urlData=getQueryStringArge();
+        gettingData(urlData)
+    }
+    /*获取预约信息*/
+    function gettingData(order){
+    	if(userInfo){
+    		$.ajax({
+		        type:"post",
+		        url:Config.url+"collectInformation/getShdHt",
+		        data:{"orderNo":order.order},
+		        headers: {"token":userInfo.token},
+		        beforeSend:function(xhr, settings){
+                    loader.show();
+		        },
+		        success:function(data, status, xhr){
+		            if(data.ask==0){
+	 					pushData(data.data)
+					}else if(data.ask==-2){
+		            	logOut();
+		            }else{
+		            	tips(data.errorMessage,'tips_center',1500)
+		            }
+		        },
+		        error:function(xhr, errorType, error){
+		            tips('获取预约信息失败','tips_center',1500);
+		        },
+                complete:function(xhr, status){
+                    setTimeout(function(){loader.hide()},400);
+                }
+		    });
+    	}
+    }
+    /*push数据到模板*/
+    function pushData(data){
+    	$(".expressCompany").text(data.expressCompany);
+        $(".expressNo").text(data.expressNo);
+        $(".expressImg").empty().append('<img class="img-c" src="'+data.expressImg+'?' + Date.parse(new Date()) + '"/>');
+        $(".sendTime").text(formatDate(data.sendTime));
+        $(".receiveTimeStr").text(data.receiveTimeStr);
+        $(".receiptExpressImg").empty().append('<img class="img-c" src="'+data.receiptExpressImg+'?' + Date.parse(new Date()) +'"/>');
+    };
+    /*点击查看大图*/
+    $(".Imgbox").on("tap","img",function(){
+    	var bigImg = myLayer({
+    		'layerCont':$(this),
+	        'hasShadowBg':true,
+	        'shadowClose':true,
+	        'funcs':{".layer_cont_wrap":function(){
+	        	bigImg.destory();
+	        }}
+	    });
+	    bigImg.show();
+    });
+
+
+</script>
+</body>
+</html>
+
+

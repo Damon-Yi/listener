@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>订单</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="../resources/css/public.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/com.css" rel="stylesheet" type="text/css">
+    <link href="../../resources/plugin/swiper/swiper.3.1.7.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../resources/plugin/mui/css/mui.min.css">
+    <script src="../resources/js/public.js"></script>
+    <script src="http://10.80.2.89:8080/resources/js/behaviorListener.js"></script>
+    <style>
+        body{background-color: #dcdcdc;}
+        .orders{font-size:0.26rem;color: #333;line-height: 1;padding:0.2rem 0.2rem 0;}
+        .orders_detal{width:100%;height:100%;margin-bottom:0.2rem;}
+        .orders .o_item{background:#FFFFFF url(../../resources/images/bg_bot.png) repeat-x center bottom;background-size:0.45rem;padding-bottom:0.2rem; border-top:5px solid #db2442;-ms-border-top-left-radius:0.2em;-ms-border-top-right-radius:0.2em;-webkit-border-top-left-radius:0.2em;-webkit-border-top-right-radius:0.2em;-moz-border-top-left-radius:0.2em;-moz-border-top-right-radius:0.2em;}
+        .orders .o_item img,.orders .o_item span,.orders .o_item i{display: inline-block;vertical-align: middle;font-size: 0.24rem;}
+        .orders .o_item i{font-style: normal;font-size:0.2rem; }
+        .orders .o_tips{font-size: 0.24rem;color: #e32121;background-color: #FFFFFF;position:relative;display:inline-block;border-radius:0.2rem;margin-bottom: 0.15rem;padding:0.1rem 0.2rem;}
+        .orders .o_tips>img{width: 0.28rem;height: 0.28rem;margin-right:0.1rem;}
+        .orders .o_tips>span{line-height: 0.5rem;}
+        .orders .o_tips:before{content:" ";position: absolute;width:0;height:0;left:0.1rem;bottom:-0.25rem;border-top:0.24rem solid #FFFFFF;border-right:0.24rem solid transparent;border-bottom:0.12rem solid transparent;}
+        .orders .o_item .o_header{position: relative;height: 0.8rem;margin:0 0.2rem;}
+        .orders .o_item .o_header:after{content: " ";position: absolute;left: 0;bottom: 0;width: 100%;height: 1px;border-bottom: 1px solid #e1e1e1;color: #e1e1e1;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);}
+        .orders .o_item .o_header .o_header_radius:before{content:" ";position: absolute;left:-0.35rem;bottom: -0.13rem;width:0.26rem;height:0.26rem;background:#dcdcdc;border-radius:50%;}
+        .orders .o_item .o_header .o_header_radius:after{content:" ";position: absolute;right:-0.35rem;bottom: -0.13rem;width:0.26rem;height:0.26rem;background:#dcdcdc;border-radius:50%;}
+        .orders .o_item .o_header .o_h_left{float: left;}
+        .orders .o_item .o_header .o_logo{width: 0.32rem;height: 0.32rem;}
+        .orders .o_item .o_header .o_com{line-height: 0.8rem;margin: 0 0.06rem;}
+        .orders .o_item .o_header .o_h_right{color: #999;font-size: 0.25rem;float: right}
+        .orders .o_item .o_header .o_h_right label{font-size:0.25rem;color: #A9B2B9;;}
+        .orders .o_item .o_header .o_time{margin-right: 0.1rem;color:#323232;}
+        .orders .o_item .o_header .o_status{color: #ff6700;font-size: 0.28rem;line-height: 0.8rem;margin-left: 0.1rem;}
+        .orders .o_item .o_mid{position: relative;}
+        .orders .o_item .o_mid:after{content: " ";position: absolute;left: 0;bottom: 0;width: 100%;height: 0;color: #e1e1e1;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);}
+        .orders .o_item .o_mid .o_user_info{position: relative;}
+        .orders .o_item .o_mid .o_user_info:after{content: " ";position: absolute;left: 0;bottom: 0;width: 100%;height: 0;color: #e1e1e1;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);}
+        .orders .o_item .o_mid .o_user_info>div{padding:0.3rem 0;overflow: auto;border-bottom:1px solid #eef0f1;margin:0 0.2rem;}
+        .orders .o_item .o_mid .o_user_info img{width: 0.32rem;height: 0.32rem;}
+        .orders .o_item .o_mid .o_user_info .o_main{}
+        .orders .o_item .o_mid .o_user_info .o_main label{font-size:0.25rem;color:#A9B2B9}
+        .orders .o_item .o_mid .o_user_info .o_u_left{float: left;}
+        .orders .o_item .o_mid .o_user_info .o_name{font-size:0.25rem;color:#323232;}
+        .orders .o_item .o_mid .o_user_info .o_u_icon{margin-right:0.08rem; }
+        .orders .o_item .o_mid .o_user_info .o_u_right{float: right;}
+        .orders .o_item .o_mid .o_user_info .o_phone{font-size:0.25rem;color:#323232;}
+        .orders .o_item .o_mid .o_user_info .o_addr{display: flex;display: -webkit-flex;}
+        .orders .o_item .o_mid .o_user_info .o_addr label{font-size:0.25rem;color:#A9B2B9}
+        .orders .o_item .o_mid .o_user_info .o_a_txt{flex:1;-webkit-flex:1;font-size:0.25rem;color:#323232;}
+        .orders .o_item .o_mid .o_user_info .o_a_icon{margin-right:0.08rem;}
+        .orders .o_item .o_mid .o_user_info .o_t_icon{margin-right:0.08rem;}
+        .orders .o_item .o_mid .o_user_info .o_appo{color: #323232;}
+        .orders .o_item .o_mid .o_user_info .o_appo label{font-size:0.25rem;color:#A9B2B9}
+        .orders .o_item .o_mid .o_commodity_info{padding: 0.06rem 0.2rem;}
+        .orders .o_item .o_mid .o_user_info .o_c_describe{display: flex;display: -webkit-flex;}
+        .orders .o_item .o_mid .o_user_info .o_c_describe label,.orders .o_item .o_mid .o_user_info .o_c_cost label{font-size:0.25rem;color:#A9B2B9}
+        .orders .o_item .o_mid .o_user_info .o_c_describe .o_c_text{flex:1;-webkit-flex:1;font-size:0.25rem;color:#323232;line-height: 1.2;}
+        .orders .o_item .o_mid .o_user_info .o_c_left{float: left;}
+        .orders .o_item .o_mid .o_user_info .o_c_right{float: right;}
+        .orders .o_item .o_footer{text-align: right;padding: 0.15rem 0.2rem;}
+        
+        .order_20 .impor_blank_btn{border-color: #db2442;background-color: #fff;color: #db2442;}
+        .order_20 .impor_blank_btn:last-child{color: #FFFFFF;background-color: #db2442; border: 1px solid #db2442;}
+        .order_30 .o_item{border-color:#6cafe3;}
+        .order_30 .o_item .o_header .o_status{color: #6cafe3;}
+        .order_30 .impor_blank_btn{border-color: #6cafe3;background-color: #fff;color: #6cafe3;}
+        .order_30 .impor_blank_btn:last-child{background-color: #6cafe3;border-color: #6cafe3;color: #fff;}
+        .order_40 .o_item{border-color:#FD9426;}
+        .order_40 .o_item .o_header .o_status{color: #FD9426;}
+        .order_40 .impor_blank_btn{border-color: #FD9426;background-color: #fff;color: #FD9426;}
+        .order_40 .impor_blank_btn:last-child{background-color: #FD9426;border-color: #FD9426;color: #fff;}
+        .order_50 .o_item{border-color:#646464;}
+        .order_50 .o_item .o_header .o_status{color: #646464;}
+        .order_50 .impor_blank_btn{border-color: #646464;background-color: #fff;color: #646464;}
+        .order_50 .impor_blank_btn:last-child{background-color: #646464;border-color: #646464;color: #fff;}
+        .order_60 .o_item{border-color:#646464;}
+        .order_60 .o_item .o_header .o_status{color: #646464;}
+        .order_60 .impor_blank_btn{border-color: #646464;background-color: #fff;color: #646464;}
+        .order_60 .impor_blank_btn:last-child{background-color: #646464;border-color: #646464;color: #fff;}
+
+        .mui-pull-top-pocket{font-size: 0;}
+        .mui-pull-bottom-pocket{font-size: 0;}
+        .orderTypeCn{margin-bottom: 0.3rem;}
+        .top_tab .action_line{display:none;}
+    </style>
+    <script type="text/javascript" src="../../resources/plugin/swiper/swiper.3.1.7.min.js"></script>
+</head>
+<body>
+    <div class="top_tab">
+        <div class="swiper-wrapper">
+        </div>
+    </div>
+    <div class="cont_box bottom_cont_box"></div>
+    <script type="text/javascript" src="../../resources/plugin/zepto/zepto.js"></script>
+    <!-- <script type="text/javascript" src="../../resources/plugin/zepto/touch.js"></script> -->
+    <script src="../resources/js/com.js"></script>
+    <script src="../../resources/plugin/mui/js/mui.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugin/AES/aes.js"></script>
+    <script>
+        //tips(getUserInfo(),'tips_left',4000);
+        /*加载动画*/
+        var loader = new loading({'container':document.body,'hasBg':false});
+        var currUserIdentity,userInfo,urlData,pagSize=5;
+        window.onload = function() {
+        	loader.show();
+        	urlData=getQueryStringArge();
+        	urlData.urltpe=urlData.urltpe || 0;
+        	userInfo= getUserInfo();//获取token
+        	currUserIdentity = getCurrUserIdentity();//获取当前用户身份
+        	creatTopMenuAndCont(urlData.urltpe);//创建头部菜单、订单列表DOM结构
+            initiScrolls(urlData.urltpe);//获取订单列表
+        }
+		function creatTopMenuAndCont(urltype){//创建头部菜单
+			if(currUserIdentity){
+				//头部
+				var swiperWrapper = $('.swiper-wrapper');
+				//列表
+				var contBox = $('.cont_box');
+				var listAll = $('<div class="c_panel active mui-content mui-scroll-wrapper"><div class="mui-scroll"><ul class="mui-table-view mui-table-view-chevron orders"></ul></div></div>');
+				contBox.append(listAll);
+				
+				for(var k in currUserIdentity.status){
+					//头部菜单
+					var tmpSlide = $('<div class="swiper-slide"><div class="top_tab_item"><a class="top_tab_a" href="orders.html?urltpe='+k+'" data-type="'+k+'" data-page="1">'+currUserIdentity.status[k].text+'</a></div></div>');
+					swiperWrapper.append(tmpSlide);
+				}
+				var index = $('.top_tab_a[data-type="'+urltype+'"]').parents('.swiper-slide').index(); 
+				var actionLine = $('<div class="action_line"></div>');
+				actionLine.css({
+					'left':index*20+'%',
+					'display':'block'
+					});
+				swiperWrapper.append(actionLine);
+			}
+		}
+		function initiScrolls(urltype){
+            var topTapA = $('.top_tab_a[data-type="'+urltype+'"]'),
+                pageN=topTapA.attr("data-page");
+            var className=".c_panel";
+            mui.init({
+                pullRefresh: {
+                    container: className,
+                    down: {
+                        callback: function(){
+                            setTimeout(function() {
+                                var topTapA = $('.top_tab_a[data-type="'+urltype+'"]'),
+                                    pageN=topTapA.attr("data-page");
+                                var ordersWrap = $(className).find(".orders");
+                                ordersWrap.empty();
+                                getData(urlData.urltpe=="0"?"":urlData.urltpe,1,ordersWrap,function(){
+                                    //iSrollerObj.iSroller.pullDownEnd();
+                                    topTapA.attr("data-page",'1');
+                                    mui(className).pullRefresh().endPulldownToRefresh(); //refresh completed
+                                });
+                            }, 1000);
+                        }
+                    },
+                    up: {
+                        contentrefresh: '正在加载...',
+                        callback: function(){
+                            setTimeout(function() {
+                                var topTapA = $('.top_tab_a[data-type="'+urltype+'"]'),
+                                    pageN=topTapA.attr("data-page");
+                                var ordersWrap = $(className).find(".orders");
+                                getData(urlData.urltpe=="0"?"":urlData.urltpe,parseInt(pageN)+1,ordersWrap,function(appendData){
+                                    //iSrollerObj.iSroller.pullUpEnd();
+                                    if(appendData){
+                                        topTapA.attr("data-page",parseInt(pageN)+1);
+                                    }
+                                    //mui(className).pullRefresh().endPullupToRefresh(!appendData); //参数为true代表没有更多数据了。
+                                    mui(className).pullRefresh().endPullupToRefresh(); //参数为true代表没有更多数据了。
+                                });
+                            }, 1000);
+                        }
+                    }
+                }
+            });
+            var ordersWrap = $(className).find(".orders");
+            getData(urlData.urltpe=="0"?"":urlData.urltpe,parseInt(pageN),ordersWrap,function(){
+                setTimeout(function(){loader.hide()},400);
+            });//请求数据
+        }
+		/*刷新当前页面*/
+        function refreshCurrPanel(obj){
+            var ordersWrap = obj.parents('.c_panel.active').find(".orders");
+            ordersWrap.empty();
+            getData(urlData.urltpe=="0"?"":urlData.urltpe,1,ordersWrap,function(){
+                setTimeout(function(){loader.hide()},400);
+            });
+        }
+        //
+        function setOrderCounter(){
+            $.ajax({
+                type:"post",
+                url:Config.url+"orderInfo/getOrderStatusCount",
+                data:{"userNo":userInfo.saNo,"orderType":Config.orderType},
+                headers:{"token":userInfo.token},
+                beforeSend:function(request){
+		        },
+                success:function(data, status, xhr){
+                    if(data.ask==0&&data.data.length>0){
+                        var allCount = 0;
+                        $('.top_tab_a[data-type]').each(function(){
+                        	$(this).find('.badge').remove();
+                        });
+                        for(var i=0;i<data.data.length;i++){
+                            if(data.data[i].orderCount>0){
+                                allCount += parseInt(data.data[i].orderCount);
+                                var tmpCount = parseInt(data.data[i].orderCount)>99?'99+':data.data[i].orderCount;
+                                var badgeWrap = $('.top_tab_a[data-type="'+data.data[i].orderStatus+'"]');
+                                
+                            	var badge = $('<i class="badge">'+tmpCount+'</i>');
+                            	badgeWrap.append(badge);
+                            }
+                        }
+                        if(allCount>0){//全部
+                            var tmpAllCount = allCount>99?'99+':allCount;
+                            var badgeAllWrap = $('.top_tab_a[data-type="0"]');
+                            
+                        	var badgeAll = $('<i class="badge">'+tmpAllCount+'</i>');
+                        	badgeAllWrap.append(badgeAll);
+                        }
+                    }else if(data.ask==-2){
+                    	logOut();	
+                    }
+                },
+                error:function(xhr, errorType, error){
+                    console.log(xhr);
+                    tips('获取订单信息失败','tips_center',1500);
+                },
+                complete:function(xhr, status){
+                    setTimeout(function(){loader.hide()},400);
+                }
+            });
+        }
+        /*ajax获取列表数据*/
+        function getData(type,pageN,ordersWrap,callBack){
+            if(userInfo){
+                setOrderCounter();
+                //var jsonTmp =AESCrypt().Encrypt(JSON.stringify({"userNo":"999999","orderStatus":type,"pageNum":pageN,"pageSize":2}));
+                var jsonTmp = JSON.stringify({"userNo":userInfo.saNo,"orderStatus":type,"pageNum":pageN,"pageSize":pagSize,"orderType":Config.orderType});
+                var appendData = false;
+    		    $.ajax({
+    		        type:"post",
+    		        url:Config.url+"orderInfo/list",
+                    contentType:"application/json",
+    		        data:jsonTmp,
+    		        headers: {"token":userInfo.token},
+    		        beforeSend:function(xhr,request){
+    		        },
+    		        success:function(data, status, xhr){
+    		            if(data.ask==0){
+                            if(data.data){
+                                ordersWrap.addClass('hasDate');
+                                if(pageN==1){
+                                    ordersWrap.empty();
+                                }
+                                for(var i=0;i<data.data.length;i++){
+                                    ordersWrap.append(template(data.data[i],urlData.urltpe));
+                                }
+                                appendData = true;
+                            }else{
+                                if(pageN==1){
+                                    ordersWrap.empty().append('<div class="no_data"><img src="../../resources/images/setting_head_default@3x.png" alt=""><p>~暂无数据~</p></div>');
+                                }
+                            }
+    		            }
+    		        },
+    		        error:function(xhr, errorType, error){
+    		            console.log(xhr);
+                        tips('获取订单信息失败','tips_center',1500);
+    		        },
+    		        complete:function(xhr, status){
+                        callBack(appendData);
+    		        }
+    		    });
+            }
+        }
+        /*生成列表模板    '<div class="o_tips"><img src="../../resources/images/backs.png" alt=""><span>订单已被审核退回，请重新提单！</span></div>'+*/
+        function template(list,urltpe){
+        	var viobj=getStatusAndBtns(list.orderStatus,urltpe);
+        	if(!viobj){
+        		viobj = {status: "已取消"};
+        	}
+            var html =$('<li><div class="orders_detal order_'+list.orderStatus+'" data-urltype="'+urltpe+'" data-statu="'+list.orderStatus+'" data-order="'+list.orderNo+'" data-type="'+list.orderType+'">'+
+                    '<div class="o_item">'+
+                        '<div class="o_header">'+
+                            '<div class="o_header_radius">'+
+                                '<div class="o_h_left"><img class="o_logo" src="../../resources'+list.channelUrl+'" alt=""><span class="o_com">'+list.channelName+'</span></div>'+
+                                '<div class="o_h_right"><span class="o_status">'+viobj.status +'</span></div>'+
+                            '</div>'+
+                        '</div> '+
+                        '<div class="o_mid">'+
+                            '<div class="o_user_info">'+
+                                '<div class="o_c_cost">'+
+                                    '<div class="orderTypeCn"><label>订单类型：</label><span>'+list.orderTypeCn +'</span></div>'+
+                                    '<div class="orderNo"><label>订&nbsp;&nbsp;单&nbsp;号：</label><span>'+list.orderNo+'</span></div>'+
+                                '</div>'+
+                                '<div class="o_main">'+
+                                    '<div class="o_u_left"><label>姓名：</label><span class="o_name">'+list.customerName+'</span></div>'+
+                                    '<div class="o_u_right"><label>电话：</label><span class="o_phone">'+list.customerMobile+'</span></div>'+
+                                '</div>'+
+                                '<div class="o_addr">'+
+                                    '<label>地址：</label><span class="o_a_txt">'+list.address+'</span>'+
+                                '</div>'+
+                                '<div class="o_appo">'+
+                                    '<label>时间：</label><span>'+formatDate(list.createTime)+'</span>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="o_footer">'+
+                        
+                        '</div>'+
+                    '</div>'+
+                '</div></li>');
+                html.on("tap",function(){
+                    location.href="order_details.html?order="+list.orderNo+"&statu="+list.orderStatus+"&urltpe="+urltpe;
+                });
+                if(viobj.status!="已取消"){
+                var btnsWrap = html.find('.o_footer');
+	                for(var i=0;i<viobj.btns.length;i++){
+	                    btnsWrap.append(viobj.btns[i]);
+	                }
+                }
+                //设置倒计时
+                if(list.orderStatus==20||list.orderStatus==30){
+                    html.find('.o_header_radius .o_h_right').prepend('<label>倒计时：</label><span class="o_time"></span>|');
+                    setCountDown(html.find('.o_time'),list.updateTime,1,[{
+                    	specialTime:10,
+	                    fn:function(obj){
+	                        obj.wrapObj.css('color','#ff3c00');
+	                    }
+                    }]);
+                    //setCountDown(html.find('.o_time'),1488519775139);
+                }else if(list.orderStatus==40){
+                    html.find('.o_header_radius .o_h_right').prepend('<label>倒计时：</label><span class="o_time"></span>|');
+                    if(list.reservationInfo&&list.reservationInfo.reservationTime){
+                    	var times=list.reservationInfo.reservationTime.substring(0,16);
+                    	var hous = new Date(times.replace(/-/g,"/")).getTime()-60*60*1000; 
+                        //var hous = new Date(times).setHours(new Date(times).getHours()-1);
+                    	setCountDown(html.find('.o_time'),hous,2,[{
+	                    		specialTime:10,
+			                    fn:function(obj){
+			                        obj.wrapObj.css('color','#ff3c00');
+			                    }
+		                    },{
+	                    		specialTime:60,
+			                    fn:function(obj){
+			                        console.log(60);
+			                    }
+		                    }
+	                    ]);
+                    //setCountDown(html.find('.o_time'),1488519775139);
+                    }
+                }
+            return html;
+        }
+        //设置倒计时
+        function setCountDown(obj,time,hours,specialTimeObj){
+            //1小时倒计时
+            var timePlus = new Date(new Date(time).setHours(new Date(time).getHours()+hours));
+            var minutes = Math.floor((timePlus-new Date().getTime())/(60*1000));
+            if(minutes>0){
+                countDown(obj,minutes,function(){
+                    console.log('end');
+                },specialTimeObj);
+            }else{
+                obj.text("已超时").css('color','#999');
+            }
+        }
+        /*订单状态及对应操作按钮*/
+		function getStatusAndBtns(status,urltpe){
+            if(currUserIdentity.status[status]){
+                var btnObjs=[];
+                var btns = currUserIdentity.status[status].btns;
+                for(var i = 0;i<btns.length;i++){
+                    btnObjs.push(generateBut(btns[i],urltpe));
+                }
+                
+                return  {status:currUserIdentity.status[status].text,btns:btnObjs};
+            }else{
+                return null;
+            }
+		}
+		/*订单 接单、取消、预约按钮*/
+		function generateBut(type,urltpe){
+            var btn; 
+            if(type=='cancel'){//取消订单
+                btn = $('<a class="mid_btn default_btn cancel_order" href="javascript:;">取消订单</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                    var orders=$(this).parents(".orders_detal").attr("data-order");
+                    location.href="order_cancel.html?order="+orders+"&urltpe="+urltpe;
+                });
+            }
+            /*接单*/
+            if(type=='recive'){
+                btn = $('<a class="mid_btn impor_blank_btn acc_order" href="javascript:;">接单</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                    var orders=$(this).parents(".orders_detal").attr("data-order");
+                    var dialog = confirmDialog({
+                        type:2,
+                        hasShadowBg:true,
+                        title:'确认接单',
+                        txt:userInfo.positionId=="1"?'请在接单后1小时内和客户预约面签时间！':'请在1小时内处理订单！',
+                        btns:[{
+                                text:'接单',
+                                callBack:function(){
+                                	var _that = this;
+                                    if(userInfo &&!$(_that).hasClass('disable')){
+                                        $.ajax({
+                                            type:"post",
+                                            url:Config.url+"orderInfo/receiveOrder",
+                                            contentType:"application/json",
+                                            data:JSON.stringify({"userNo":userInfo.saNo,"orderNo":orders}),
+                                            headers: {"token":userInfo.token},
+                                            beforeSend:function(xhr, settings){
+                                                loader.show();
+				        					    $(_that).addClass('disabled');
+    					            		},
+                                            success:function(data,status,xhr){
+                                            	if(data.ask==0){
+                        		 					dialog.destory();
+ 													var ordersWrap = btn.parents('.c_panel.active').find(".orders");
+ 													console.log(ordersWrap.children("li").length);
+ 													if(ordersWrap.children("li").length<=pagSize){
+ 														console.log(ordersWrap);
+ 														refreshCurrPanel(btn)
+ 													}else{
+ 														btn.parents("li").remove();
+ 														setOrderCounter();
+ 													}
+                        						}else if(data.ask==-2){
+						    		            	logOut();
+						    		            } 
+                                            },
+                                            error:function(xhr, errorType, error){
+                                                console.log(xhr);
+                                                tips('操作失败','tips_center',1500);
+                                            },
+                                            complete:function(xhr, status){
+						                        $(_that).removeClass('disabled'); 
+                                                setTimeout(function(){loader.hide()},400);
+					                        }
+                                        });
+                                    }
+                                }
+                            },
+                            {
+                                text:'取消',
+                                callBack:function(){
+                                    dialog.destory();
+                                }
+                            }
+                        ]
+                    });
+                    dialog.show(); 
+                });
+            }
+            /*拒绝接单*/
+            if(type=='refuse'){
+            	btn = $('<a class="mid_btn impor_blank_btn acc_order" href="javascript:;">拒绝接单</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                	
+                	var orders=$(this).parents(".orders_detal").attr("data-order");
+                	var dialog = confirmDialog({
+		                type:2,
+		                hasShadowBg:true,
+		                title:'确认拒单',
+		                txt:'拒绝该订单后，系统将不再派该订单给您？',
+		                btns:[{
+		                        text:'拒单',
+		                        callBack:function(){
+		                        	var _that = this;
+                                    if(userInfo&&!$(_that).hasClass('disable')){
+    		                            $.ajax({
+    					            		type:"post",
+    					            		url:Config.url+"orderInfo/rejectOrder",
+    					            		contentType:"application/json",
+    					            		data:JSON.stringify({"userNo":userInfo.saNo,"orderNo":orders}),
+    					            		headers: {"token":userInfo.token},
+    					            		beforeSend:function(xhr, settings){
+                                                loader.show();
+				        					    $(_that).addClass('disabled');
+    					            		},
+    					            		success:function(data,status,xhr){
+    					            			if(data.ask==0){
+                        		 					dialog.destory();
+                                                    var ordersWrap = btn.parents('.c_panel.active').find(".orders");
+ 													if(ordersWrap.children("li").length<=pagSize){
+ 														refreshCurrPanel(btn);
+ 													}else{
+ 														btn.parents("li").remove();
+ 														setOrderCounter();
+ 													}
+                        						}else if(data.ask==-2){
+						    		            	logOut();
+						    		            }	
+    					            		},
+    					            		error:function(xhr, errorType, error){
+    								            console.log(xhr);
+    								            tips('操作失败','tips_center',1500);
+    								        },
+    								        complete:function(xhr, status){
+						                        $(_that).removeClass('disabled'); 
+                                                setTimeout(function(){loader.hide()},400);
+					                        },
+    					            	});
+                                    }
+		                        }
+		                    },
+		                    {
+		                        text:'取消',
+		                        callBack:function(){
+		                        	dialog.destory();
+		                        }
+		                    }
+		                ]
+		            });
+		            dialog.show();
+                });
+            }
+            /*//转单*/
+            if(type=='turn'){
+            	btn = $('<a class="mid_btn impor_blank_btn acc_order" href="javascript:;">转单</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                    var orders=$(this).parents(".orders_detal").attr("data-order");
+                    var site=$(this).parents(".orders_detal").find(".o_a_txt").text();
+                    if(userInfo.positionId=="1"){
+                    	var dialog = confirmDialog({
+		                type:2,
+		                hasShadowBg:true,
+		                txtClass:'txtCenter',
+		                txt:'是否将此单转给城市经理？',
+		                btns:[{
+		                        text:'确定',
+		                        callBack:function(){
+		                        	var _that = this;
+                                    if(!$(_that).hasClass('disable')){
+    		                            $.ajax({
+    					            		type:"post",
+    					            		url:Config.url+"orderInfo/relayOrder",
+    					            		contentType:"application/json",
+    					            		data:JSON.stringify({"userNo":userInfo.saNo,"orderNo":orders,'relayType':"1"}),
+    					            		headers: {"token":userInfo.token},
+    					            		beforeSend:function(xhr, settings){
+                                                loader.show();
+				        					    $(_that).addClass('disabled');
+    					            		},
+    					            		success:function(data,status,xhr){
+    					            			if(data.ask==0){
+                        		 					dialog.destory();
+                                                    var ordersWrap = btn.parents('.c_panel.active').find(".orders");
+   													if(ordersWrap.children("li").length<=pagSize){
+   														refreshCurrPanel(btn);
+   													}else{
+   														btn.parents("li").remove();
+   														setOrderCounter();
+   													}
+                        						}else if(data.ask==-2){
+						    		            	logOut();
+						    		            }else{
+						    		            	dialog.destory();
+						    		            	tips(data.errorMessage,'tips_center',1500);
+						    		            }
+    					            		},
+    					            		error:function(xhr, errorType, error){
+    								            tips('操作失败','tips_center',1500);
+    								        },
+    								        complete:function(xhr, status){
+						                        $(_that).removeClass('disabled'); 
+                                                setTimeout(function(){loader.hide()},400);
+					                        },
+    					            	});
+                                    }
+		                        }
+		                    },
+		                    {
+		                        text:'取消',
+		                        callBack:function(){
+		                        	dialog.destory();
+		                        }
+		                    }
+		                ]
+		            });
+		            dialog.show();
+                    }else{
+                    	location.href="turn_order.html?order="+orders+"&site="+site+"&urltpe="+urltpe;
+                    }
+                });
+            }
+            /*//预约*/
+            if(type=='subscr'){
+            	btn = $('<a class="mid_btn impor_blank_btn acc_order" href="javascript:;">预约</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                    var orders=$(this).parents(".orders_detal").attr("data-order");
+                    location.href="policy.html?order="+orders+"&urltpe="+urltpe;
+                });
+            }
+            /*//改约*/
+            if(type=='improve'){
+            	btn = $('<a class="mid_btn impor_blank_btn acc_order" href="javascript:;">改约</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                    var orders=$(this).parents(".orders_detal").attr("data-order");
+                    var names=$(this).parents(".orders_detal").find(".o_name").text();
+                    var phones=$(this).parents(".orders_detal").find(".o_phone").text();
+                    var status=$(this).parents(".orders_detal").find(".o_status").text();
+                    var site=$(this).parents(".orders_detal").find(".o_a_txt").text();
+                    location.href="policy.html?order="+orders+"&urltpe="+urltpe;
+                });
+            }
+            /*//查看合同*/
+            if(type=='examine'){
+            	btn = $('<a class="mid_btn impor_blank_btn acc_order" href="javascript:;">提单详情</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                	var orders=$(this).parents(".orders_detal").attr("data-order");
+                    location.href="automation.html?orderId="+orders+"&orderType="+type+"&urltpe="+urltpe;
+                });
+            }
+            /*//提单*/
+            if(type=="ladoder"){
+            	btn = $('<a class="mid_btn impor_blank_btn acc_order" href="javascript:;">提单</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                    var orders=$(this).parents(".orders_detal").attr("data-order");
+                    var type=$(this).parents(".orders_detal").attr("data-type");
+                    location.href="automation.html?orderId="+orders+"&orderType="+type+"&urltpe="+urltpe;
+                });
+            }
+            return btn;
+		}
+    </script>
+</body>
+</html>

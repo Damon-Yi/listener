@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>快递寄出</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link href="../resources/css/public.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/com.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/part1.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../resources/plugin/mui/css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/plugin/mui/css/mui.picker.min.css" />
+    <script src="../resources/js/public.js"></script>
+    <style>
+        body{height: auto;min-height: auto;}
+        .order_details{font-size: 0.24rem;color: #999;word-break: break-all;overflow:auto; text-align:justify;margin-top:0.2rem;}
+        .order_details .or_section{background-color: #fff;padding: 0 0.2rem;margin-bottom:0.2rem;}
+        .order_details .or_section .or_title{font-size: 0.28rem;padding-left:0.1rem;color: #333;height:0.8rem;line-height:0.8rem;position: relative;}
+        .order_details .or_section .or_info{display: block;}
+        .order_details .or_section .or_tr{display: box;display:-webkit-box;display: flex;display:-webkit-flex;padding: 0.24rem 0;position: relative}
+        .order_details .or_section .or_tr:before{content: " ";position: absolute;left: 0;top:0;width: 100%;height: 1px;border-top: 1px solid #e1e1e1;color: #e1e1e1;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);}           
+        .order_details .or_section .or_tr .or_td_1{width: 1.8rem;color: #A9B2B9;font-size: 0.24rem;text-align:right;}
+        .order_details .or_section .or_tr .or_td_2{flex: 1;-webkit-flex:1;color: #323232;padding-right:0.1rem;padding-left:0.3rem;font-size: 0.24rem;}
+        .order_details .or_section .or_tr .or_td_3{width: 0.8rem;text-align: right;padding-right: 0.2rem;}
+        .order_details .or_section .or_tr .or_td_3>img{width: 0.28rem;height: 0.28rem;}
+        .order_details .or_section .or_mark{font-size: 0.2rem;}
+        .footwrap {width:100%;background:#FFFFFF}
+        .footwrap .affirm {padding: 0.16rem 0;}
+        .footwrap .affirm .affirm-btn {width: 4rem;height: 0.68rem;line-height: 0.68rem;background: #9c0000;border-radius: 3px;font-size: 0.28rem;text-align: center;color: #fff;display:block;margin: 0 auto;}
+        .impor_dark{border:none;height:0.4rem;line-height:0.4rem;background:none;}
+        .dates{line-height:0.3rem;height:0.3rem;vertical-align: top;}
+        .dates input,.makeTime input{width:100%;font-size:0.26rem;height:100%;border:none;line-height:100%;}
+        .site .site_input{border: none;height: 100%;width: 100%;font-size: 0.26rem;font-family: "STXihei","Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 100%;}
+
+        .mui-dtpicker-title{display: none;}
+        .mui-picker[data-id="picker-y"]{width: 22%;}
+        .mui-picker[data-id="picker-y"] .mui-pciker-list li{text-align: right;}
+        .mui-picker[data-id="picker-m"]{width: 18%;}
+        .mui-picker[data-id="picker-d"]{width: 12%;}
+        .mui-picker[data-id="picker-d"] .mui-pciker-list li{text-align: left;}
+        .mui-picker[data-id="picker-h"]{width: 48%;}
+        .mui-btn-block{padding:0;border:none;font-size: 0.24rem;margin: 0;text-align: left;}
+        .netDetailAddr{width:100%;border:none;padding:0.01rem 0}
+        /**/
+       .mapbox {height: 1.8rem;width:50%;float:left;font-size: 0.24rem;color: #323232;padding:0.05rem;}
+		.text-center {text-align: center;}
+       .tablev, .tablev-no {display: table;position: relative;width: 100%;height: 100%;background: #e6e6e6;}
+        .tablev>*:first-child, .tablev-no>*:first-child {display: table-cell;vertical-align: middle;}
+		.w08 {width: 0.8rem;}
+		.red {color: red;}
+		.affirm_wrap{width:100%;padding:0.1rem 0;overflow: auto;}
+		.affirm_wrap>a{width:62%;height:0.66rem;line-height:0.6rem;font-size:0.3rem;}
+        .tablev .close-btn, .tablev-no .close-btn {position: absolute; top: -0.1rem;right: -0.14rem;z-index: 10;}
+        .close {display: inline-block;width: 0.4rem; height: 0.4rem;border-radius: 50%;position: relative;background: #bdbdbf;z-index: 10;}
+        .close:before {content: "";position: absolute;top: 46%;left: 25%;width: 50%;
+         height: 2px;background: #000;transform: rotate(90deg);-webkit-transform: rotate(45deg);}
+		.close:after {content: "";position: absolute;top: 46%;left: 25%;width: 50%;height: 2px;background: #000;transform: rotate(90deg);-webkit-transform: rotate(-45deg);}
+        .tablev .info_img, .tablev-no .info_img {position: absolute;width: 100%;height: 100%;background-size: contain;left: 0;top: 0;z-index: 1;background-color: #eef0f1;}
+        .tablev .info_img img, .tablev-no .info_img img {max-width: 100%;max-height: 100%;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%);}
+    </style>
+</head>
+<body>
+    <div class="order_details">
+        <div class="or_section ">
+            <div class="or_info">
+                <div class="or_tr">
+                    <div class="or_td_1">快递公司<span class="red">*</span></div>
+                    <div class="or_td_2" >
+                    	<input type="text" placeholder="快递公司名称" name="expressCompany"  class="netDetailAddr expressCompany"  />
+                    </div>
+                </div>
+                <div class="or_tr">
+                    <div class="or_td_1">快递单号<span class="red">*</span></div>
+                    <div class="or_td_2" >
+                    	<input type="text" placeholder="快递单号" name="expressNo"  class="netDetailAddr expressNo" />
+                    </div>
+                </div>
+                <div class="or_tr">
+                    <div class="or_td_1">快递单图片<span class="red">*</span></div>
+                    <div class="or_td_2 status mapbox text-center">
+                    	<div class="tablev">
+							<div>
+								<img class="w08" src="../../resources/images/Photograph_mdpi.png">
+								<div>快递单正面<span class="red">*</span></div>
+							</div>
+							<div class="photo" id="expressImg" data-expressImg="12345614"></div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footwrap">
+        <div class="affirm">
+            <a class="affirm-btn" id="affirm" href="javascript:;">提交</a>
+        </div>
+    </div>
+<script type="text/javascript" src="../../resources/plugin/zepto/zepto.js"></script>
+<!-- <script type="text/javascript" src="../resources/plugin/zepto/touch.js"></script> -->
+<script src="../resources/js/com.js"></script>
+<script src="../../resources/plugin/mui/js/mui.min.js"></script>
+<script src="../../resources/plugin/mui/js/mui.picker.min.js"></script>
+<script>
+	var orders,urlData,userInfo;
+    /*加载动画*/
+    var loader = new loading({'container':document.body,'hasBg':false});
+    window.onload = function() {
+    	userInfo=getUserInfo();//获取用户信息
+        urlData=getQueryStringArge();
+    }
+
+    /*确认信息*/
+    $(".affirm-btn")[0].addEventListener('tap', function() {
+    	var params = {
+                "orderNo":urlData.order,
+                "expressCompany":$(".expressCompany").val(),
+                "expressNo":$(".expressNo").val(),
+                "expressImg":$(".photo").attr('data-expressImg'),
+            }
+    	if($("#expressImg").children().length<=0){
+            tips('快递单没上传','tips_center',1500);
+        }else if($(".expressCompany").val()==""){
+        	tips('快递公司名称不能为空','tips_center',1500);
+        }else if($(".expressNo").val()==""){
+        	tips('快递单号不能为空','tips_center',1500);
+        }else{	
+        	var dialog = confirmDialog({
+                type:2,
+                hasShadowBg:true,
+                txt:"确认提交快递信息？",
+                txtClass:"txtCenter",
+                btns:[{
+                        text:'我再看一下',
+                        callBack:function(){
+                        	dialog.destory();
+                        }
+                    },
+                    {
+                        text:'确定',
+                        callBack:function(){
+                        	dialog.destory();
+                        	$.ajax({
+						        type:"post",
+						        url:Config.url+"collectInformation/saveOrUpdateShdHt",
+						        data:params,
+						        headers: {"token":userInfo.token},
+						        beforeSend:function(xhr, settings){
+						        },
+						        success:function(data, status, xhr){
+						            if(data.ask==0&&data.errorCode==0000){
+						            	location.href="orders.html?urltpe="+urlData.urltpe;
+						            }else if(data.ask==-2){
+				            			logOut();
+					            	}else{
+					            		tips(data.errorMessage,'tips_center',1500);
+					            	}
+						        },
+						        error:function(xhr, errorType, error){
+						            tips('保存信息失败','tips_center',1500);
+						        },
+						    });
+                        }
+                    }
+                ]
+            });
+            dialog.show();
+		}
+    });
+    //点击拍照
+    $(".tablev").on("tap",".w08",function(){
+    	var id = $(this).parent().siblings(".photo").attr('id');
+    	var valueCode=$(this).parent().siblings(".photo").attr('id');
+    	var orderId=urlData.order;
+    	if (isAndroid()) {
+            window.demo.clickOnAndroid(id, valueCode, orderId);
+        } else if (isIOS()) {
+            mobile.takeLoanPhoto(id, valueCode, orderId);
+        }
+    });
+    //照片关闭按钮
+    $(document).on('tap', '.close-btn', function (e) {
+        $(this).next().remove();
+        $(this).remove();
+    });
+    var elParser = window.elParser || {};
+    elParser = {
+        getInfoFromMobile :function(str,id){
+	        var _this = this;
+	        var orderId=urlData.order;
+	        $("#"+id).empty().append('<div class="close-btn"><i class="close"></i></div><div class="info_img"><img src="' + str +'?' + Date.parse(new Date()) +  '"></div>');
+	        $("#"+id).attr("data-expressImg",str);
+		},
+    };
+    /*点击查看大图*/
+    $(".info_img").on("tap","img",function(){
+    	var bigImg = myLayer({
+    		'layerCont':$(this),
+	        'hasShadowBg':true,
+	        'shadowClose':true,
+	        'funcs':{".layer_cont_wrap":function(){
+	        	bigImg.destory();
+	        }}
+	    });
+	    bigImg.show();
+    });
+    
+</script>
+</body>
+</html>
+
+

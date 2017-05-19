@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>转单</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="../resources/css/public.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/com.css" rel="stylesheet" type="text/css">
+    <link href="../../resources/plugin/swiper/swiper.3.1.7.min.css" rel="stylesheet" type="text/css">
+    <script src="../resources/js/public.js"></script>
+    <script type="text/javascript" src="../../resources/plugin/swiper/swiper.3.1.7.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugin/iscroll/iscroll.js"></script>
+    <style>
+        .cont_box{background-color: #fff;margin-top:0.2rem;}
+        .turn_panel{padding: 0.14rem 0.3rem 0.14rem 0.2rem;display: flex;background-color: #dedede;font-size: 0.2rem;color: #333;}
+        .turn_panel .s_input_contain{flex: 1;display: flex;}
+        .turn_panel .s_input_contain .s_input_wrap{flex: 1;background-color: #fff;border-top-left-radius: 3px;border-bottom-left-radius: 3px;position: relative;}
+        .turn_panel .s_input_contain .s_input_wrap input.s_input{border-top-left-radius: 3px;border-bottom-left-radius: 3px;width: 100%;height: 0.56rem;border:none;font-size: 0.2rem;padding-left:0.16rem;padding-right:0.4rem;}
+        .turn_panel .s_input_contain .s_input_wrap .s_clear_btn{width: 0.26rem;height: 0.26rem;background: url('../../resources/images/icon_search_close@3x.png') no-repeat center center;background-size:100%;position: absolute;right:0.1rem;top: 0.15rem;display: none;}
+        .turn_panel .s_input_contain .s_btn{width:1.04rem;text-align: center;line-height: 0.56rem;background-color: #f8f8f8;border-top-right-radius: 3px;border-bottom-right-radius: 3px;}
+        .turn_panel .s_input_contain .s_btn:active{background-color: #e8e8e8;}
+        .turn_panel.s_entering .s_input_contain .s_input_wrap .s_clear_btn{display: block;}
+     	.order_cancel{background-color: #fff;color: #333;font-size: 0.26rem;padding-top: 1px;padding-bottom: 1px;}
+        .order_cancel .oc_reasons{position: relative;padding: 0 0.2rem;margin-bottom:0.4rem; }
+        .order_cancel .system{position: relative;padding: 0 0.4rem; }
+        .order_cancel .system:after{content: " ";position: absolute;left: 0;bottom: 0;width: 100%;height: 1px;border-bottom: 1px solid #e1e1e1;color: #e1e1e1;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);}
+        .order_cancel .oc_reasons .oc_r_item{position: relative;padding:0.27rem 0;}
+        .order_cancel .system .system_item{position: relative;padding:0.27rem 0;display: none;}
+        .order_cancel .oc_reasons .oc_r_item:after{content: " ";position: absolute;left: 0;bottom: 0;width: 100%;height: 1px;border-bottom: 1px solid #e1e1e1;color: #e1e1e1;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);}
+        .order_cancel .system .oc_r_item:last-child:after{display: none;}
+        .order_cancel .oc_reasons .oc_item_txt{}
+        .order_cancel .oc_reasons .oc_item_icon,.order_cancel .system .oc_item_icon{width:0.32rem;height: 0.32rem;border-radius:100%;border:1px solid #d6d6d6;position: absolute;right: 0.04rem;top:0.27rem;}
+        .order_cancel .oc_reasons .oc_r_item.selected .oc_item_icon{background:url(../../resources/images/icon_Checked@3x.png) no-repeat center center;background-size: contain;border: none;}
+        .cont_box .titlesite{width:100%;padding:0.1rem 0.2rem;font-size:0.24rem;background:#dedede;}
+        .titlesite .site_title{}
+        .no_data{padding:0.3rem;font-size:0.25rem;color:#dedede;margin:0 auto;text-align: center;}
+        .system_m .system_item_s{display: none;}
+        .system_m .system_item_m{display: block !important;}
+        .system_s .system_item_s{display: block !important;;}
+        .system_s .system_item_m{display: none;}
+    </style>
+</head>
+<body>
+    <div class="cont_box">
+        <div>
+            <div class="turn_panel">
+                <div class="s_input_contain">
+                    <div class="s_input_wrap">
+                        <input class="s_input" type="text" placeholder="请输入姓名/工号">
+                        <div class="s_clear_btn"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="titlesite">
+            	<span class="site_title"></span>
+            </div>
+            <div class="order_cancel">
+                <div class="oc_reasons">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../resources/plugin/zepto/zepto.js"></script>
+    <script type="text/javascript" src="../../resources/plugin/zepto/touch.js"></script>
+    <script src="../resources/js/com.js"></script>
+    <script>
+        var mainScroll,urlData,userInfo;
+        /*加载动画*/
+        var loader = new loading({'container':document.body,'hasBg':false});
+        window.onload = function() {
+            mainScroll = new IScroll('.cont_box',{
+                scrollbars: true,
+                mouseWheel: true,
+                interactiveScrollbars: true,
+                shrinkScrollbars: 'scale',
+                fadeScrollbars: true,
+                click: true 
+            });
+            document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+            urlData=getQueryStringArge();
+            $(".site_title").text(urlData.site ? urlData.site : "");
+            userInfo=getUserInfo();
+            
+            if(userInfo.positionId=="10"){//1 ：面签员  10：面签经理
+            	$(".system").addClass("system_s").removeClass('system_m');
+            }else if(userInfo.positionId=="1"){
+            	$(".system").addClass("system_m").removeClass('system_s');
+            }
+            getDadalist(urlData,"");
+        }
+        $('.s_input_wrap .s_input').on("input",function(e){
+               var name=$(this).val();
+               getDadalist(urlData,name);
+        });
+        
+         //点击转给面签员
+        $('.oc_reasons').on('tap',".oc_r_item",function(){
+            var saId=$(this).attr("data-val");
+            var texts=$(this).find("p").text();
+            submitDada(saId,urlData,"2",texts)
+        });
+        /*获取列表信息*/
+        function getDadalist(orders,name){
+        	if(userInfo){
+        		$.ajax({
+			        type:"post",
+			        url:Config.url+"orderInfo/areaSas",
+			        contentType:"application/json",
+			        data:JSON.stringify({"userNo":userInfo.saNo,"orderNo":orders.order,"name":name}),
+			        headers: {"token":userInfo.token},
+			        beforeSend:function(xhr, settings){
+			        },
+			        success:function(data, status, xhr){
+			        	var html="",datas;
+			            if(data.ask==0){
+			            	datas=data.data;
+			            	html="";
+				        	for(var i=0;i<datas.length;i++){
+				                if(datas[i].positionId==10){
+				                	$('.system_item_m').attr('data-val',datas[i].saNo);
+				                }else{
+				                	html+='<div class="oc_r_item" data-val="'+datas[i].saNo+'" data-type="2">'+
+				                        '<p class="oc_item_txt">'+datas[i].userName+'('+datas[i].saNo+')'+'</p>'+
+				                       '</div>';
+				                }
+				            }
+				        	if(userInfo.positionId==10){  //只允许城市经理转给面签员
+				        		$(".oc_reasons").html(html);
+				        	}
+				        	mainScroll.refresh();
+			            }else if(data.ask==-2){
+			            	logOut();	
+			            }else{
+			            	html='<div class="no_data">'+data.errorMessage+'</div>'
+			            	$(".oc_reasons").html(html);
+			            	mainScroll.refresh();
+			            }
+			        },
+			        error:function(xhr, errorType, error){
+			            console.log(xhr);
+			            tips('获取信息失败','tips_center',1500);
+			        },
+			    });
+        	}
+        }
+        /*提交转单*/
+        function submitDada(val,urlData,types,textsName){
+        	var json={'relayType':types,"userNo":userInfo.saNo,'orderNo':urlData.order,'saNo':val}  //转给面签员   货面签经理
+        	var dialog = confirmDialog({
+                type:2,
+                hasShadowBg:true,
+                title:'确认转单',
+                txt:"确认将此单转给"+ textsName+"？",
+                btns:[{
+                        text:'确定',
+                        callBack:function(){
+                        	var _that = this;
+                        	if(!$(_that).hasClass('disable')){
+	                            $.ajax({
+				            		type:"post",
+				            		url:Config.url+"orderInfo/relayOrder",
+				            		contentType:"application/json",
+				            		data:JSON.stringify(json),
+				            		headers: {"token":userInfo.token},
+				            		beforeSend:function(xhr, settings){
+                                        loader.show();
+		        					    $(_that).addClass('disabled');
+				            		},
+				            		success:function(data,status,xhr){
+				            			if(data.ask==0){
+	                            		    dialog.destory();
+					            			location.href="orders.html?urltpe="+urlData.urltpe;
+	                            		}else if(data.ask==-2){
+					            			logOut();
+					            		}
+				            		},
+				            		error:function(xhr, errorType, error){
+							            console.log(xhr);
+							            tips('转单失败','tips_center',1500);
+							        },
+							        complete:function(xhr, status){
+				                       $(_that).removeClass('disabled'); 
+                                       setTimeout(function(){loader.hide()},400);
+			                        }
+				            	});
+				            }	
+                        }
+                    },
+                    {
+                        text:'取消',
+                        callBack:function(){
+                        	dialog.destory();
+                        }
+                    }
+                ]
+            });
+            dialog.show();
+        }
+    </script>
+</body>
+</html>

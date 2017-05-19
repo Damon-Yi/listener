@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link href="../resources/css/public.css" rel="stylesheet" type="text/css">
+    <link href="../resources/plugin/swiper/swiper.3.1.7.min.css" rel="stylesheet" type="text/css">
+    <link href="../resources/plugin/LArea/LArea.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/com.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/part1.css" rel="stylesheet" type="text/css">
+    <script src="../resources/js/public.js"></script>
+    <script type="text/javascript" src="../resources/plugin/iscroll/iscroll.js"></script>
+    <script type="text/javascript">
+        /*function loaded () {
+         for(var i=1;i<=8;i++){
+         var mainScroll;
+         mainScroll=new IScroll('.c_panel_'+i,{
+         scrollbars: true,
+         mouseWheel: true,
+         interactiveScrollbars: true,
+         shrinkScrollbars: 'scale',
+         fadeScrollbars: true,
+         click: true
+         });
+         }
+
+         }
+         document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);*/
+
+    </script>
+    <style>
+        .top_tab {
+            overflow: hidden;
+        }
+
+        body {
+            height: 100%;
+            background: #eef0f1;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <div class="sub-nav">
+        <div class="sub-topbg"></div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide on">
+                    <div class="slide-item">订单信息</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-item">个人信息</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-item">家庭信息</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-item">单位信息</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-item">联系方式</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-item">还款信息</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-item">其它信息</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-item">协&#12288;审</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-item">货前影像</div>
+                    <div class="action-line"></div>
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="nav-pagination">
+            </div>
+        </div>
+        <!-- Add Arrows -->
+        <div class="nav-arrows fbox cen">
+            <div class="nav-button-prev"></div>
+            <div class="flex1"></div>
+            <div class="nav-button-next"></div>
+        </div>
+
+    </div>
+    <div class="main-wrap pd-lr-20">
+        <div>
+            <!--错误提示-->
+            <div>
+                <div class="pd-tb-20 err-txt one_px_border_b">申请被退回，[家庭信息]部分有错误！请及时更改！如已更改，请忽略此条信息！</div>
+            </div>
+            <div>
+                <!--商品信息-->
+                <div class="step active">
+                    <div class="t1 pd-tb-20">商品信息</div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">渠道信息</div>
+                        <div class="txt-right com_grey">京东商城</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">是否代购京东商城</div>
+                        <div class="txt-right com_grey">是</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">商品描述</div>
+                        <div class="txt-right com_grey">Apple iPone 6s Plus(A1699) 64G 玫瑰金色 移动联通电信4G上门</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">商品金额</div>
+                        <div class="txt-right com_grey">1800.00</div>
+                    </div>
+                    <div class="pd-tb-20 fbox">
+                        <div class="txt-left">商品总额</div>
+                        <div class="txt-right com_grey">5000.00</div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">分期方案</div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">首付比例</div>
+                        <div class="txt-right com_grey">10%</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">首付金额</div>
+                        <div class="txt-right com_grey">300.00</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">分期金额</div>
+                        <div class="txt-right com_grey">300.00</div>
+                    </div>
+                    <div class="pd-tb-20 fbox">
+                        <div class="txt-left">分期数</div>
+                        <div class="txt-right com_grey">6期</div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">还款计划
+                        <div class="tit-ico"><img class="full-size vm" src="../resources/images/icon_exclamation@3x.png"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">&#12288;首期还款</div>
+                        <div class="txt-right com_grey ml3">300.00<br>
+                            <div class="font24">(含服务费40元)</div>
+                        </div>
+                        <div class="txt-right com_grey vm ml3">2016-08-20</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">2至5期还款</div>
+                        <div class="txt-right com_grey ml3">300.00<br>
+                            <div class="font24">(含服务费40元)</div>
+                        </div>
+                        <div class="txt-right com_grey vm ml3">每月19日</div>
+                    </div>
+                    <div class="pd-tb-20 fbox">
+                        <div class="txt-left">&#12288;尾期还款</div>
+                        <div class="txt-right com_grey ml3">300.00<br>
+                            <div class="font24">(含服务费40元)</div>
+                        </div>
+                        <div class="txt-right com_grey vm ml3">2017-08-19</div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">收货信息</div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">客户姓名</div>
+                        <div class="txt-right com_grey">刘乐</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">联系电话</div>
+                        <div class="txt-right com_grey">189XXXXXXXX</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">收货地址</div>
+                        <div class="txt-right com_grey">广东省深圳市福田区梅林街道彩田路1889号新浩e都A9楼</div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">补充订单</div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">商品品类<span class="red">*</span></div>
+                        <select class="txt-right select-cs impor_dark" id="goodsCategory">
+                            <option value="商品品类1">商品品类1</option>
+                            <option value="商品品类2">商品品类2</option>
+                            <option value="商品品类3">商品品类3</option>
+                        </select>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">商品类型<span class="red">*</span></div>
+                        <select class="txt-right select-cs impor_dark" id="goodsType">
+                            <option value="商品类型1">商品类型1</option>
+                            <option value="商品类型2">商品类型2</option>
+                            <option value="商品类型3">商品类型3</option>
+                        </select>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">商品品牌<span class="red">*</span></div>
+                        <div class="txt-right"><input class="input-box impor_dark" type="text" id="goodsBrand" placeholder="请输入商品品牌"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen">
+                        <div class="txt-left">商品型号<span class="red">*</span></div>
+                        <div class="txt-right"><input class="input-box impor_dark" type="text" id="goodsVersion" placeholder="请输入商品型号"></div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">增值服务</div>
+                    <div class="pd-tb-20 fbox cen">
+                        <div class="txt-left com_dark">是否投保<span class="com_grey">*</span>&#12288;</div>
+                        <div class="txt-right">
+                            <div class="radio-s2 fbox cen text-center" id="creditcycle">
+                                <div data-val="1">是</div>
+                                <div class="mleft2 on" data-val="2">否</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen">
+                        <div class="txt-left com_dark">是否随心还<span class="com_grey">*</span>&#12288;</div>
+                        <div class="txt-right">
+                            <div class="radio-s2 fbox cen text-center" id="bugpaypkgind">
+                                <div data-val="1">是</div>
+                                <div class="mleft2 on" data-val="2">否</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--个人信息-->
+                <div class="step">
+                    <div class="t1 pd-tb-20">身份信息</div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">客户姓名<span class="red">*</span></div>
+                        <div class="txt-right">
+                            <input class="input-box impor_dark" type="text" id="customerName" placeholder="请输入客户姓名">
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">身份证号<span class="red">*</span></div>
+                        <div class="txt-right">
+                            <input class="input-box impor_dark" type="text" id="cardId" placeholder="请输入身份证号">
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">签发机关<span class="red">*</span></div>
+                        <div class="txt-right">
+                            <input class="input-box impor_dark" type="text" id="issuingAuthority" placeholder="请输入签发机关">
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">到期日期<span class="red">*</span></div>
+                        <div class="txt-right">
+                            <input class="input-box impor_dark r-arrow" type="date" id="cardOverTime" placeholder="请输入到期日期">
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen">
+                        <div class="txt-left">参考代码<span class="red">*</span></div>
+                        <div class="txt-right com_grey">
+                            <div class="radio-s2 bi text-center" id="referenceFlag">
+                                <div class="on" data-val="1">1</div>
+                                <div data-val="2">2</div>
+                                <div data-val="3">3</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">户籍地址</div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">所在地区<span class="red">*</span></div>
+                        <div class="txt-right">
+                            <input class="input-box impor_dark r-arrow" type="text" id="registerArea" placeholder="所在地区">
+                            <input id="registerArea-val" type="hidden" value="20,234,504"/>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 fbox">
+                        <div class="txt-left">具体地址<span class="red">*</span></div>
+                        <div class="txt-right">
+                            <input class="input-box impor_dark" type="text" id="registerAddress" placeholder="请输入具体地址">
+                        </div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">现居住地址</div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">现居住地址是<br>否同户籍地址<span class="red">*</span></div>
+                        <div class="txt-right impor_dark">
+                            <div class="radio-s2 fbox" id="isRegisterAddress">
+                                <div class="text-center on" data-val="1">是</div>
+                                <div class="text-center" data-val="2">否</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">所在地区<span class="red">*</span></div>
+                        <div class="txt-right">
+                            <input class="input-box impor_dark r-arrow" type="text" id="liveArea" placeholder="所在地区">
+                            <input id="liveArea-val" type="hidden" value="20,234,504"/>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 fbox">
+                        <div class="txt-left">具体地址<span class="red">*</span></div>
+                        <div class="txt-right">
+                            <input class="input-box impor_dark" type="text" id="liveAddress" placeholder="请输入具体地址">
+                        </div>
+                    </div>
+                </div>
+                <!--家庭信息-->
+                <div class="step">
+                    <div class="t1 pd-tb-20">家庭</div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">婚姻状况<span class="red">*</span></div>
+                        <div class="txt-right com_grey">
+                            <div class="radio-s2 fbox text-center">
+                                <div class="on">已婚</div>
+                                <div>未婚</div>
+                                <div>离异</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">子女数目<span class="red">*</span></div>
+                        <div class="txt-right">
+                            <div class="select-num fbox cen">
+                                <div class=""></div>
+                                <div class="com_grey">0</div>
+                                <div class=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen">
+                        <div class="txt-left">住房类型<span class="red">*</span></div>
+                        <select class="txt-right select-cs impor_dark">
+                            <option value="1">自有房1</option>
+                            <option value="2">自有房区2</option>
+                            <option value="3">自有房3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/images/icon_next_-step@3x.png"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">&#12288;每月生活总支出<span class="red">*</span></div>
+                        <div class="txt-right impor_dark">3000</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">&#12288;个人税后月收入<span class="red">*</span></div>
+                        <div class="txt-right impor_dark">3000</div>
+                    </div>
+                    <div class="pd-tb-20 fbox">
+                        <div class="txt-left">现有银行贷款余额<span class="o0">*</span></div>
+                        <div class="txt-right impor_dark">3000</div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">亲属</div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">亲属性名<span class="red">*</span></div>
+                        <div class="txt-right com_grey">后羿</div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">亲属关系<span class="red">*</span></div>
+                        <div class="txt-right com_grey">
+                            <div class="radio-s2 fbox text-center">
+                                <div class="on">已婚</div>
+                                <div>未婚</div>
+                                <div>离异</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">亲属联系电话<span class="red">*</span></div>
+                        <select class="txt-right select-cs impor_dark">
+                            <option value="1">137XXXXXXXX1</option>
+                            <option value="2">137XXXXXXXX2</option>
+                            <option value="3">137XXXXXXXX3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/images/icon_next_-step@3x.png"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">亲属联系地址是<br>否同户籍地址<span class="red">*</span></div>
+                        <div class="txt-right impor_dark">
+                            <div class="radio-s2 fbox cen">
+                                <div class="text-center on">是</div>
+                                <div class="text-center mleft2">否</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">亲属联系地址<span class="red">*</span></div>
+                        <div class="txt-right impor_dark">广东省深圳市福田区</div>
+                    </div>
+                    <div class="pd-tb-20 fbox">
+                        <div class="txt-left">具体地址<span class="red">*</span></div>
+                        <div class="txt-right impor_dark">彩田路7018号</div>
+                    </div>
+                </div>
+                <!--单位信息-->
+                <div class="step ">
+                    <div class="t1 pd-tb-20">单位信息</div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">单位名称<span class="red">*</span></div>
+                        <div class="txt-right impor_dark">深圳市买买提乐购有限服务有限公司</div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b select-cs">
+                        <div class="txt-left">所属行业<span class="red">*</span></div>
+                        <select class="txt-right select-cs impor_dark">
+                            <option value="1">金融1</option>
+                            <option value="2">金融2</option>
+                            <option value="3">金融3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/images/icon_next_-step@3x.png"></div>
+                    </div>
+
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">单位性质<span class="red">*</span></div>
+                        <select class="txt-right select-cs impor_dark">
+                            <option value="1">民营1</option>
+                            <option value="2">民营2</option>
+                            <option value="3">民营3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/images/icon_next_-step@3x.png"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">任职部门<span class="red">*</span></div>
+                        <div class="txt-right impor_dark">服务部</div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen">
+                        <div class="txt-left">职&#12288;&#12288;务<span class="red">*</span></div>
+                        <select class="txt-right select-cs impor_dark">
+                            <option value="1">职务1</option>
+                            <option value="2">职务2</option>
+                            <option value="3">职务3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/images/icon_next_-step@3x.png"></div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">单位地址</div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">单位所在地区<span class="red">*</span></div>
+                        <select class="txt-right select-cs impor_dark">
+                            <option value="1">广东省深圳市福田区1</option>
+                            <option value="2">广东省深圳市福田区2</option>
+                            <option value="3">广东省深圳市福田区3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/images/icon_next_-step@3x.png"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">具体地址<span class="red">*</span></div>
+                        <div class="txt-right impor_dark">彩田路7018号</div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">过去三年内换工作<br>或开业的次数<span class="red">*</span></div>
+                        <div class="txt-right">
+                            <div class="select-num bi mt20">
+                                <div class="vm"></div>
+                                <div class="com_grey vm">0</div>
+                                <div class="vm"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--联系方式-->
+                <div class="step">
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">邮寄地址<span class="red">*</span></div>
+                        <select class="txt-right select-cs impor_dark">
+                            <option value="1">同公司地址</option>
+                            <option value="2">同个人地址</option>
+                            <option value="3">同户籍地址</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/images/icon_next_-step@3x.png"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">手机号码<span class="red">*</span></div>
+                        <div class="txt-right impor_dark">139XXXX</div>
+                    </div>
+                    <div class="pd-tb-20 bi one_px_border_b">
+                        <div class="txt-left">单位座机号码</div>
+                        <div class="txt-right"><input class="input-box impor_dark" type="number" placeholder="请输入座机号码"></div>
+                    </div>
+                    <div class="pd-tb-20 bi one_px_border_b">
+                        <div class="txt-left">QQ号码</div>
+                        <div class="txt-right"><input class="input-box impor_dark" type="number" placeholder="请输入QQ号"></div>
+                    </div>
+                    <div class="pd-tb-20 bi one_px_border_b">
+                        <div class="txt-left">微信号</div>
+                        <div class="txt-right"><input class="input-box impor_dark" type="text" placeholder="请输入微信号"></div>
+                    </div>
+                    <div class="pd-tb-20 bi one_px_border_b">
+                        <div class="txt-left">电子邮箱</div>
+                        <div class="txt-right"><input class="input-box impor_dark" type="email" placeholder="请输入邮箱"></div>
+                    </div>
+                    <div class="pd-tb-20 bi">
+                        <div class="txt-left">住宅电话登记人</div>
+                        <div class="txt-right impor_dark">木子</div>
+                    </div>
+                </div>
+                <!--还款信息-->
+                <div class="step">
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">还款帐户开户行</div>
+                        <div class="txt-right com_grey">招商银行深圳四海支行</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">还款帐户卡号</div>
+                        <div class="txt-right com_grey">75592094791092047444144</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">还款帐户户名</div>
+                        <div class="txt-right com_grey">深圳市佰仟金融服务有限公司</div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">还款方式<span class="red">*</span></div>
+                        <div class="txt-right">
+                            <div class="radio-s2 fbox text-center">
+                                <div class="on">代扣</div>
+                                <div>非代扣</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">还款银行<span class="red">*</span></div>
+                        <select class="txt-right select-cs impor_dark">
+                            <option value="1">还款银行1</option>
+                            <option value="2">还款银行2</option>
+                            <option value="3">还款银行3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/images/icon_next_-step@3x.png"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">银行卡号<span class="red">*</span></div>
+                        <div class="txt-right impor_dark">622222222</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">开户人姓名<span class="red">*</span></div>
+                        <div class="txt-right impor_dark">刘乐</div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">开户省市<span class="red">*</span></div>
+                        <select class="txt-right select-cs impor_dark">
+                            <option value="1">深圳市1</option>
+                            <option value="2">深圳市2</option>
+                            <option value="3">深圳市3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/images/icon_next_-step@3x.png"></div>
+                    </div>
+                </div>
+                <!--其它信息-->
+                <div class="step">
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">教育程度<span class="red">*</span></div>
+                        <select class="txt-right select-cs impor_dark">
+                            <option value="1"></option>
+                            <option value="2">还款银行2</option>
+                            <option value="3">还款银行3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/images/icon_next_-step@3x.png"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left text-right h120">总工作年限<span class="small">(就读时间)</span><span class="red">*</span></div>
+                        <select class="txt-right select-cs impor_dark">
+                            <option value="1"></option>
+                            <option value="2">还款银行2</option>
+                            <option value="3">还款银行3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/images/icon_next_-step@3x.png"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">此单位工作年限<span class="small">(在读/营业时间)</span><span class="red">*</span></div>
+                        <select class="txt-right select-cs impor_dark">
+                            <option value="1"></option>
+                            <option value="2">还款银行2</option>
+                            <option value="3">还款银行3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/images/icon_next_-step@3x.png"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left text-right">在本公司申请过几次贷款<span class="red">*</span></div>
+                        <div class="txt-right com_grey">
+                            <div class="select-num bi">
+                                <div class="vm"></div>
+                                <div class="com_grey vm">0</div>
+                                <div class="vm"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">家庭月收入<span class="red">*</span></div>
+                        <div class="txt-right impor_dark">1000</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">其它月收入<span class="o0">*</span></div>
+                        <div class="txt-right impor_dark">1000</div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left text-right">现单位是否购买社保<span class="red">*</span></div>
+                        <div class="txt-right com_grey">
+                            <div class="radio-s2 fbox text-center">
+                                <div class="on">代扣</div>
+                                <div>非代扣</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">其他联系人姓名<span class="red">*</span></div>
+                        <div class="txt-right impor_dark">后羿</div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">其它联系人关系<span class="red">*</span></div>
+                        <select class="txt-right select-cs impor_dark">
+                            <option value="1"></option>
+                            <option value="2">还款银行2</option>
+                            <option value="3">还款银行3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/images/icon_next_-step@3x.png"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">其它联系人电话<span class="red">*</span></div>
+                        <div class="txt-right impor_dark">13333333</div>
+                    </div>
+                    <div class="pd-tb-20">
+                        <div class="txt-left mb10">SA注释</div>
+                        <textarea class="full-size impor_dark bc-e1" rows="5"></textarea>
+                    </div>
+                </div>
+                <!--协审-->
+                <div class="step">
+                    <div class="t1 pd-tb-20">申请表</div>
+                    <div class="pd-tb-20">
+                        <div class="txt-left">是否已确认代扣还款借记卡卡号及背后本人签名<span class="red">*</span></div>
+                        <div class="txt-right ml0 impor_dark">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on">是</div>
+                                <div class="text-center mleft2">否</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="t1 pd-tb-20">申请资料</div>
+                    <div class="pd-tb-20">
+                        <div class="txt-left">申请资料是否已查看原件，复印件（影像件）与原件内容完全一致<span class="red">*</span></div>
+                        <div class="txt-right ml0 impor_dark">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on">是</div>
+                                <div class="text-center mleft2">否</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="t1 pd-tb-20">告知事项</div>
+                    <div class="pd-tb-20">
+                        <div class="txt-left">是否已明确告知申请人贷款相关注意事项，并告其它还款义务<span class="red">*</span></div>
+                        <div class="txt-right ml0 impor_dark">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on">是</div>
+                                <div class="text-center mleft2">否</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="t1 pd-tb-20">电话核实</div>
+                    <div class="pd-tb-20">
+                        <div class="txt-left">申请人电话号码验证方式<span class="red">*</span></div>
+                        <div class="txt-right ml0 impor_dark diff-val" id="">
+                            <div class="fbox cen mb20 mt20 icon-s1 on">
+                                <i class=""></i>
+                                <div class="ml2">可验证：</div>
+                                <div class="radio-s3 fbox cen">
+                                    <div class="text-center on">支付宝</div>
+                                    <div class="text-center">微信</div>
+                                    <div class="text-center">其它</div>
+                                </div>
+                            </div>
+                            <div class="fbox cen icon-s1">
+                                <i class=""></i>
+                                <div class="ml2">无法验证</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20">
+                        <div class="txt-left">亲属联系人电话号码验证方式<span class="red">*</span></div>
+                        <div class="txt-right ml0 impor_dark diff-val">
+                            <div class="fbox cen mb20 mt20 icon-s1 on">
+                                <i class="icon-s1"></i>
+                                <div class="ml2">可验证：</div>
+                                <div class="radio-s3 fbox cen">
+                                    <div class="text-center">支付宝</div>
+                                    <div class="text-center">微信</div>
+                                    <div class="text-center">其它</div>
+                                </div>
+                            </div>
+                            <div class="fbox cen icon-s1">
+                                <i class=""></i>
+                                <div class="ml2">无法验证</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20">
+                        <div class="txt-left">其他联系人电话号码验证方式<span class="red">*</span></div>
+                        <div class="txt-right ml0 impor_dark diff-val">
+                            <div class="fbox cen mb20 mt20 icon-s1 on">
+                                <i class=""></i>
+                                <div class="ml2">可验证：</div>
+                                <div class="radio-s3 fbox cen">
+                                    <div class="text-center">支付宝</div>
+                                    <div class="text-center">微信</div>
+                                    <div class="text-center">其它</div>
+                                </div>
+                            </div>
+                            <div class="fbox cen icon-s1">
+                                <i class=""></i>
+                                <div class="ml2">无法验证</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-t30 pd-lr-20">
+                        <div class="txt-left">单位电话是否经过百度查询<span class="red">*</span></div>
+                        <div class="txt-right ml0 impor_dark">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on">是</div>
+                                <div class="text-center mleft2">否</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-t30 pd-lr-20 mb30">
+                        <div class="txt-left">是否明确知道企业在当地存在<span class="small">(地址位置、人员规模)</span><span class="red">*</span></div>
+                        <div class="txt-right ml0 impor_dark">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on">知道</div>
+                                <div class="text-center mleft2">不知道</div>
+                                <div class="text-center mleft2">不确定</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="t2 pd-lr-20">其它信息</div>
+                    <div class="pd20 fbox one_px_border_b">
+                        <div class="txt-left">陪同人数<span class="red">*</span></div>
+                        <select class="txt-right select-cs txt-r impor_dark">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/img/right_arrow.png"></div>
+                    </div>
+                    <div class="pd-tb-20 pd-lr-20 one_px_border_b">
+                        <div class="txt-left">陪同人是否有申请<span class="red">*</span></div>
+                        <div class="txt-right ml0 impor_dark">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on">是</div>
+                                <div class="text-center mleft2">否</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 pd-lr-20 one_px_border_b">
+                        <div class="txt-left">陪同人性别<span class="red">*</span></div>
+                        <div class="txt-right ml0 impor_dark">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on">是</div>
+                                <div class="text-center mleft2">否</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd20 fbox one_px_border_b">
+                        <div class="txt-left">客户与陪同人员的关系<span class="red">*</span></div>
+                        <select class="txt-right select-cs txt-r impor_dark">
+                            <option value="1">亲属1</option>
+                            <option value="2">亲属2</option>
+                            <option value="3">亲属3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/img/right_arrow.png"></div>
+                    </div>
+                    <div class="pd20 fbox one_px_border_b">
+                        <div class="txt-left">客户来源<span class="red">*</span></div>
+                        <select class="txt-right select-cs txt-r impor_dark">
+                            <option value="1">客户介绍1</option>
+                            <option value="2">客户介绍2</option>
+                            <option value="3">客户介绍3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/img/right_arrow.png"></div>
+                    </div>
+                    <div class="pd20 fbox one_px_border_b">
+                        <div class="txt-left">销售对客户的资质评级<span class="red">*</span></div>
+                        <select class="txt-right select-cs txt-r impor_dark">
+                            <option value="1">一般1</option>
+                            <option value="2">一般2</option>
+                            <option value="3">一般3</option>
+                        </select>
+                        <div class="right-arrow"><img class="full-size" src="../resources/img/right_arrow.png"></div>
+                    </div>
+                    <div class="pd-tb-20 pd-lr-20 one_px_border_b">
+                        <div class="txt-left">门店与工作地址是否位于同片街区<span class="small">(步行时间小于20分钟)</span><span class="red">*</span></div>
+                        <div class="txt-right ml0 impor_dark">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on">是</div>
+                                <div class="text-center mleft2">否</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 pd-lr-20 one_px_border_b">
+                        <div class="txt-left">门店与家庭地址是否位于同片街区<span class="small">(步行时间小于20分钟)</span><span class="red">*</span></div>
+                        <div class="txt-right ml0 impor_dark">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on">是</div>
+                                <div class="text-center mleft2">否</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 pd-lr-20 one_px_border_b">
+                        <div class="txt-left">家庭地址与工作地址是否位于同片街区<span class="small">(步行时间小于20分钟)</span><span class="red">*</span></div>
+                        <div class="txt-right ml0 impor_dark">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on">是</div>
+                                <div class="text-center mleft2">否</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt20 mb40 bg_white">
+                        <div class="t1 no-bl pd-tb-20">异常备注<span class="small">(限500个汉字)</span></div>
+                        <div class="pd-lr-20">
+                            <textarea class="full-size impor_dark bc-e1" rows="8"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!--货前影像-->
+                <div class="step">
+                    <div class="pd-t20 fbox">
+                        <div class="flex1 mapbox text-center">
+                            <div class="tablev">
+                                <div>
+                                    <img class="w08" src="../resources/images/icon_picture_default@3x.png">
+                                    <div>身份证正面</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex1 mapbox text-center ml2">
+                            <div class="tablev">
+                                <div>
+                                    <img class="w08" src="../resources/images/icon_picture_default@3x.png">
+                                    <div>身份证反面</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-t20 fbox" id="aaaaaa">
+                        <div class="flex1 mapbox text-center">
+                            <div class="tablev">
+                                <div>
+                                    <img class="w08" src="../resources/images/icon_picture_default@3x.png">
+                                    <div>现场合影照片</div>
+                                </div>
+                                <div class="close-btn">
+                                    <i class="close"></i>
+                                </div>
+                                <div class="info_img"><img src="http://bqjrtest1.oss-cn-shanghai.aliyuncs.com/order_data/1000000000817129/1.jpg?Expires=4640904584&amp;OSSAccessKeyId=LTAI5NkT3gXAD36M&amp;Signature=eGLq%2FkHLC8q2CQA3CPW1q95rWj8%3D" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="flex1 mapbox text-center ml2">
+                            <div class="tablev">
+                                <div>
+                                    <img class="w08" src="../resources/images/icon_picture_default@3x.png">
+                                    <div>现场背景照片</div>
+                                </div>
+                                <div class="close-btn">
+                                    <i class="close"></i>
+                                </div>
+                                <div class="info_img"><img src="http://bqjrtest1.oss-cn-shanghai.aliyuncs.com/order_data/1000000000817129/1.jpg?Expires=4640904584&amp;OSSAccessKeyId=LTAI5NkT3gXAD36M&amp;Signature=eGLq%2FkHLC8q2CQA3CPW1q95rWj8%3D" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pd-t20 fbox one_px_border_b">
+                        <div class="flex1 mapbox big text-center">
+                            <div class="tablev" id="">
+                                <div>
+                                    <img class="w08" src="../resources/images/icon_picture_default@3x.png">
+                                    <div>现场合影照片</div>
+                                </div>
+                                <div class="close-btn">
+                                    <i class="close"></i>
+                                </div>
+                                <div class="info_img"><img src="http://bqjrtest1.oss-cn-shanghai.aliyuncs.com/order_data/1000000000817129/1.jpg?Expires=4640904584&amp;OSSAccessKeyId=LTAI5NkT3gXAD36M&amp;Signature=eGLq%2FkHLC8q2CQA3CPW1q95rWj8%3D" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20" id="">
+                        <div class="txt-left">请在下方所有选项中选择一项</div>
+                        <div class="txt-right ml0 impor_dark">
+                            <div class="radio-s4 fbox wrap mt20">
+                                <div class="fbox cen icon-s1 on">
+                                    <i></i>
+                                    <div class="ml1">社保卡/医保卡</div>
+                                </div>
+                                <div class="fbox cen icon-s1">
+                                    <i></i>
+                                    <div class="ml1">户口本</div>
+                                </div>
+                                <div class="fbox cen icon-s1">
+                                    <i></i>
+                                    <div class="ml1">驾驶证</div>
+                                </div>
+                                <div class="fbox cen icon-s1">
+                                    <i></i>
+                                    <div class="ml1">工卡</div>
+                                </div>
+                                <div class="fbox cen icon-s1">
+                                    <i></i>
+                                    <div class="ml1">银行储蓄卡</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pd-tb-20 fbox">
+                            <div class="flex1 mapbox text-center">
+                                <div class="tablev">
+                                    <div>
+                                        <img class="w08" src="../resources/images/icon_picture_default@3x.png">
+                                        <div>现场合影照片</div>
+                                    </div>
+                                    <div class="close-btn">
+                                        <i class="close"></i>
+                                    </div>
+                                    <div class="info_img"><img src="http://bqjrtest1.oss-cn-shanghai.aliyuncs.com/order_data/1000000000817129/1.jpg?Expires=4640904584&amp;OSSAccessKeyId=LTAI5NkT3gXAD36M&amp;Signature=eGLq%2FkHLC8q2CQA3CPW1q95rWj8%3D" alt=""></div>
+                                </div>
+                            </div>
+                            <div class="flex1 mapbox text-center ml2">
+                                <div class="tablev">
+                                    <div>
+                                        <img class="w08" src="../resources/images/icon_picture_default@3x.png">
+                                        <div>现场背景照片</div>
+                                    </div>
+                                    <div class="close-btn">
+                                        <i class="close"></i>
+                                    </div>
+                                    <div class="info_img"><img src="http://bqjrtest1.oss-cn-shanghai.aliyuncs.com/order_data/1000000000817129/1.jpg?Expires=4640904584&amp;OSSAccessKeyId=LTAI5NkT3gXAD36M&amp;Signature=eGLq%2FkHLC8q2CQA3CPW1q95rWj8%3D" alt=""></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-wrap">
+        <div class="group1">
+            <a class="b-btn" id="save-btn" href="javascript:;">保存</a>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../resources/plugin/zepto/zepto.js"></script>
+<script type="text/javascript" src="../resources/plugin/zepto/touch.js"></script>
+<script type="text/javascript" src="../resources/plugin/swiper/swiper.3.1.7.min.js"></script>
+<script type="text/javascript" src="../resources/plugin/LArea/LArea.js"></script>
+<script type="text/javascript" src="../resources/plugin/LArea/LAreaData1.js"></script>
+<script src="../resources/js/com.js"></script>
+<script>
+
+var submitList = window.submitList || {};
+submitList={
+    Config:{
+        url: 'http://10.80.2.89:8080/',
+        loader: new loading({'container': document.body, 'hasBg': false})
+    },
+    init:function(){
+        /*加载动画*/
+        this.topSwiper();
+        this.pageInteraction();
+        this.saveState();
+    },
+    topSwiper:function(){
+        var topTabSwiper = new Swiper('.swiper-container', {
+            slidesPerView: 4,
+            onTap: function (swiper) {
+                $(topTabSwiper.clickedSlide).addClass('on').siblings().removeClass('on');
+                $('.nav-pagination div').eq(topTabSwiper.clickedIndex).addClass('on').siblings().removeClass('on');
+                $('.step').eq(topTabSwiper.clickedIndex).addClass('active').siblings().removeClass('active');
+                submitList.changeModule();
+            },
+            onInit: function (swiper) {
+                submitList.changeModule();
+                // 初始化小圆点
+                var n = $('.swiper-wrapper').children().length - 1, navPagination = $('.nav-pagination'), arr = [];
+                arr.push('<div class="on"></div>');
+                for (var i = 0; i < n; i++) {
+                    arr.push('<div></div>');
+                }
+                navPagination.append(arr.join(''));
+                // 左右箭头事件
+                $('.nav-arrows').on('tap', '.nav-button-prev', function () {
+                            topTabSwiper.slidePrev();
+                            var slideOn = $('.swiper-wrapper .swiper-slide.on');
+                            if (slideOn.index() != 0) {
+                                slideOn.removeClass('on').prev().addClass('on');
+                                navPagination.children().filter('.on').removeClass('on').prev().addClass('on');
+                                $('.step.active').removeClass('active').prev().addClass('active');
+                            }
+                            submitList.changeModule();
+                        })
+                        .on('tap', '.nav-button-next', function () {
+                            topTabSwiper.slideNext();
+                            var slideOn = $('.swiper-wrapper .swiper-slide.on');
+                            if ((slideOn.index() + 1) != $('.swiper-wrapper .swiper-slide').length) {
+                                slideOn.removeClass('on').next().addClass('on');
+                                navPagination.children().filter('.on').removeClass('on').next().addClass('on');
+                                $('.step.active').removeClass('active').next().addClass('active');
+                            }
+                            submitList.changeModule();
+                        })
+            }
+        });
+    },
+    pageInteraction:function(){
+        //页面交互
+        //单选
+        $('.radio-s1,.radio-s2,.radio-s3').on('tap', 'div', function () {
+            if (!$(this).hasClass('on')) {
+                $(this).addClass('on').siblings().removeClass('on');
+            }
+        })
+        $('.diff-val').on('tap', '.js-yes,.js-no', function (e) {
+            $(this).children().eq(0).addClass('on');
+            $(this).siblings().children().eq(0).removeClass('on');
+            $(this).siblings().find('.radio-s3').children().removeClass('on');
+        })
+
+        //数字加减
+        $('.select-num').on('tap', 'div:first-child', function (e) {
+                    var obj = {};
+                    try {
+                        obj.nVal = +$(this).parent().children().eq(1).text();
+                        if (obj.nVal > 0) {
+                            obj.nVal--;
+                            $(this).parent().children().eq(1).text(obj.nVal);
+                            delete obj.nVal;
+                        }
+                    } catch (e) {
+                    }
+                })
+        .on('tap', 'div:last-child', function (e) {
+            var obj = {};
+            try {
+                obj.nVal = +$(this).parent().children().eq(1).text();
+                obj.nVal++;
+                $(this).parent().children().eq(1).text(obj.nVal);
+                delete obj.nVal;
+            } catch (e) {
+            }
+        })
+    },
+    saveState:function(){
+        //保存按钮是否可点
+        var num = [0,0,0,0,0,0,0];
+        function queryState(n){
+            if(this.num[n] == 0){
+                $('#save-btn').removeClass('disabled');
+            }else{
+                $('#save-btn').addClass('disabled');
+                $('#save-btn').unbind("click");
+            }
+        }
+    },
+    changeModule:function(){
+        switch ($('.step.active').index() + 1) {
+            case 1:
+//                console.log(saveState.num);
+                $('#save-btn').on('click', function () {
+                    var stepActive = $('.step.active');
+                    var _that = this, _that_name = this.innerHTML;
+                    var goodsCategory = stepActive.find('#goodsCategory'),
+                            goodsType = stepActive.find('#goodsType'),
+                            goodsBrand = stepActive.find('#goodsBrand'),
+                            goodsVersion = stepActive.find('#goodsVersion'),
+                            creditcycle = stepActive.find('#creditcycle'),
+                            bugpaypkgind = stepActive.find('#bugpaypkgind');
+
+                    var json = {
+                        "orderNo": "1000000000817129",
+                        "goodsCategory": goodsCategory.val(),
+                        "goodsType": goodsType.val(),
+                        "goodsBrand": goodsBrand.val(),
+                        "goodsVersion": goodsVersion.val(),
+                        "creditcycle": creditcycle.children('.on').attr('data-val'),
+                        "bugpaypkgind": bugpaypkgind.children('.on').attr('data-val')
+                    };
+                    $.ajax({
+                        url: Config.url + "bqjr-interview-web/collectInformation/saveOrder",
+                        type: 'POST',
+                        contentType: "application/json",
+                        data: JSON.stringify(json),
+                        beforeSend: function (xhr, settings) {
+//                            this.Config.loader.show();
+                            console.log(this);
+                            var _that_name = $(_that).text();
+                            $(_that).text('正在提交');
+                        },
+                        success: function (data) {
+                            switch (data.ask) {
+                                //-1 缺少参数
+                                // 0 成功
+                                case -1:
+                                    tips(data.errorMessage, 'tips_center', 2000);
+                                    break;
+                                default:
+                                    var dialog = confirmDialog({
+                                        type: 2,
+                                        hasShadowBg: true,
+                                        title: '提示',
+                                        txt: '保存成功，请选择：',
+                                        btns: [{
+                                            text: '我再看一下',
+                                            callBack: function () {
+                                                console.log('取消');
+                                                dialog.destory();
+                                            }
+                                        },
+                                            {
+                                                text: '填写下一项',
+                                                callBack: function () {
+                                                    console.log('接单');
+                                                    dialog.destory();
+                                                }
+                                            }
+                                        ]
+                                    });
+                                    dialog.show();
+                                    goodsCategory.after('<div class="txt-right">' + goodsCategory.val() + '</div>').remove();
+                                    goodsType.after('<div class="txt-right">' + goodsType.val() + '</div>').remove();
+                                    goodsBrand.after(goodsBrand.val()).remove();
+                                    goodsVersion.after(goodsVersion.val()).remove();
+                                    creditcycle.html(creditcycle.attr('data-val'));
+                                    bugpaypkgind.html(bugpaypkgind.attr('data-val'));
+                                    saveState.num[0]=1;
+                                    break;
+                            }
+                        },
+                        error: function () {
+                            tips('系统出错，请重试', 'tips_center', 2000);
+                        },
+                        complete: function (xhr, status) {
+                            setTimeout(function () {
+                                loader.hide();
+                                $(_that).text(_that_name);
+                            }, 100);
+                        }
+                    });
+                })
+                break;
+            case 2:
+                // 地区选择
+                var area1 = new LArea();
+                area1.init({
+                    'trigger': '#registerArea',//触发选择控件的文本框，同时选择完毕后name属性输出到该位置
+                    'valueTo': '#registerArea-val',//选择完毕后id属性输出到该位置
+                    'keys': {id: 'id', name: 'name'},//绑定数据源相关字段 id对应valueTo的value属性输出 name对应trigger的value属性输出
+                    'type': 1,//数据源类型
+                    'data': LAreaData//数据源
+                });
+                var area2 = new LArea();
+                area2.init({
+                    'trigger': '#liveArea',//触发选择控件的文本框，同时选择完毕后name属性输出到该位置
+                    'valueTo': '#liveArea-val',//选择完毕后id属性输出到该位置
+                    'keys': {id: 'id', name: 'name'},//绑定数据源相关字段 id对应valueTo的value属性输出 name对应trigger的value属性输出
+                    'type': 1,//数据源类型
+                    'data': LAreaData//数据源
+                });
+
+                saveState.queryState(0);
+                $('#save-btn').on('click', function () {
+                    var stepActive = $('.step.active');
+                    var _that = this, _that_name = this.innerHTML;
+                    var customerName = stepActive.find('#customerName'),//客户姓名
+                            cardId = stepActive.find('#cardId'),//身份证号
+                            issuingAuthority = stepActive.find('#issuingAuthority'),//签发机关
+                            cardOverTime = stepActive.find('#cardOverTime'),//到期日期
+                            referenceFlag = stepActive.find('#referenceFlag'),//参考代码
+                            registerArea = stepActive.find('#registerArea'),//所在地区
+                            registerAddress = stepActive.find('#registerAddress'),//具体地址
+                            isRegisterAddress = stepActive.find('#isRegisterAddress'),//现居住地址是否同户籍地址
+                            liveArea = stepActive.find('#liveArea'),//所在地区
+                            liveAddress = stepActive.find('#liveAddress');//具体地址
+                    var json = {
+                        "orderNo": "1000000000817129",
+                        "customerName": customerName.val(),
+                        "cardId": cardId.val(),
+                        "issuingAuthority": issuingAuthority.val(),
+                        "cardOverTime": Date.parse(cardOverTime.val()),
+                        "referenceFlag": referenceFlag.children('.on').attr('data-val'),
+                        "registerArea": registerArea.val(),
+                        "registerAddress": registerAddress.val(),
+                        "isRegisterAddress": isRegisterAddress.children('.on').attr('data-val'),
+                        "liveArea": liveArea.val(),
+                        "liveAddress": liveAddress.val()
+                    };
+                    $.ajax({
+                        url: Config.url + "bqjr-interview-web/collectInformation/saveIndividualInfo",
+                        type: 'POST',
+                        contentType: "application/json",
+                        data: JSON.stringify(json),
+                        beforeSend: function (xhr, settings) {
+                            loader.show();
+                            var _that_name = $(_that).text();
+                            $(_that).text('正在提交');
+                        },
+                        success: function (data) {
+                            switch (data.ask) {
+                                //-1 缺少参数
+                                // 0 成功
+                                case -1:
+                                    tips(data.errorMessage, 'tips_center', 2000);
+                                    break;
+                                default:
+                                    var dialog = confirmDialog({
+                                        type: 2,
+                                        hasShadowBg: true,
+                                        title: '提示',
+                                        txt: '保存成功，请选择：',
+                                        btns: [{
+                                            text: '我再看一下',
+                                            callBack: function () {
+                                                console.log('取消');
+                                                dialog.destory();
+                                            }
+                                        },
+                                            {
+                                                text: '填写下一项',
+                                                callBack: function () {
+                                                    console.log('接单');
+                                                    dialog.destory();
+                                                }
+                                            }
+                                        ]
+                                    });
+                                    dialog.show();
+                                    customerName.after(customerName.val()).remove();
+                                    cardId.after(cardId.val()).remove();
+                                    issuingAuthority.after(issuingAuthority.val()).remove();
+                                    cardOverTime.after(cardOverTime.val()).remove();
+                                    referenceFlag.after(referenceFlag.children('.on').attr('data-val')).remove();
+                                    registerArea.after(registerArea.val()).remove();
+                                    registerAddress.after(registerAddress.val()).remove();
+                                    isRegisterAddress.after(isRegisterAddress.children('.on').attr('data-val')).remove();
+                                    liveArea.after(liveArea.val()).remove();
+                                    liveAddress.after(liveAddress.val()).remove();
+                                    break;
+                            }
+                        },
+                        error: function () {
+                            tips('系统出错，请重试', 'tips_center', 2000);
+                        },
+                        complete: function (xhr, status) {
+                            setTimeout(function () {
+                                loader.hide();
+                                $(_that).text(_that_name);
+                            }, 100);
+                        }
+                    });
+                })
+        }
+    }
+}
+$(function(){
+    submitList.init()
+})
+
+</script>
+</body>
+</html>
+
+

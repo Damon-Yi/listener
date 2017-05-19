@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>预约</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link href="../resources/css/public.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/com.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/part1.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../resources/plugin/mui/css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/plugin/mui/css/mui.picker.min.css" />
+    <script src="../resources/js/public.js"></script>
+    <style>
+        body{height: auto;min-height: auto;}
+        .order_details{font-size: 0.24rem;color: #999;word-break: break-all;overflow:auto; text-align:justify;margin-top:0.2rem;}
+        .order_details .or_section{background-color: #fff;padding: 0 0.2rem;margin-bottom:0.2rem;}
+        .order_details .or_section .or_title{font-size: 0.28rem;padding-left:0.1rem;color: #333;height:0.8rem;line-height:0.8rem;position: relative;}
+        .order_details .or_section .or_info{display: block;}
+        .order_details .or_section .or_tr{display: box;display:-webkit-box;display: flex;display:-webkit-flex;padding: 0.24rem 0;position: relative}
+        .order_details .or_section .or_tr:before{content: " ";position: absolute;left: 0;top:0;width: 100%;height: 1px;border-top: 1px solid #e1e1e1;color: #e1e1e1;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);}           
+        .order_details .or_section .or_tr .or_td_1{width: 1.8rem;color: #A9B2B9;font-size: 0.24rem;text-align:right;}
+        .order_details .or_section .or_tr .or_td_2{flex: 1;-webkit-flex:1;color: #323232;padding-right:0.1rem;padding-left:0.3rem;font-size: 0.24rem;}
+        .order_details .or_section .or_tr .or_td_3{width: 0.8rem;text-align: right;padding-right: 0.2rem;}
+        .order_details .or_section .or_tr .or_td_3>img{width: 0.28rem;height: 0.28rem;}
+        .order_details .or_section .or_mark{font-size: 0.2rem;}
+        .footwrap {width:100%;background:#FFFFFF}
+        .footwrap .affirm {padding: 0.16rem 0;}
+        .footwrap .affirm .affirm-btn {width: 4rem;height: 0.68rem;line-height: 0.68rem;background: #9c0000;border-radius: 3px;font-size: 0.28rem;text-align: center;color: #fff;display:block;margin: 0 auto;}
+        .impor_dark{border:none;height:0.4rem;line-height:0.4rem;background:none;}
+        .dates{line-height:0.3rem;height:0.3rem;vertical-align: top;}
+        .dates input,.makeTime input{width:100%;font-size:0.26rem;height:100%;border:none;line-height:100%;}
+        .site .site_input{border: none;height: 100%;width: 100%;font-size: 0.26rem;font-family: "STXihei","Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 100%;}
+
+        .mui-dtpicker-title{display: none;}
+        .mui-picker[data-id="picker-y"]{width: 22%;}
+        .mui-picker[data-id="picker-y"] .mui-pciker-list li{text-align: right;}
+        .mui-picker[data-id="picker-m"]{width: 18%;}
+        .mui-picker[data-id="picker-d"]{width: 12%;}
+        .mui-picker[data-id="picker-d"] .mui-pciker-list li{text-align: left;}
+        .mui-picker[data-id="picker-h"]{width: 48%;}
+        .mui-btn-block{padding:0;border:none;font-size: 0.24rem;margin: 0;text-align: left;}
+        .netDetailAddr{width:100%;border:none;padding:0.01rem 0}
+    </style>
+</head>
+<body>
+    <div class="order_details">
+        <div class="or_section ">
+            <div class="or_title">预约信息</div>
+            <div class="or_info">
+                 <div class="or_tr">
+                    <div class="or_td_1">客户姓名<span class="red">*</span></div>
+                    <div class="or_td_2 usname"></div>
+                 </div>
+                 <div class="or_tr">
+                    <div class="or_td_1">联系电话<span class="red">*</span></div>
+                    <div class="or_td_2 tels"></div>
+                 </div>
+                 <div class="or_tr">
+                    <div class="or_td_1">面签地址类型<span class="red">*</span></div>
+                	<select class="txt-right impor_dark">
+                        <option value="1">个人地址</option>
+                        <option value="2">公司地址</option>
+                        <option value="3">户籍地址</option>
+                    </select>
+                 </div>
+                 <div class="or_tr">
+                    <div class="or_td_1">面签地址<span class="red">*</span></div>
+                    <div class="or_td_2 site" data-province="" data-city="" data-area="" data-addr=""></div>
+                 </div>
+                 <div class="or_tr">
+                    <div class="or_td_1">地址备注</div>
+                    <div class="or_td_2" >
+                    	<input type="text" placeholder="详细地址到门牌号"  class="netDetailAddr" data-netDetailAddr="" />
+                    </div>
+                 </div>
+                 <!--<div class="or_tr">
+                    <div class="or_td_1">期望面签时间<span class="red">*</span></div>
+                    <div class="or_td_2 dates"><div class="btn mui-btn mui-btn-block picktime picktime_1" data-val="">选择时间</div></div>
+                 </div>-->
+                 <div class="or_tr">
+                    <div class="or_td_1">面签状态<span class="red">*</span></div>
+                    <div class="or_td_2 status"></div>
+                 </div>
+                 <div class="or_tr">
+                    <div class="or_td_1">预约时间<span class="red">*</span></div>
+                    <div class="or_td_2 makeTime"><div class="btn mui-btn mui-btn-block picktime picktime_2" data-val="" >选择时间</div></div>
+                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="footwrap">
+        <div class="affirm">
+            <a class="affirm-btn" id="affirm" href="javascript:;">确定</a>
+        </div>
+    </div>
+<script type="text/javascript" src="../../resources/plugin/zepto/zepto.js"></script>
+<!-- <script type="text/javascript" src="../../resources/plugin/zepto/touch.js"></script> -->
+<script src="../resources/js/com.js"></script>
+<script src="../../resources/plugin/mui/js/mui.min.js"></script>
+<script src="../../resources/plugin/mui/js/mui.picker.min.js"></script>
+<script>
+	var orders,urlData,userInfo;
+    /*加载动画*/
+    var loader = new loading({'container':document.body,'hasBg':false});
+    window.onload = function() {
+    	userInfo=getUserInfo();//获取用户信息
+        urlData=getQueryStringArge();
+        gettingData(urlData)
+    }
+    /*获取预约信息*/
+    function gettingData(order){
+    	if(userInfo){
+    		$.ajax({
+		        type:"post",
+		        url:Config.url+"orderInfo/getReservation",
+		        contentType:"application/json",
+		        data:JSON.stringify({"userNo":userInfo.saNo,"orderNo":order.order}),
+		        headers: {"token":userInfo.token},
+		        beforeSend:function(xhr, settings){
+                    loader.show();
+		        },
+		        success:function(data, status, xhr){
+		            if(data.ask==0){
+	 					pushData(data.data)
+					}else if(data.ask==-2){
+		            	logOut();
+		            }else{
+		            	console.log(data.errorMessage)
+		            }
+		        },
+		        error:function(xhr, errorType, error){
+		            tips('获取预约信息失败','tips_center',1500);
+		        },
+                complete:function(xhr, status){
+                    setTimeout(function(){loader.hide()},400);
+                }
+		    });
+    	}
+    }
+    /*push数据到模板*/
+    function pushData(data){
+    	console.log(data)
+    	$(".usname").text(data.customerName);
+        $(".tels").text(data.customerMobile ? data.customerMobile : "");
+        $(".site").text(data.netReservationAddr ? data.netReservationAddr :"")
+        $(".status").text(staTus(data.status ? data.status : ""));
+        $(".site_input").val(data.address ? data.address : "");
+        $(".netDetailAddr").val(data.netDetailAddr ? data.netDetailAddr : "");//详细地址
+        //$(".datesDate").val(formatDate2(data.expectReservationTime!=null ? data.expectReservationTime : ""));
+        if(data&&data.addressType){
+        	$(".impor_dark").val(data.addressType)
+        }else{
+        	$(".impor_dark").val("1")
+        }
+        $(".site").attr('data-province',data.province);
+        $(".site").attr('data-city',data.city);
+        $(".site").attr('data-area',data.area);
+        $(".site").attr('data-addr',data.netReservationAddr);
+        if(data.reservationTime){
+        	$(".picktime_2").text(data.reservationTime).attr('data-val',data.reservationTime);
+        }
+    }
+    /*面签状态*/
+    function staTus(sta){
+    	switch(sta){
+				case 10:
+					return  sta="待派单";
+				break;
+				case 20:
+					return  sta="待接单";
+				break;
+				case 30:
+					return  sta="待预约";
+				break;
+				case 40:
+					return  sta="待提单";
+				break;
+				case 50:
+					return  sta="已完成";
+				break;
+				case 60:
+					return  sta="已取消";
+				break;
+			}
+    }
+    /*确认信息*/
+    $(".affirm-btn")[0].addEventListener('tap', function() {
+    	if($(".picktime_2").attr('data-val') !==""){
+    		if(userInfo){
+                var params = {
+                    "userNo":userInfo.saNo,
+                    "orderNo":urlData.order,
+                    "customerName":$(".usname").text(),
+                    "customerMobile":$(".tels").text(),
+                    "province":$(".site").attr('data-province'),
+                    "city":$(".site").attr('data-city'),
+                    "area":$(".site").attr('data-area'),
+                    "netReservationAddr":$(".site").text(),
+                    "reservationTime":$(".picktime_2").attr('data-val'),
+                    "addressType":$(".impor_dark option:checked").val(),
+                    "netDetailAddr":$(".netDetailAddr").val()//详细地址
+                }
+                
+                console.log(JSON.stringify(params)); 
+    			$.ajax({
+			        type:"post",
+			        url:Config.url+"orderInfo/reservation",
+			        contentType:"application/json",
+			        data:JSON.stringify(params),
+			        headers: {"token":userInfo.token},
+			        beforeSend:function(xhr, settings){
+			        },
+			        success:function(data, status, xhr){
+			            if(data.ask==0){
+			            	location.href="orders.html?urltpe="+urlData.urltpe;
+			            }else if(data.ask==-2){
+	            			logOut();
+		            	}
+			        },
+			        error:function(xhr, errorType, error){
+			            tips('保存信息失败','tips_center',1500);
+			        },
+			    });
+    		}
+    	}else{
+    		var dialog = confirmDialog({
+                type:2,
+                hasShadowBg:true,
+                title:'',
+                txt:'预约时间为空，请输入预约时间!',
+                txtClass:'txtCenter',
+                btns:[{
+                    text:'确定',
+                    callBack:function(){
+                        dialog.destory();
+                    }
+                    }]  
+            });
+            dialog.show();
+    	}
+    });
+    //调取原生地图
+    $(".site").on("tap",function(){
+    	var map;
+    	if(isAndroid()){
+	      map = android2.map();
+	    }else if(isIOS()){
+	      map = mobile.map('getMapData');
+	    }
+    });
+    /*ios  android调用方法*/
+    function getMapData(data){
+    	var data=JSON.parse(data)
+    	var sites=$(".site");
+    	sites.attr('data-province',data.province).attr('data-city',data.city).attr('data-area',data.district).attr('data-addr',data.address);
+        sites.text(data.workPlace);
+    	
+    }
+    
+    //生成时间段
+    function generateTimeQuantum(){//
+        var timeQuantums = [];
+        for(var i=0;i<24;i++){
+            var tmp = {
+                "text":(i<10?'0':'')+i+':00-'+(i+1<10?'0':'')+(i+1)+':00',
+                "value":(i<10?'0':'')+i+':00-'+(i+1<10?'0':'')+(i+1)+':00'
+            }
+            timeQuantums.push(tmp);
+        }
+        return timeQuantums;
+    }
+    
+    (function($) {
+        $.init();
+        $('.picktime').each(function(i, btn) {
+            btn.addEventListener('tap', function() {
+            	console.log(btn)
+                var options = {
+                    "type":"hour",
+                    beginDate: new Date(),//设置开始日期 
+                    endDate: new Date(new Date().getFullYear()+1, new Date().getMonth(), new Date().getDate()),//设置结束日期 
+                    "customData":{
+                        "h":generateTimeQuantum()//时间段
+                    }
+                };
+
+                var picker = new $.DtPicker(options);
+                picker.show(function(rs) {
+                    /*
+                     * rs.value 拼合后的 value
+                     * rs.text 拼合后的 text
+                     * rs.y 年，可以通过 rs.y.vaue 和 rs.y.text 获取值和文本
+                     * rs.m 月，用法同年
+                     * rs.d 日，用法同年
+                     * rs.h 时，用法同年
+                     * rs.i 分（minutes 的第二个字母），用法同年
+                     */
+                    btn.attributes.getNamedItem('data-val').textContent = rs.text;
+                    btn.innerText = rs.text;
+                    
+                    picker.dispose();
+                });
+            }, false);
+        });
+    })(mui);
+</script>
+</body>
+</html>
+
+

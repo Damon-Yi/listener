@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>《游侠面签》下载</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <meta name="format-detection" content="telephone=no" />
+    <link href="resources/css/public.css" rel="stylesheet" type="text/css">
+    <link href="resources/css/com.css" rel="stylesheet" type="text/css">
+    <script src="resources/js/public.js"></script>
+    <style>
+        .font4{font-size:0.4rem;line-height: 2;}
+        .font24{font-size:0.24rem;}
+        .mt-1{margin-top:-1rem}
+        #body_wrapper>div{display: -webkit-flex;display: flex;flex-direction:column;-webkit-flex-direction:column;height: 100%;}
+        .user_icons{position:relative;}
+        .user_icons>div{position: absolute;top: 0.6rem;width: 100%;text-align: center;color:#fff;}
+        .input_wrap_module{background: none;flex:1;-webkit-flex:1;-webkit-box-flex: 1;}
+        .input_wrap_module .code2d{display: table;width:2.4rem;padding:0;margin-top:0;margin-left:auto;margin-right:auto;height:100%;}
+        .input_wrap_module .code2d>div{display: table-cell;vertical-align: middle;}
+        .input_wrap_module .code2d img{width:100%;height:auto;}
+        .btn-download{width: 100%;height: 2rem;}
+        .big_btn{width: 4rem;}
+    </style>
+</head>
+<body>
+    <article id="body_wrapper">
+        <div>
+            <div class="user_icons">
+                <img class="mt-1" src="resources/images/login_bg@3x.png">
+                <div>
+                    <div class="font4">游侠面签</div>
+                    <div class="font24"><i>V 1.0</i></div>
+                </div>
+            </div>
+            <div class="input_wrap_module">
+                <div class="code2d">
+                    <div>
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+            <div class="btn-download">
+                <a class="big_btn impor_fill_btn download-sys" href="javascript:;"></a>
+            </div>
+
+        </div>
+    </article>
+    <script type="text/javascript" src="resources/plugin/zepto/zepto.js"></script>
+    <script type="text/javascript" src="resources/plugin/zepto/touch.js"></script>
+    <script src="resources/js/com.js"></script>
+    <!-- <script src="plugin/jquery/jquery-1.11.0.js"></script> -->
+    <script>
+        /*加载动画*/
+        var loader = new loading({'container':document.body,'hasBg':false});
+
+        sysType();
+        function sysType(){
+            if(isAndroid()){
+                $('.code2d img').attr('src','resources/images/down-android.png');
+                $('.download-sys').text('Android 立即下载').attr('href','http://prdfacepickapposs01.oss-cn-shenzhen.aliyuncs.com/app_version/facepick.apk');
+            }else if(isIOS()){
+                $('.code2d img').attr('src','resources/images/down-IOS.png');
+                $('.download-sys').text('iPhone 立即下载').attr('href','https://fir.im/ka1f');
+            }else{
+                $('.code2d').html('<div style="text-align:center;">您的系统不支持！<br>请使用移动设备访问。</div>');
+                $('.download-sys').text('无法下载')
+            }
+        }
+    </script>
+</body>
+</html>

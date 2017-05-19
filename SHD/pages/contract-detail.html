@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>订单信息</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="../resources/css/public.css" rel="stylesheet" type="text/css">
+    <link href="../resources/plugin/swiper/swiper.3.1.7.min.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/part1.css" rel="stylesheet" type="text/css">
+    <script src="../resources/js/public.js"></script>
+    <style>
+        body{height: 100%;background: #eef0f1;}
+        .top_tab{overflow: hidden;}
+        .tablev{position: relative;}
+        .info_img{position: absolute;width: 90%;height: 90%;background-size: contain;left: 5%;top: 5%;z-index: 1;background-color: #eef0f1;}
+        .info_img>img{max-width: 100%;max-height: 100%;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%);}
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <div class="sub-nav">
+        <div class="sub-topbg"></div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide on" data-info='orderInfo'>
+                    <div class="slide-item">订单信息</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide" data-info='individulInfo'>
+                    <div class="slide-item">个人信息</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide" data-info='familyInfo'>
+                    <div class="slide-item">家庭信息</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide" data-info='companyInfo'>
+                    <div class="slide-item">单位信息</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide" data-info='contactInfo'>
+                    <div class="slide-item">联系方式</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide" data-info='repaymentInfo'>
+                    <div class="slide-item">还款信息</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide" data-info='otherInfo'>
+                    <div class="slide-item">其它信息</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide" data-info='assistantAuditInfo'>
+                    <div class="slide-item">协&#12288;审</div>
+                    <div class="action-line"></div>
+                </div>
+                <div class="swiper-slide" data-info='ecmInfo'>
+                    <div class="slide-item">贷前影像</div>
+                    <div class="action-line"></div>
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="nav-pagination"></div>
+        </div>
+        <!-- Add Arrows -->
+        <div class="nav-arrows fbox cen">
+            <div class="nav-button-prev"></div>
+            <div style="flex:1;-webkit-flex:1;"></div>
+            <div class="nav-button-next"></div>
+        </div>
+    </div>
+    <div class="main-wrap pd-lr-20">
+        <div>
+            <div>
+                <!--商品信息-->
+                <div class="step1">
+                    <div class="t1 pd-tb-20">商品信息</div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">渠道信息</div>
+                        <div class="txt-right com_grey channel"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">是否代购</div>
+                        <div class="txt-right com_grey isProxy"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">商品描述</div>
+                        <div class="txt-right com_grey goodsDesc"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">商品金额</div>
+                        <div class="txt-right com_grey goodsAmount"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox">
+                        <div class="txt-left">商品总额</div>
+                        <div class="txt-right com_grey totalPrice"></div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">分期方案</div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">首付比例</div>
+                        <div class="txt-right com_grey paymentRate"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">首付金额</div>
+                        <div class="txt-right com_grey firstPayment"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">分期金额</div>
+                        <div class="txt-right com_grey stagesMoney"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox">
+                        <div class="txt-left">分期数</div>
+                        <div class="txt-right com_grey periods"></div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">还款计划</div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">&#12288;首期还款</div>
+                        <div class="txt-right com_grey ml3"><span class="firstPayment"></span><br><div class="font24"><span class="periodsFee"></span></div></div>
+                        <div class="txt-right com_grey vm ml3 firstPaymentDate"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">2至5期还款</div>
+                        <div class="txt-right com_grey ml3"><span class="monthRepayment"></span><br><div class="font24"><span class="periodsFee"></span></div></div>
+                        <div class="txt-right com_grey vm ml3 monthRepaymentDate"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox">
+                        <div class="txt-left">&#12288;尾期还款</div>
+                        <div class="txt-right com_grey ml3 "><span class="lastPayment"></span><br><div class="font24"><span class="periodsFee"></span></div></div>
+                        <div class="txt-right com_grey vm ml3 lastPaymentDate"></div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">收货信息</div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">客户姓名</div>
+                        <div class="txt-right com_grey customerName"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">联系电话</div>
+                        <div class="txt-right com_grey customerPhone"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">收货地址</div>
+                        <div class="txt-right com_grey goodsReceiverAddress"></div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">补充订单</div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">商品品类</div>
+                        <div class="txt-right com_grey goodsCategory"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">商品类型</div>
+                        <div class="txt-right com_grey goodsType"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">商品品牌</div>
+                        <div class="txt-right com_grey goodsBrand"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen">
+                        <div class="txt-left">商品型号</div>
+                        <div class="txt-right com_grey goodsVersion"></div>
+                    </div>
+                </div>
+                <!--个人信息-->
+                <div class="step2" style="display: none;">
+                    <div class="t1 pd-tb-20">身份信息</div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">客户姓名<span class="red">*</span></div>
+                        <div class="txt-right com_grey customerName"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">身份证号<span class="red">*</span></div>
+                        <div class="txt-right com_grey cardId"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">签发机关<span class="red">*</span></div>
+                        <div class="txt-right issuingAuthority"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">到期日期<span class="red">*</span></div>
+                        <div class="txt-right cardOverTime"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen">
+                        <div class="txt-left">参考代码<span class="red">*</span></div>
+                        <div class="txt-right com_grey referenceFlag"></div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">户籍地址</div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">所在地区<span class="red">*</span></div>
+                        <div class="txt-right registerArea"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox">
+                        <div class="txt-left">具体地址<span class="red">*</span></div>
+                        <div class="txt-right registerAddress"></div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">现居住地址</div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">现居住地址是否同户籍地址<span class="red">*</span></div>
+                        <div class="txt-right isRegisterAddress"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">所在地区<span class="red">*</span></div>
+                        <div class="txt-right liveArea"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox">
+                        <div class="txt-left">具体地址<span class="red">*</span></div>
+                        <div class="txt-right liveAddress"></div>
+                    </div>
+                </div>
+                <!--家庭信息-->
+                <div class="step3" style="display: none;">
+                    <div class="t1 pd-tb-20">家庭</div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">婚姻状况<span class="red">*</span></div>
+                        <div class="txt-right com_grey isMarried"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">子女数目<span class="red">*</span></div>
+                        <div class="txt-right com_grey childrenTotal"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen">
+                        <div class="txt-left">住房类型<span class="red">*</span></div>
+                        <div class="txt-right com_grey houseType"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">每月生活总支出<span class="red">*</span></div>
+                        <div class="txt-right monthAlimony"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">个人税后月收入<span class="red">*</span></div>
+                        <div class="txt-right monthIncome"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox">
+                        <div class="txt-left">现有银行贷款余额<span class="o0">*</span></div>
+                        <div class="txt-right balanceSheet"></div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">亲属</div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">亲属姓名<span class="red">*</span></div>
+                        <div class="txt-right com_grey kinshipName"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">亲属关系<span class="red">*</span></div>
+                        <div class="txt-right com_grey relativeType"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">亲属联系电话<span class="red">*</span></div>
+                        <div class="txt-right com_grey kinshipPhone"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">亲属联系地址是否同户籍地址<span class="red">*</span></div>
+                        <div class="txt-right isKinshipDdress"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">亲属联系地址<span class="red">*</span></div>
+                        <div class="txt-right kinshipArea"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox">
+                        <div class="txt-left">具体地址<span class="red">*</span></div>
+                        <div class="txt-right kinshipAddress"></div>
+                    </div>
+                </div>
+                <!--单位信息-->
+                <div class="step4" style="display: none">
+                    <div class="t1 pd-tb-20">单位信息</div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">单位名称<span class="red">*</span></div>
+                        <div class="txt-right companyName"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b select-cs">
+                        <div class="txt-left">所属行业<span class="red">*</span></div>
+                        <div class="txt-right businessType"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">单位性质<span class="red">*</span></div>
+                        <div class="txt-right natureType"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">任职部门<span class="red">*</span></div>
+                        <div class="txt-right department"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen">
+                        <div class="txt-left">职&#12288;&#12288;务<span class="red">*</span></div>
+                        <div class="txt-right duty"></div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">单位地址</div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">单位所在地区<span class="red">*</span></div>
+                        <div class="txt-right companyArea"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">具体地址<span class="red">*</span></div>
+                        <div class="txt-right companyAddress"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">过去三年内换工作或开业的次数<span class="red">*</span></div>
+                        <div class="txt-right companyWorks"></div>
+                    </div>
+                </div>
+                <!--联系方式-->
+                <div class="step5" style="display: none">
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">邮寄地址<span class="red">*</span></div>
+                        <div class="txt-right mailAddress"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">手机号码<span class="red">*</span></div>
+                        <div class="txt-right mobilephone"></div>
+                    </div>
+                    <div class="pd-tb-20 bi one_px_border_b">
+                        <div class="txt-left">单位座机号码</div>
+                        <div class="txt-right telePhone"></div>
+                    </div>
+                    <div class="pd-tb-20 bi one_px_border_b">
+                        <div class="txt-left">QQ号码</div>
+                        <div class="txt-right qqNo"></div>
+                    </div>
+                    <div class="pd-tb-20 bi one_px_border_b">
+                        <div class="txt-left">微信号</div>
+                        <div class="txt-right wxNo"></div>
+                    </div>
+                    <div class="pd-tb-20 bi one_px_border_b">
+                        <div class="txt-left">电子邮箱</div>
+                        <div class="txt-right email"></div>
+                    </div>
+                    <div class="pd-tb-20 bi">
+                        <div class="txt-left">住宅电话登记人</div>
+                        <div class="txt-right phoneMan"></div>
+                    </div>
+                </div>
+                <!--还款信息-->
+                <div class="step6" style="display: none">
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">还款账户开户行</div>
+                        <div class="txt-right com_grey repaymentBankName"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">还款账户卡号</div>
+                        <div class="txt-right com_grey repaymentBankNo"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">还款账户户名</div>
+                        <div class="txt-right com_grey repaymentAccountName"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">还款方式<span class="red">*</span></div>
+                        <div class="txt-right com_grey repaymentType"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">还款银行<span class="red">*</span></div>
+                        <div class="txt-right com_grey personBankName"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">银行卡号<span class="red">*</span></div>
+                        <div class="txt-right personBankNo"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">开户人姓名<span class="red">*</span></div>
+                        <div class="txt-right personAccountName"></div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">开户省市<span class="red">*</span></div>
+                        <div class="txt-right personBankCity"></div>
+                    </div>
+                </div>
+                <!--其它信息-->
+                <div class="step7" style="display: none">
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">教育程度<span class="red">*</span></div>
+                        <div class="txt-right eduexperience">博士</div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left text-right h120">总工作年限<span class="small">(就读时间)</span><span class="red">*</span></div>
+                        <div class="txt-right jobTotal">5年</div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left text-right">此单位工作年限<span class="small">(在读/营业时间)</span><span class="red">*</span></div>
+                        <div class="txt-right jobTime">5年</div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left text-right">在本公司申请过几次贷款<span class="red">*</span></div>
+                        <div class="txt-right severalTimes">5</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">家庭月收入<span class="red">*</span></div>
+                        <div class="txt-right familyMonthIncome">1000</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">其它月收入<span class="o0">*</span></div>
+                        <div class="txt-right otherRevenue">1000</div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left text-right">现单位是否购买社保<span class="red">*</span></div>
+                        <div class="txt-right isBuySocialSecurity">非代扣</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">其他联系人姓名<span class="red">*</span></div>
+                        <div class="txt-right otherContact">后羿</div>
+                    </div>
+                    <div class="pd-tb-20 fbox cen one_px_border_b">
+                        <div class="txt-left">其它联系人关系<span class="red">*</span></div>
+                        <div class="txt-right contactreLation">刘德华</div>
+                    </div>
+                    <div class="pd-tb-20 fbox one_px_border_b">
+                        <div class="txt-left">其它联系人电话<span class="red">*</span></div>
+                        <div class="txt-right contactTel">13333333</div>
+                    </div>
+                    <div class="pd-tb-20 fbox ">
+                        <div class="txt-left ">SA注释</div>
+                        <div class="txt-right SAremark">阿萨德个地方官史蒂夫给对方公司的郭德纲</div>
+                    </div>
+                </div>
+                <!--协审-->
+                <div class="step8" style="display: none">
+                    <div class="t1 pd-tb-20">申请表</div>
+                    <div class="pd-tb-20">
+                        <div class="txt-left">是否已确认代扣还款借记卡卡号及背后本人签名<span class="red">*</span></div>
+                        <div class="txt-right ml0">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on isSign">是</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">申请资料</div>
+                    <div class="pd-tb-20">
+                        <div class="txt-left">申请资料是否已查看原件，复印件（影像件）与原件内容完全一致<span class="red">*</span></div>
+                        <div class="txt-right ml0">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on isCheckOriginal">是</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">告知事项</div>
+                    <div class="pd-tb-20">
+                        <div class="txt-left">是否已明确告知申请人贷款相关注意事项，并告其它还款义务<span class="red">*</span></div>
+                        <div class="txt-right ml0">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on isInform">是</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="t1 pd-tb-20">电话核实</div>
+                    <div class="pd-tb-20">
+                        <div class="txt-left">申请人电话号码验证方式<span class="red">*</span></div>
+                        <div class="txt-right ml0 diff-val applyPhoneCheckType"></div>
+                    </div>
+                    <div class="pd-tb-20">
+                        <div class="txt-left">亲属联系人电话号码验证方式<span class="red">*</span></div>
+                        <div class="txt-right ml0 diff-val kinshipPhoneCheckType"></div>
+                    </div>
+                    <div class="pd-tb-20">
+                        <div class="txt-left">其他联系人电话号码验证方式<span class="red">*</span></div>
+                        <div class="txt-right ml0 diff-val otherPhoneCheckType"></div>
+                    </div>
+                    <div class="pd-t30 pd-lr-20">
+                        <div class="txt-left">单位电话是否经过百度查询<span class="red">*</span></div>
+                        <div class="txt-right ml0">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on companyTelphoneIsCheck">是</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-t30 pd-lr-20 mb30">
+                        <div class="txt-left">是否明确知道企业在当地存在<span class="small">(地址位置、人员规模)</span><span class="red">*</span></div>
+                        <div class="txt-right ml0">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on companyIsExist">知道</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="t2 pd-lr-20">其它信息</div>
+                    <div class="pd20 fbox one_px_border_b">
+                        <div class="txt-left">陪同人数<span class="red">*</span></div>
+                        <div class="txt-right accompanyCounts">1</div>
+                    </div>
+                    <div class="pd-tb-20 pd-lr-20 one_px_border_b">
+                        <div class="txt-left">陪同人是否有申请<span class="red">*</span></div>
+                        <div class="txt-right ml0">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on accompanyIsApply">是</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 pd-lr-20 one_px_border_b">
+                        <div class="txt-left">陪同人性别<span class="red">*</span></div>
+                        <div class="txt-right ml0">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on accompanySex">是</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd20 fbox one_px_border_b">
+                        <div class="txt-left">客户与陪同人员的关系<span class="red">*</span></div>
+                        <div class="txt-right accompanyRelation">1</div>
+                    </div>
+                    <div class="pd20 fbox one_px_border_b">
+                        <div class="txt-left">客户来源<span class="red">*</span></div>
+                        <div class="txt-right customerSource">1</div>
+                    </div>
+                    <div class="pd20 fbox one_px_border_b">
+                        <div class="txt-left">销售对客户的资质评级<span class="red">*</span></div>
+                        <div class="txt-right saRate">1</div>
+                    </div>
+                    <div class="pd-tb-20 pd-lr-20 one_px_border_b">
+                        <div class="txt-left">门店与工作地址是否位于同片街区<span class="small">(步行时间小于20分钟)</span><span class="red">*</span></div>
+                        <div class="txt-right ml0">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on sameWorkPlace">是</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 pd-lr-20 one_px_border_b">
+                        <div class="txt-left">门店与家庭地址是否位于同片街区<span class="small">(步行时间小于20分钟)</span><span class="red">*</span></div>
+                        <div class="txt-right ml0">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on sameFamilyPlace">是</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20 pd-lr-20 one_px_border_b">
+                        <div class="txt-left">家庭地址与工作地址是否位于同片街区<span class="small">(步行时间小于20分钟)</span><span class="red">*</span></div>
+                        <div class="txt-right ml0">
+                            <div class="radio-s2 bi mt20">
+                                <div class="text-center on sameFamilyWorkPlace">是</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bold_border_b"></div>
+                    <div class="mt20 mb40 bg_white">
+                        <div class="t1 no-bl pd-tb-20">异常备注<span class="small">(限500个汉字)</span></div>
+                        <div class="pd-lr-20">
+                            <div class="txt-right assistantRemark">1</div>
+                        </div>
+                    </div>
+                </div>
+                <!--贷前影像-->
+                <div class="step9" style="display: none">
+                    <div class="pd-tb-20 fbox">
+                        <div class="flex1 mapbox text-center">
+                            <div class="tablev a_front">
+                                <div>
+                                    <img class="w08" src="../resources/images/icon_picture_default@3x.png">
+                                    <div>身份证正面</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex1 mapbox text-center ml2">
+                            <div class="tablev a_back">
+                                <div>
+                                    <img class="w08" src="../resources/images/icon_picture_default@3x.png">
+                                    <div>身份证反面</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-b20 fbox">
+                        <div class="flex1 mapbox text-center">
+                            <div class="tablev b_front">
+                                <div>
+                                    <img class="w08" src="../resources/images/icon_picture_default@3x.png">
+                                    <div>现场合影照片</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex1 mapbox text-center ml2">
+                            <div class="tablev b_back">
+                                <div>
+                                    <img class="w08" src="../resources/images/icon_picture_default@3x.png">
+                                    <div>现场背景照片</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-b20 fbox one_px_border_b">
+                        <div class="flex1 mapbox big text-center">
+                            <div class="tablev c_front">
+                                <div>
+                                    <img class="w08" src="../resources/images/icon_picture_default@3x.png">
+                                    <div>签署版“风险提示函”</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-tb-20">
+                        <div class="txt-left">第二证明</div>
+                        <div class="txt-right ml0 impor_dark">
+                            <div class="radio-s4 fbox wrap mt20 ">
+                                <div class="fbox cen">
+                                    <i class="icon-s1"></i>
+                                    <div class="ml1">社保卡/医保卡</div>
+                                </div>
+                                <div class="fbox cen">
+                                    <i class="icon-s1"></i>
+                                    <div class="ml1">户口本</div>
+                                </div>
+                                <div class="fbox cen">
+                                    <i class="icon-s1"></i>
+                                    <div class="ml1">驾驶证</div>
+                                </div>
+                                <div class="fbox cen">
+                                    <i class="icon-s1"></i>
+                                    <div class="ml1">工卡</div>
+                                </div>
+                                <div class="fbox cen">
+                                    <i class="icon-s1"></i>
+                                    <div class="ml1">银行储蓄卡</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-b20 fbox">
+                        <div class="flex1 mapbox text-center">
+                            <div class="tablev d_front">
+                                <div>
+                                    <img class="w08" src="../resources/images/icon_picture_default@3x.png">
+                                    <div>正面</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex1 mapbox text-center ml2">
+                            <div class="tablev d_back">
+                                <div>
+                                    <img class="w08" src="../resources/images/icon_picture_default@3x.png">
+                                    <div>反面</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../resources/plugin/zepto/zepto.min.js"></script>
+<script type="text/javascript" src="../resources/plugin/zepto/touch.js"></script>
+<script type="text/javascript" src="../resources/plugin/swiper/swiper.3.1.7.min.js"></script>
+<script src="../resources/js/com.js"></script>
+<script>
+    var topTabSwiper = new Swiper('.swiper-container',{
+        slidesPerView : 4,
+        onTap: function(swiper){
+            //获取数据
+            getData($(topTabSwiper.clickedSlide).attr('data-info'));
+
+            $(topTabSwiper.clickedSlide).addClass('on').siblings().removeClass('on');
+            $('.nav-pagination div').eq(topTabSwiper.clickedIndex).addClass('on').siblings().removeClass('on');
+            $('.step'+(topTabSwiper.clickedIndex+1)).show().siblings().hide();
+        },
+        onInit: function(swiper){
+            // 初始化小圆点
+            var n = $('.swiper-wrapper').children().length-1,navPagination=$('.nav-pagination'),arr=[];
+            arr.push('<div class="on"></div>');
+            for(var i=0;i<n;i++){
+                arr.push('<div></div>');
+            }
+            navPagination.append(arr.join(''));
+            // 左右箭头事件
+            $('.nav-arrows').on('tap','.nav-button-prev',function(){
+                topTabSwiper.slidePrev();
+                var slideOn = $('.swiper-wrapper .swiper-slide.on');
+                if(slideOn.index() != 0){
+                    slideOn.removeClass('on').prev().addClass('on');
+                    //获取数据
+                    getData(slideOn.removeClass('on').prev().attr('data-info'));
+
+                    navPagination.children().filter('.on').removeClass('on').prev().addClass('on');
+                    $('.step.active').removeClass('active').prev().addClass('active');
+
+                    $('.step'+(slideOn.index())).show().siblings().hide();
+                }
+            })
+            .on('tap','.nav-button-next',function(){
+                topTabSwiper.slideNext();
+                var slideOn = $('.swiper-wrapper .swiper-slide.on');
+                if((slideOn.index()+1) != $('.swiper-wrapper .swiper-slide').length){
+                    slideOn.removeClass('on').next().addClass('on');
+                    //获取数据
+                    getData(slideOn.removeClass('on').next().attr('data-info'));
+
+                    navPagination.children().filter('.on').removeClass('on').next().addClass('on');
+                    $('.step.active').removeClass('active').next().addClass('active');
+
+                    $('.step'+(slideOn.index()+2)).show().siblings().hide();
+                }
+            })
+        }
+    });
+    /*请求*/
+    (function(){
+        var info = {
+            strs :["orderInfo","individulInfo","familyInfo","companyInfo","contactInfo","repaymentInfo","otherInfo","assistantAuditInfo","ecmInfo",]
+        }
+        // for(var i=0;i<info.strs.length;i++){
+        //     getData(info.strs[i]);
+        // }
+        getData(info.strs[0]);
+    })();
+    function getData(str){
+        var userInfo = getUserInfo();
+        console.log(userInfo);
+        if(userInfo){
+            $.ajax({
+                type:"post",
+                //async:false,
+                url:Config.url+"contract/"+str,
+                contentType:"application/json",
+                data:JSON.stringify({"userNo":userInfo.saNo,"orderNo":"1000000000817129"}),
+                headers: {"token":userInfo.token},
+                beforeSend:function(xhr, settings){
+                },
+                success:function(data, status, xhr){
+                    if(data.ask==0){
+                        //dataObj = data.data;
+                        showData(str,data.data);
+                    }
+                },
+                error:function(xhr, errorType, error){
+                    console.log(xhr);
+                },
+                complete:function(xhr, status){
+                }
+            });
+        }else{
+            var dialog = confirmDialog({
+                type:2,
+                hasShadowBg:true,
+                title:'提示',
+                txt:'获取用户信息失败，请重新登录。',
+                btns:[{
+                        text:'确定',
+                        callBack:function(){
+                            dialog.destory();
+                        }
+                    }
+                ]
+            });
+            dialog.show();
+        }
+    }
+    function showData(str,data){
+        /**********订单信息**************/
+        if(str=="orderInfo"){
+            $('.channel').text(data.channel);//渠道信息
+            $('.isProxy').text(data.orderType==1?"代购":(data.orderType==2?"电商":''));//订单类型 1代购 2电商
+            $('.goodsDesc').text(data.goodsName);//商品描述
+            $('.goodsAmount').text(data.goodsMoney);//商品金额
+            $('.totalPrice').text(data.goodsMoney);//商品总额
+            $('.paymentRate').text(data.paymentRate+'%');//分期比例
+            $('.firstPayment').text(data.firstPayment);//首付金额
+            $('.stagesMoney').text(data.stagesMoney);//分期金额
+            $('.periods').text(data.periods+'期');//分期数
+            $('.firstPayment').text(data.firstPayment);//首期还款
+            $('.firstPaymentDate').text(data.firstdRepaymentDate+'');//首还款日
+            $('.monthRepayment').text(data.monthRepayment);//月还款
+            $('.monthRepaymentDate').text('每月'+data.monthRepaymentDate+'日');//月还款日
+            $('.periodsFee').text('(含服务费'+data.periodsFee+'元)');//每期服务费
+            //$('.lastPayment').text(data.);//尾期还款
+            //$('.lastPaymentDate').text(data.);//尾期还款日
+            $('.customerName').text(data.customerName);//客户姓名
+            $('.customerPhone').text(data.customerMobile);//联系电话
+            $('.goodsReceiverAddress').text(data.goodsReceiverAddress);//收货地址
+            $('.goodsCategory').text(data.goodsCategory);//商品品类
+            $('.goodsType').text(data.goodsType);//商品类型
+            $('.goodsBrand').text(data.goodsBrand);//商品品牌
+            $('.goodsVersion').text(data.goodsVersion);//商品型号
+        }
+        /**********个人信息**************/
+        if(str=="individulInfo"){
+            $('.customerName').text(data.customerName);//客户姓名
+            $('.cardId').text(data.cardId);//身份证号
+            $('.issuingAuthority').text(data.issuingAuthority);//签发机关
+            $('.cardOverTime').text(data.cardOverTime);//到期时间
+            $('.referenceFlag').text(data.referenceFlag);//参考代码,1、较好，2、一般，3、较差
+            $('.registerArea').text(data.registerArea);//户籍，所在地区
+            $('.registerAddress').text(data.registerAddress);//户籍，具体地址
+            $('.isRegisterAddress').text(data.isRegisterAddress==1?'是':'否');//现住址是否同户籍地址,1是2否
+            $('.liveArea').text(data.liveArea);//现住址，所在地区
+            $('.liveAddress').text(data.liveAddress);//现住址，具体地址
+        }
+        /**********家庭信息**************/
+        if(str=="familyInfo"){
+            $('.isMarried').text(data.isMarried==1?'已婚':'未婚');//婚姻状况，1、已婚，2、未婚
+            $('.childrenTotal').text(data.childrenTotal);//子女数目
+            $('.houseType').text(data.houseType);//住房类型
+            $('.monthAlimony').text(data.monthAlimony);//每月生活总支出
+            $('.monthIncome').text(data.monthIncome);//个税后月收入
+            $('.balanceSheet').text(data.balanceSheet);//现有银行贷款余额
+            $('.kinshipName').text(data.kinshipName);//亲属姓名
+            $('.relativeType').text(data.relativeType);//亲属关系
+            $('.kinshipPhone').text(data.kinshipPhone);//亲属联系电话
+            $('.isKinshipDdress').text(data.isKinshipDdress);//亲属联系地址是否同户籍所在地址
+            $('.kinshipArea').text(data.kinshipArea);//亲属联系地址
+            $('.kinshipAddress').text(data.kinshipAddress);//具体地址
+        }
+        /**********单位信息**************/
+        if(str=="companyInfo"){
+            $('.companyName').text(data.companyName);//单位名称
+            $('.businessType').text(data.businessType);//所属行业
+            $('.natureType').text(data.natureType);//单位性质
+            $('.department').text(data.department);//任职部门
+            $('.duty').text(data.duty);//职务
+            $('.companyArea').text(data.companyArea);//职务单位所在地区
+            $('.companyAddress').text(data.companyAddress);//具体地址
+            $('.companyWorks').text(data.companyWorks);//过去三年换工作或开业次数
+        }
+        /**********联系方式**************/
+        if(str=="contactInfo"){
+            $('.mailAddress').text(data.mailAddress==1?'同公司地址':(data.mailAddress==2?'同个人地址':(data.mailAddress==3?'同户籍':'')));//邮寄地址，1、同公司地址，2、同个人地址，3、同户籍
+            $('.mobilephone').text(data.mobilephone);//手机号
+            $('.telePhone').text(data.areaCode+'-'+data.telephone);//单位座机号码
+            $('.qqNo').text(data.qqNo);//QQ号码
+            $('.wxNo').text(data.wxNo);//微信号
+            $('.email').text(data.email);//电子邮箱
+            $('.phoneMan').text(data.phoneMan);//住宅电话登记人
+        }
+        /**********还款信息**************/
+        if(str=="repaymentInfo"){
+            $('.repaymentBankName').text(data.repaymentBankName);//还款账户开户行
+            $('.repaymentBankNo').text(data.repaymentBackNo);//还款账户卡号
+            $('.repaymentAccountName').text(data.repaymentAccountName);//还款账户户名
+            $('.repaymentType').text(data.repaymenType==1?'代扣':(data.repaymenType==2?'非代扣':''));//还款方式，1、代扣，2、非代扣
+            $('.personBankName').text(data.personBankName);//还款方式
+            $('.personBankNo').text(data.personBankNo);//银行卡号
+            $('.personAccountName').text(data.personAccountName);//开户人姓名
+            $('.personBankCity').text(data.personBankCity);//开户省市
+        }
+        /**********其他信息**************/
+        if(str=="otherInfo"){
+            $('.eduexperience').text(data.edueXperience);//教育程度
+            $('.jobTotal').text(data.jobTotal);//总工作年限
+            $('.jobTime').text(data.jobTime);//此单位工作年限
+            $('.severalTimes').text(data.severalTimes);//在本公司申请过几次贷款
+            $('.familyMonthIncome').text(data.familyMonthIncome);//家庭月收入
+            $('.otherRevenue').text(data.otherRevenue);//其他月收入
+            $('.isBuySocialSecurity').text(data.isBuySocialSecurity==1?'是':(data.isBuySocialSecurity==2?'否':''));//现单位是否购买社保
+            $('.otherContact').text(data.otherContact);//其他联系人姓名
+            $('.contactreLation').text(data.contactreLation);//其他联系人关系
+            $('.contactTel').text(data.contactTel);//其他联系人电话
+            $('.SAremark').text(data.remark);//SA注释
+        }
+        /**********协审**************/
+        if(str=="assistantAuditInfo"){
+            $('.isSign').text(data.isSign==0?'否':(data.isSign==1?'是':''));//是否已确认代扣还款借记卡及背后本人签名：1、是，0、否
+            $('.isCheckOriginal').text(data.isCheckOriginal==0?'否':(data.isCheckOriginal==1?'是':''));//申请资料是否已查看原件，复印件、影像与原件内容一致：1、是，0、否
+            $('.isInform').text(data.isInform==0?'否':(data.isInform==1?'是':''));//是否已明确告知申请人贷款相关注意事项：1、是，0、否
+            $('.applyPhoneCheckType').html(generateValideHtml(data.applyPhoneCheckType));//申请人电话验证方式：（可验证）1、支付宝，2、微信，3、其他，（不可验证）10、不可验证
+            $('.kinshipPhoneCheckType').html(generateValideHtml(data.kinshipPhoneCheckType));//申请人亲属电话验证方式：（可验证）1、支付宝，2、微信，3、其他，（不可验证）10、不可验证
+            $('.otherPhoneCheckType').html(generateValideHtml(data.otherPhoneCheckType));//其他人亲属电话验证方式：（可验证）1、支付宝，2、微信，3、其他，（不可验证）10、不可验证
+            $('.companyTelphoneIsCheck').text(data.companyTelphoneIsCheck==0?'否':(data.companyTelphoneIsCheck==1?'是':''));//单位电话是否经过百度查询：1、是，0、否
+            $('.companyIsExist').text(data.companyIsexist==0?'否':(data.companyIsexist==1?'是':''));//是否明确知道企业在当地存在（地理位置、人员规模）：1、是，0、否
+            $('.accompanyCounts').text(data.accompanyCounts);//陪同人数
+            $('.accompanyIsApply').text(data.accompanyIsApply==0?'否':(data.accompanyIsApply==1?'是':''));//陪同人是否申请：1、是，0、否
+            $('.accompanySex').text(data.accompanySex==1?'男':(data.accompanySex==2?'女':''));//陪同人性别：1、男，2、女
+            $('.accompanyRelation').text(data.accompanyRelation==1?'亲属':'（待完善）');//陪同人和客户的关系：1、亲属（待完善）
+            $('.customerSource').text(data.customerSource==1?'商户介绍':'（待完善）');//客户来源：1、商户介绍（待完善）
+            $('.saRate').text(data.saRate==1?'好':(data.saRate==2?'一般':(data.saRate==3?'差':'')));//销售对客户评级：1、好，2、一般，3、差
+            $('.sameWorkPlace').text(data.sameWorkPlace==0?'否':(data.sameWorkPlace==1?'是':''));//门店和工作地点是否位于同街区：1、是，0、否
+            $('.sameFamilyPlace').text(data.sameFamilyPlace==0?'否':(data.sameFamilyPlace==1?'是':''));//门店和家庭地址是否位于同街区：1、是，0、否
+            $('.sameFamilyWorkPlace').text(data.sameFamilyWorkPlace==0?'否':(data.sameFamilyWorkPlace==1?'是':''));//家庭地址和工作地址是否位于同街区：1、是，0、否
+            $('.assistantRemark').text(data.remark==0?'否':(data.remark==1?'是':''));//家庭地址和工作地址是否位于同街区：1、是，0、否
+        }
+        /**********贷前影像**************/
+        if(str=="ecmInfo"){
+            //1身份证正面,2身份证背面,3客户现场照片,4现场背景照,5风险提示函
+            //11工卡正面,12银行卡正面,13户口本正面,14驾驶证正面,15社保&医保卡 正面,111工卡反面,112银行卡反面,113 户口本反面,114 驾驶证反面,115社保&医保卡反面
+            console.log(data);
+            for(var i=0;i<data.length;i++){
+                var infoImg = $('<div class="info_img"><img src="'+data[i].cloudPath+'" alt=""></div>');
+                if(data[i].type==1){//1身份证正面
+                    $('.a_front').append(infoImg);
+                }else if(data[i].type==2){//2身份证背面
+                    $('.a_back').append(infoImg);
+                }else if(data[i].type==3){//3客户现场照片
+                    $('.b_front').append(infoImg);
+                }else if(data[i].type==4){//4现场背景照
+                    $('.b_back').append(infoImg);
+                }else if(data[i].type==5){//5风险提示函
+                    $('.c_front').append(infoImg);
+                }else if(data[i].type==11||data[i].type==12||data[i].type==13||data[i].type==14||data[i].type==15){//11工卡正面,12银行卡正面,13户口本正面,14驾驶证正面,15社保&医保卡 正面
+                    $('.d_front').append(infoImg);
+                }else if(data[i].type==111||data[i].type==112||data[i].type==113||data[i].type==114||data[i].type==115){//111工卡反面,112银行卡反面,113 户口本反面,114 驾驶证反面,115社保&医保卡反面
+                    $('.d_back').append(infoImg);
+                }
+
+                var index = -1;//0 社保卡/医保卡,1 户口本,2 驾驶证,3 工卡,4 银行储蓄卡
+                if(data[i].type==15||data[i].type==115){
+                    index = 0;
+                }else if(data[i].type==13||data[i].type==113){
+                    index = 1;
+                }else if(data[i].type==14||data[i].type==114){
+                    index = 2;
+                }else if(data[i].type==11||data[i].type==111){
+                    index = 3;
+                }else if(data[i].type==12||data[i].type==112){
+                    index = 4;
+                }
+                if(index>=0){
+                    $('.radio-s4>div').eq(index).siblings().css('display','none');
+                    $('.radio-s4>div').eq(index).find('.icon-s1').addClass('on');
+                }    
+            }
+        }
+    }
+    //电话验证方式：（可验证）1、支付宝，2、微信，3、其他，（不可验证）10、不可验证
+    function generateValideHtml(num){
+        var tmp = '';
+        if(num==10){
+            tmp = '<div class="fbox cen mb20 mt20"><div class="ml2">不可验证</div></div>';
+        }else{
+            tmp = '<div class="fbox cen mb20 mt20"><div class="ml2">可验证：</div><div class="radio-s3 fbox cen"><div class="text-center on">'+(num==1?'支付宝':(num==2?'微信':'其他'))+'</div></div></div>';
+        }
+        return tmp;
+    }
+</script>
+</body>
+</html>
+
+

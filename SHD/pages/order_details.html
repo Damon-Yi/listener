@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>订单详情</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link href="../resources/css/public.css" rel="stylesheet" type="text/css">
+    <link href="../resources/css/com.css" rel="stylesheet" type="text/css">
+    <link href="../../resources/plugin/swiper/swiper.3.1.7.min.css" rel="stylesheet" type="text/css">
+    <script src="../resources/js/public.js"></script>
+    <script type="text/javascript" src="../../resources/plugin/swiper/swiper.3.1.7.min.js"></script>
+    <script type="text/javascript" src="../../resources/plugin/iscroll/iscroll.js"></script>
+    
+    <style>
+        .order_details{font-size: 0.24rem;color: #999;word-break: break-all;text-justify : auto; text-align:justify;}
+        .order_details .or_section{background-color: #fff;padding: 0 0.2rem;margin-bottom:0.2rem;}
+        .order_details .or_section .or_title{font-size: 0.28rem;padding-left:0.5rem;color: #333;height:0.8rem;line-height:0.8rem;position: relative;}
+        .order_details .or_section .or_title.up{background:url(../../resources/images/icon_up_ward@3x.png) no-repeat right center;background-size:0.25rem 0.18rem;}
+        .order_details .or_section .or_title.down{background:url(../../resources/images/icon_drop_down@3x.png) no-repeat right center;background-size:0.25rem 0.18rem;}
+        .order_details .or_section .or_title:before{content: " ";position: absolute;left: 0;top: 0.27rem;width: 0.06rem;height: 0.28rem; background: #9c0000;}
+        .order_details .or_section .or_info{display: block;}
+        .order_details .or_section .or_tr{display: box;display:-webkit-box;display: flex;display:-webkit-flex;padding: 0.24rem 0;position: relative}
+        .order_details .or_section .or_tr:before{content: " ";position: absolute;left: 0;top:0;width: 100%;height: 1px;border-top: 1px solid #e1e1e1;color: #e1e1e1;-webkit-transform-origin: 0 100%;transform-origin: 0 100%;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);}           
+        .order_details .or_section .or_tr .or_td_1{width: 2rem;color: #A9B2B9;font-size: 0.24rem;}
+        .order_details .or_section .or_tr .or_td_2{flex: 1;-webkit-flex:1;color: #323232;padding-right:0.1rem;font-size: 0.24rem;}
+        .order_details .or_section .or_tr .or_td_3{width: 0.8rem;text-align: right;padding-right: 0.2rem;}
+        .order_details .or_section .or_tr .or_td_3>img{width: 0.28rem;height: 0.28rem;}
+        .order_details .or_section .or_mark{font-size: 0.2rem;}
+        .interview{display:none;}
+        .bottomFlex{display: -webkit-box;width:100%}
+        .bottomFlex>a {width: 33%; -webkit-box-flex: 1; border-radius: 0.1rem;border: 1px solid #eef0f1;display: block; color: #A9B2B9;text-align: center;line-height: 0.68rem;font-size: 0.3rem;margin:0 0.15rem}
+        .bottomFlex_20 .import {background-color: #db2442;color: #fff;}
+        .bottomFlex_20 .acc_order{background-color: #fff;color: #db2442;border:1px solid #db2442;}
+        .bottomFlex_30 .import {background-color: #6cafe3;color: #fff;}
+        .bottomFlex_30 .acc_order{background-color: #fff;color: #6cafe3;border:1px solid #6cafe3;}
+        .bottomFlex_40 .import {background-color: #FD9426;color: #fff;}
+        .bottomFlex_40 .acc_order{background-color: #fff;color: #FD9426;border:1px solid #FD9426;}
+        .bottomFlex_50 .import {background-color: #646464; border-color: #646464;color: #fff;}
+        .bottomFlex_60 .import {background-color: #646464;color: #fff;}
+        
+        .mapbox { height: 1.8rem;max-width: 2.7rem;background: #eef0f1;font-size: 0.24rem;color: #323232;margin:0 0.15rem;}
+        .pd-tb20{padding:0.2rem 0;}
+        .text-center{text-align: center;}
+        .flex1 {flex: 1;-webkit-flex: 1;}
+        .tablev {display: table;position: relative;width: 100%;height: 100%;}
+        .tablev>img {border:none;width:100%;height:100%}
+        .w08 {width: 0.8rem;}
+        .fbox {display: flex;display: -webkit-flex;align-items: flex-start; -webkit-align-items: flex-start;display: box;display: -webkit-box;}
+        .order_details .or_section .or_tr.reasons{display:none}
+        
+        .layer_container .img-c{width:100%;}
+    </style>
+</head>
+<body>
+    <div class="cont_box top_cont_box">
+        <div>
+            <div class="order_details">
+                <div class="or_section">
+                    <div class="or_title up">面签信息</div>
+                    <div class="or_info">
+                         <div class="or_tr parenhide">
+                            <div class="or_td_1">客户姓名</div>
+                            <div class="or_td_2 apendata cusName"></div>
+                         </div>
+                         <div class="or_tr parenhide">
+                            <div class="or_td_1">联系电话</div>
+                            <div class="or_td_2 apendata customerMobile"></div>
+                         </div>
+                         <div class="or_tr parenhide">
+                            <div class="or_td_1">面签地址</div>
+                            <div class="or_td_2 apendata site"></div>
+                         </div>
+                         <div class="or_tr parenhide">
+                            <div class="or_td_1">订单状态</div>
+                            <div class="or_td_2 apendata orderStatus"></div>
+                         </div>
+                         <div class="or_tr parenhide">
+                            <div class="or_td_1">预约时间</div>
+                            <div class="or_td_2 apendata reservationTime"></div>
+                         </div>
+                         <div class="or_tr parenhide reasons">
+                            <div class="or_td_1">取消原因</div>
+                            <div class="or_td_2 apendata closeOrderReason"></div>
+                         </div>
+                    </div>
+                </div>
+                <div class="or_section">
+                    <div class="or_title up">个人信息</div>
+                    <div class="or_info">
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">身份证号</div>
+                            <div class="or_td_2 apendata idCard"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">身份证有效期</div>
+                            <div class="or_td_2 apendata idCardValidity"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">身份证地址</div>
+                            <div class="or_td_2 apendata idCardAddr"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">银行卡号</div>
+                            <div class="or_td_2 apendata bankNumber"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">银行卡开户银行</div>
+                            <div class="or_td_2 apendata bankName"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">银行卡开户省市</div>
+                            <div class="or_td_2 apendata bankCity"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">开户支行名称</div>
+                            <div class="or_td_2 apendata branchBank"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">微信号</div>
+                            <div class="or_td_2 apendata weChat"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">QQ号</div>
+                            <div class="or_td_2 apendata qq"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">生日</div>
+                            <div class="or_td_2 apendata birthday"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">邮箱</div>
+                            <div class="or_td_2 apendata email"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">教育程度</div>
+                            <div class="or_td_2 apendata education"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="or_section">
+                    <div class="or_title up">工作信息</div>
+                    <div class="or_info">
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">工作单位</div>
+                            <div class="or_td_2 apendata company"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">工作行业</div>
+                            <div class="or_td_2 apendata industry"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">任职部门</div>
+                            <div class="or_td_2 apendata department"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">单位性质</div>
+                            <div class="or_td_2 apendata nature"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">单位地址</div>
+                            <div class="or_td_2 apendata companyAddr"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">工作邮箱</div>
+                            <div class="or_td_2 apendata workEmail"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">职位</div>
+                            <div class="or_td_2 apendata position"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">月收入</div>
+                            <div class="or_td_2 apendata monthIncome"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">工作年限</div>
+                            <div class="or_td_2 apendata workExperience"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">同事姓名</div>
+                            <div class="or_td_2 apendata colleagueName"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">同事电话</div>
+                            <div class="or_td_2 apendata colleaguePhone"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">工作电话</div>
+                            <div class="or_td_2 apendata workPhone"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="or_section">
+                    <div class="or_title up">家庭信息</div>
+                    <div class="or_info">
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">婚姻状况</div>
+                            <div class="or_td_2 apendata marriage"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">直系联系人姓名</div>
+                            <div class="or_td_2 apendata contactsName"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">直系联系人关系</div>
+                            <div class="or_td_2 apendata contactsRelation"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">直系联系人电话</div>
+                            <div class="or_td_2 apendata contactsPhone"></div>
+                        </div>
+                        <div class="or_tr parenhide">
+                            <div class="or_td_1">家庭地址</div>
+                            <div class="or_td_2 apendata familyAddr"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="or_section">
+                    <div class="or_title up">身份证原件信息</div>
+                    <div class="or_info">
+                        <div class="pd-tb20 fbox parenhide">
+	                        <div class="flex1 mapbox text-center ">
+	                            <div class="tablev apendata idCardFront"></div>
+	                        </div>
+	                        <div class="flex1  mapbox text-center">
+	                            <div class="tablev apendata idCardBack"></div>
+	                        </div>
+	                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../resources/plugin/zepto/zepto.js"></script>
+    <script type="text/javascript" src="../../resources/plugin/zepto/touch.js"></script>
+    <script src="../resources/js/com.js"></script>
+    <script>
+        var mainScroll,urlData,userInfo,address,types,currUserIdentity;
+        window.onload = function() {
+        	
+            mainScroll = new IScroll('.cont_box',{
+                scrollbars: true,
+                mouseWheel: true,
+                interactiveScrollbars: true,
+                shrinkScrollbars: 'scale',
+                fadeScrollbars: true,
+                click: true 
+            });
+            document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+            userInfo=getUserInfo();
+            urlData=getQueryStringArge();
+            orderDatel(urlData);
+            currUserIdentity=getCurrUserIdentity();
+            getStatusAndBtns(urlData.statu);
+        }
+        /*ajax请求*/
+        function orderDatel(ord){
+        	if(userInfo){
+        		$.ajax({
+			        type:"post",
+			        url:Config.url+"contract/orderInfo",
+			        contentType:"application/json",
+			        data:JSON.stringify({"userNo":userInfo.saNo,"orderNo":ord.order}),
+			        headers: {"token":userInfo.token},
+			        beforeSend:function(xhr, settings){
+			        },
+			        success:function(data, status, xhr){
+			            if(data.ask==0&&data.data){
+			            	var datas=data;
+			            	address=datas.data.address;
+			            	types=datas.data.orderType;
+			            	if(datas.data.reservationInfo!=null){
+			            		for(var i in datas.data.reservationInfo){
+			            			if(!datas.data[i]){
+			            				datas.data[i] = datas.data.reservationInfo[i];
+			            			}
+			            		}
+			            	}
+			            	showDatas(datas);
+			            }else if(data.ask==-2){
+                    		logOut();	
+                    	}
+			        },
+			        error:function(xhr, errorType, error){
+			            console.log(xhr);
+					tips('获取订单信息失败','tips_center',1500);
+			        },
+			        complete:function(xhr, status){
+			        }
+			    });
+        	}
+        }
+        /*push数据*/
+        function showDatas(data){
+        	console.log(data);
+        	$('.apendata').each(function(){
+        		var counter = 0,
+        			len = 0;
+        		for(var item in data.data){
+        			len++;
+        			if($(this).hasClass(item)){
+        				if(item=="idCardFront"||item=="idCardBack"){//身份证正反面
+        					if(item=="idCardFront"){
+	        					$("."+item).empty().append('<img class="img-c" src="'+data.data[item]+'"/>');
+	        				}
+	        				if(item=="idCardBack"){
+	        					$("."+item).empty().append('<img class="img-c" src="'+data.data[item]+'"/>');
+	        				}
+        				}else{
+        					$("."+item).text(data.data[item]);
+        				}
+        				if(item=="reservationTime"&&data.data[item]){//预约时间
+			        		$("."+item).text(data.data[item]);
+			        	}else if(item=="reservationTime"&&data.data[item]==null||data.data[item]==""){
+			        		$("."+item).parents(".parenhide").hide();
+			        	}
+        				if(item=="orderStatus"){//订单状态\n
+        					if(currUserIdentity.status[data.data[item]]){
+        						$("."+item).text(currUserIdentity.status[data.data[item]].text);
+        					}
+			        	}
+        				if(data.data[item]==60){//取消原因
+    						$("."+item).text("已取消");
+				      		$(".reasons").css("display","-webkit-flex")
+				      	}else if(data.data["orderStatus"]&&data.data["orderStatus"]!=60){
+				      		$(".reasons").css("display","none")
+				      	}
+        			}else{
+        				counter++;
+        			}
+	        	}
+        		if(counter==len){
+        			$(this).parents(".parenhide").hide()
+        		}
+        	});
+        	mainScroll.refresh();
+        }
+
+
+		/*订单状态及对应操作按钮*/
+		function getStatusAndBtns(status){
+			var btnObjs=[];
+			if(currUserIdentity.status[status]){
+				var btns = currUserIdentity.status[status].btns;
+	            for(var i = 0;i<btns.length;i++){
+	                btnObjs.push(generateBut(btns[i]));
+	            }
+	            if(status==60){
+					$(".cont_box").removeClass("top_cont_box")
+					mainScroll.refresh();
+				}else{
+					var bottomFlex = $('<div class="bottom_box bottomFlex bottomFlex_'+status+'"></div>');
+					for(var i=0;i<btnObjs.length;i++){
+		                bottomFlex.append(btnObjs[i]);
+		            }
+					$('.cont_box').after(bottomFlex);
+				}
+			}else if(currUserIdentity.status[status]==undefined){
+				$(".cont_box").removeClass("top_cont_box")
+				mainScroll.refresh();
+			}
+		}
+		/*订单 接单、取消、预约按钮   */
+		function generateBut(type){
+            var btn;
+            if(type=='cancel'){//取消订单
+                btn = $('<a href="javascript:;" class="reject_order">取消订单</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                    location.href="order_cancel.html?order="+urlData.order+"&urltpe="+urlData.urltpe;
+                });
+            }
+            /*接单*/
+            if(type=='recive'){
+                btn = $('<a href="javascript:;" class="import">接单</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                	var dialog = confirmDialog({
+		                type:2,
+		                hasShadowBg:true,
+		                title:'确认接单',
+		                txt:userInfo.positionId=="1"?'接单后1小时内和客户预约面签时间！如您不接此单，系统将在1小时后重新派单。':'请在1小时内处理订单！',
+		                btns:[{
+		                        text:'接单',
+		                        callBack:function(){
+                                    var userInfo = getUserInfo();
+                                    var _that = this;
+                                    if(userInfo &&!$(_that).hasClass('disable')){
+    		                            $.ajax({
+    					            		type:"post",
+    					            		url:Config.url+"orderInfo/receiveOrder",
+    					            		contentType:"application/json",
+    					            		data:JSON.stringify({"userNo":userInfo.saNo,"orderNo":urlData.order}),
+    					            		headers: {"token":userInfo.token},
+    					            		beforeSend:function(xhr, settings){
+				        					  $(_that).addClass('disabled');
+    					            		},
+    					            		success:function(data,status,xhr){
+    					            			if(data.ask==0){
+                        							dialog.destory();
+	    					            			location.href="orders.html?urltpe="+urlData.urltpe;
+                        						}else if(data.ask==-2){
+							                    	logOut();	
+							                    }	
+    					            		},
+    					            		error:function(xhr, errorType, error){
+    								            console.log(xhr);
+    								        },
+    								        complete:function(xhr, status){
+						                       $(_that).removeClass('disabled'); 
+					                        },
+    					            	});
+                                    }
+		                        }
+		                    },
+		                    {
+		                        text:'取消',
+		                        callBack:function(){
+		                        	dialog.destory();
+		                        }
+		                    }
+		                ]
+		            });
+		            dialog.show();
+                });
+            }
+            /*拒绝接单*/
+            if(type=='refuse'){
+            	btn = $('<a href="javascript:;" class="acc_order">拒绝订单</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                	e.stopPropagation();
+                	var dialog = confirmDialog({
+		                type:2,
+		                hasShadowBg:true,
+		                title:'确认拒单',
+		                txt:'拒绝该订单后，系统将不再派该订单给您？',
+		                btns:[{
+		                        text:'拒单',
+		                        callBack:function(){
+                                    var userInfo = getUserInfo();
+                                    var _that = this;
+                                    if(userInfo&&!$(_that).hasClass('disable')){
+    		                            $.ajax({
+    					            		type:"post",
+    					            		url:Config.url+"orderInfo/rejectOrder",
+    					            		contentType:"application/json",
+    					            		data:JSON.stringify({"userNo":userInfo.saNo,"orderNo":urlData.order}),
+    					            		headers: {"token":userInfo.token},
+    					            		beforeSend:function(xhr, settings){
+				        					  $(_that).addClass('disabled');
+    					            		},
+    					            		success:function(data,status,xhr){
+                        						if(data.ask==0){
+                        							dialog.destory();
+	    					            			location.href="orders.html?urltpe="+urlData.urltpe;
+                        						}else if(data.ask==-2){
+							                    	logOut();	
+							                    }
+    					            		},
+    					            		error:function(xhr, errorType, error){
+    								            console.log(xhr);
+    								        },
+    								        complete:function(xhr, status){
+						                       $(_that).removeClass('disabled'); 
+					                        },
+    					            	});
+                                    }
+		                        }
+		                    },
+		                    {
+		                        text:'取消',
+		                        callBack:function(){
+		                        	dialog.destory();
+		                        }
+		                    }
+		                ]
+		            });
+		            dialog.show();
+                });
+            }
+            /*//转单*/
+            if(type=='turn'){
+            	btn = $('<a href="javascript:;" class="acc_order">转单</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                    location.href="turn_order.html?order="+urlData.order+"&site="+address+"&urltpe="+urlData.urltpe;
+                });
+            }
+            /*//预约*/
+            if(type=='subscr'){
+            	btn = $('<a href="javascript:;" class="import">预约</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                    location.href="policy.html?order="+urlData.order+"&urltpe="+urlData.urltpe;
+                });
+            }
+            /*//改约*/
+            if(type=='improve'){
+            	btn = $('<a href="javascript:;" class="acc_order">改约</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                    location.href="policy.html?order="+urlData.order+"&urltpe="+urlData.urltpe;
+                });
+            }
+            /*//提单详情*/
+            if(type=='examine'){
+            	btn = $('<a href="javascript:;" class="import">提单详情</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                    location.href="automation.html?orderId="+urlData.order+"&orderType="+types+"&urltpe="+urlData.urltpe;
+                });
+            }
+            /*//提单*/
+            if(type=="ladoder"){
+            	btn = $('<a href="javascript:;" class="import">提单</a>');
+                btn.on('tap',function(e){
+                	e.stopPropagation();
+                    location.href="automation.html?orderId="+urlData.order+"&orderType="+types+"&urltpe="+urlData.urltpe;
+                });
+            }
+            return btn;
+		}
+		/*点击查看大图*/
+        $(".mapbox .apendata").on("tap","img",function(){
+        	var bigImg = myLayer({
+        		'layerCont':$(this),
+		        'hasShadowBg':true,
+		        'shadowClose':true,
+		        'funcs':{".layer_cont_wrap":function(){
+		        	bigImg.destory();
+		        }}
+		    });
+		    bigImg.show();
+        });
+        /*收展列表*/
+       $(".or_title").on('tap',function(){
+       		if($(this).hasClass("up")){
+				$(this).removeClass("up");
+				$(this).addClass("down");
+			}else if($(this).hasClass("down")){
+				$(this).removeClass("down");
+				$(this).addClass("up");
+			}
+			$(this).parent().find(".or_info").toggle();
+			mainScroll.refresh();
+       });
+    </script>
+</body>
+</html>
